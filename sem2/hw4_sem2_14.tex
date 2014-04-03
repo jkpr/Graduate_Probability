@@ -1,0 +1,735 @@
+
+% /**
+%  * A template for homework files in math classes. The 
+%  * packages and newcommands are a good starting point.
+%  *
+%  * Author: James K. Pringle
+%  * E-mail: jameskpringle@gmail.com
+%  * Last Changed: 5 September 2013
+%  *
+%  * "LaTeX countains the increasing union of MS Word"
+%  */
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                         %
+%                        PAGE SETUP                       %
+%                                                         %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[letterpaper, 12pt]{article}
+
+% 1in margins all the way around
+\usepackage[margin=1in]{geometry}
+
+% Sets \parindent to 0 and \parskip to stretchable.
+\usepackage{parskip}
+% Use for bigger spaces between paragraphs.
+%\parskip=1.5\baselineskip
+
+% Set headers and footers
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+% Header
+\renewcommand{\headrulewidth}{0.4pt}
+\lhead{\textsc{\mathclass}}
+\chead{\textsc{\today}}
+\rhead{\textsc{\mynamehdr}}
+% Footer
+\renewcommand{\footrulewidth}{0.4pt}
+\lfoot{}
+\cfoot{\thepage}
+\rfoot{}
+
+% Make the space between lines slightly more generous 
+% than normal single spacing, but compensate so that the 
+% spacing between rows of matrices still looks normal.  
+% Note that 1.1=1/.9090909...
+\renewcommand{\baselinestretch}{1.1}
+\renewcommand{\arraystretch}{.91}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                         %
+%                      USEFUL PACKAGES                    %
+%                                                         %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% The classic three
+\usepackage{amsmath,amsthm,amssymb}
+
+% Define \newtheorem for use
+% No numbers, labeled 'Theorem'
+\newtheorem*{nthm}{Theorem}
+
+% Not sure what this is for
+\usepackage{amsfonts}
+
+% Fancy script font
+\usepackage{mathrsfs}
+
+% Makes enumerate environment much easier to customize
+% by specifying the counter
+\usepackage{enumerate}
+
+% Color
+\usepackage{color}
+\usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
+
+% URL links
+\usepackage{hyperref}
+
+% For inserting graphics and images
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage[footnotesize]{caption}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                         %
+%                   USER-DEFINED COMMANDS                 %
+%                                                         %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Make a hyperlink with colored text
+\newcommand{\hrefcolor}[3]{\href{#1}{\textcolor{#3}{#2}}}
+
+% Make a hyperlink with gray text
+\newcommand{\hrefgray}[2]{\hrefcolor{#1}{#2}{Gray}}
+
+% Make the header for the first page
+\newcommand{\firstpageinfo}{
+\textsf{
+\begin{flushleft}
+\sc \myname \\
+\normalfont \mathclass \\
+\professorname \\
+\assignmentnumber \\
+\thedate
+\end{flushleft}
+} \bigskip
+}
+
+% Make problem list for "title" of page
+\newcommand{\problemlist}{ 
+\begin{center}
+\textbf{\Large \textsf{\assignmentnumber}}\\
+\textit{\textsf{\problemset}}
+\end{center}
+\bigskip
+}
+
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~%
+%                                                         %
+%               LETTERS, FUNCTIONS, AND TEXT              %
+%                                                         %
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~%
+
+% A
+\newcommand{\cA}{\mathcal{A}}
+\newcommand{\sA}{\mathscr{A}}
+\renewcommand{\aa}{\;\text{a.a.}}
+\renewcommand{\ae}{\;\text{a.e.}}
+% B
+\newcommand{\B}{\mathscr{B}}
+\newcommand{\cB}{\mathcal{B}}
+% C
+\newcommand{\cC}{\mathcal{C}}
+\newcommand{\cov}{\text{cov}}
+% E
+\newcommand{\E}{\mathbb{E}}
+% F
+\newcommand{\sF}{\mathscr{F}}
+\newcommand{\cF}{\mathcal{F}}
+\newcommand{\Ft}{F^\sim}
+% G
+\newcommand{\cG}{\mathcal{G}}
+\newcommand{\sG}{\mathscr{G}}
+% I
+\newcommand{\io}{\;\text{i.o.}}
+% N
+\newcommand{\N}{\mathbb{N}}
+% P
+\newcommand{\cP}{\mathcal{P}}
+\newcommand{\sP}{\mathscr{P}}
+\newcommand{\pr}{\text{pr}}
+% Q
+\newcommand{\Q}{\mathbb{Q}}
+% R
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\bR}{\mathbf{R}}
+\newcommand{\cR}{\mathcal{R}}
+% S
+\newcommand{\cS}{\mathcal{S}}
+% U
+\newcommand{\cU}{\mathcal{U}}
+% V
+\newcommand{\var}{\text{var}}
+% Z
+\newcommand{\Z}{\mathbb{Z}}
+% Punctuation
+\newcommand{\sbs}{\;|\;} % space bar space
+% Math
+\newcommand{\imii}{\int_{-\infty}^\infty}
+\newcommand{\pion}{\prod_{i=1}^n}
+\newcommand{\pioI}{\prod_{i=1}^I}
+\newcommand{\pjon}{\prod_{j=1}^n}
+\newcommand{\pjoJ}{\prod_{j=1}^J}
+\newcommand{\pkon}{\prod_{k=1}^n}
+\newcommand{\pkoK}{\prod_{k=1}^K}
+\newcommand{\sion}{\sum_{i=1}^n}
+\newcommand{\sioI}{\sum_{i=1}^I}
+\newcommand{\sjon}{\sum_{j=1}^n}
+\newcommand{\sjoJ}{\sum_{j=1}^J}
+\newcommand{\skon}{\sum_{k=1}^n}
+\newcommand{\skoK}{\sum_{k=1}^K}
+\newcommand{\sioi}{\sum_{i=1}^\infty}
+\newcommand{\sjoi}{\sum_{j=1}^\infty}
+\newcommand{\skoi}{\sum_{k=1}^\infty}
+\newcommand{\sio}{\sum_{i=1}}
+\newcommand{\sjo}{\sum_{j=1}}
+\newcommand{\sko}{\sum_{k=1}}
+% Typography
+\newcommand{\scb}[1]{\textsc{\textbf{#1}}}
+
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~%
+%                                                         %
+%            CHANGE THESE BASED ON THE PAPER              %
+%                                                         %
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~%
+
+% Constants for fancy header and first page info
+\newcommand{\mynamehdr}{\hrefgray{http://biostat.jhsph.edu/~jpringle/}{\myname}}
+\newcommand{\mathclass}{550.621 Probability}
+\newcommand{\myname}{James K. Pringle}
+\newcommand{\professorname}{Dr. Jim Fill}
+\newcommand{\assignmentnumber}{Assignment 4}
+\newcommand{\thedate}{\today}
+\newcommand{\problemset}{Chung Exercise 7.2.4}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                         %
+%                      BEGIN DOCUMENT                     %
+%                                                         %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+% Take header off of first page
+\thispagestyle{empty}
+
+% Put in first page info (top of page)
+\firstpageinfo
+
+% Put in title for the paper
+\problemlist
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                         %
+%                     Start Problem 1                     %
+%                                                         %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Chung Exercise 7.2.4}
+Prove the sufficiency part of Theorem 7.2.1 without using Theorem 7.1.2, but by elaborating the proof of the latter.
+
+\section*{Chung Theorem 7.2.1}
+Assume $\sigma_{nj}^2 < \infty$ for each $n$ and $j$ and the reduction hypotheses
+\begin{align}
+\sum_{j=1}^{k_n} \sigma^2(X_{nj}) &= 1
+\label{vo}
+\\
+E(X_{nj}) &= 0
+\label{ez}
+\end{align}
+of Sec 7.1. In order that as $n \to \infty$ the two conclusions below both hold
+\begin{enumerate}
+\item[(I)]
+$S_n$ converges in dist. to $\Phi$ (standard normal)
+\item[(II)]
+the double array (2) of Sec. 7.1 is holospoudic,
+\end{enumerate}
+it is necessary and sufficient that for each $\eta >0$, we have
+\begin{equation}
+\sum_{j=1}^{k_n} \int_{|x| > \eta} x^2 dF_{nj}(x) \to 0
+\label{lc}
+\end{equation}
+
+\section*{Assumptions}
+By way of notation, let $F_{nj}(x)$ be the d.f. of $X_{nj}$.
+Assume the hypotheses of \textbf{Chung Theorem 7.2.1} and assume \eqref{lc}. 
+Note by \eqref{vo}
+\[
+1 = \sum_{j=1}^{k_n} \sigma^2(X_{nj})
+=
+\sum_{j=1}^{k_n}
+\int
+x^2
+dF_{nj}(x)
+=
+\sum_{j=1}^{k_n}
+\left(
+\int_{|x| \leq \eta}
++
+\int_{|x| > \eta}
+\right)
+x^2
+dF_{nj}(x)
+\]
+so that
+\[
+0 
+=
+\lim_{n\to\infty}
+\sum_{j=1}^{k_n} \int_{|x| > \eta} x^2 dF_{nj}(x)
+=
+1 
+-
+\lim_{n\to\infty}
+\sum_{j=1}^{k_n} \int_{|x| \leq \eta} x^2 dF_{nj}(x)
+\]
+Thus
+\begin{equation}
+\lim_{n\to\infty}
+\sum_{j=1}^{k_n} \int_{|x| \leq \eta} x^2 dF_{nj}(x)
+= 
+1
+\label{flip}
+\end{equation}
+
+\section*{Discussion}
+The proof examines the convergence of ch.f.'s of the rows of the double array. By hypothesis, $S_n$ is the sum of the $k_n$ independent random variables in the $n$-th row. By independence, the ch.f. of $S_n$ is the product of the ch.f.'s of the random variables of that row. Define $f_n$ to be the ch.f. of $S_n$.
+Define $f_{nj}$ to be the ch.f. of $X_{nj}$
+\[
+f_n(t) = f_{S_n}(t) = \prod_{j=1}^{k_n} f_{X_{nj}}(t)
+=
+\prod_{j=1}^{k_n} f_{nj}(t)
+\]
+By \textbf{Chung Theorem 6.3.2} it is sufficient to show for all $t \in \R$ that $f_n(t)$ converges to the ch.f. of standard normal, $e^{-\frac{t^2}{2}}$ in order that $S_n$ converges in distribution to $\Phi$.
+
+Next follow some lemmas that are required for the proof.
+
+\subsection*{Lemma 1}
+Let $\{ \theta_{nj}, 1\leq j \leq k_n, 1 \leq n  \}$ be a double array of complex numbers satisfying the following conditions as $n \to \infty$
+\begin{enumerate}[(i)]
+\item
+$\max_{1 \leq j \leq k_n} |\theta_{nj}| \to 0$
+\item
+$\sum_{j=1}^{k_n} |\theta_{nj}| \leq M < \infty$, where $M$ does not depend on $n$
+\item
+$\sum_{j=1}^{k_n} \theta_{nj} \to \theta$, where $\theta$ is a (finite) complex number.
+\end{enumerate}
+Then we have 
+\begin{equation*}
+\prod_{j=1}^{k_n} (1 + \theta_{nj}) \to e^{\theta}
+\end{equation*}
+
+\subsection*{Lemma 2}
+According to Billingsley $26.4_1$
+\[
+|e^{ix} - (1 + ix) | \leq \min \{   \frac{1}{2} x^2, 2|x| \} 
+\]
+
+\subsection*{Lemma 3}
+According to Billingsley $26.4_2$
+\[
+|e^{ix} - (1 + ix -\frac{1}{2}x^2 ) | \leq \min \{   \frac{1}{6} |x|^3, x^2 \} 
+\]
+
+\section*{Proof of the Main Result}
+
+Fix $t \in \R$. Notice
+\[
+f_n(t) = \prod_{j=1}^{k_n} f_{nj}(t) = \prod_{j=1}^{k_n} 1 + (f_{nj}(t) - 1)
+\]
+To apply $\textbf{Lemma 1}$, let $\theta_{nj} = f_{nj}(t) - 1$.
+
+\subsubsection*{Condition (i)}
+Let $\eta >0$. Calculating,
+\begin{align*}
+\max_{1 \leq j \leq k_n} |\theta_{nj}|
+&=
+\max_{1 \leq j \leq k_n} |f_{nj}(t) - 1|
+\\
+&=
+\max_{1 \leq j \leq k_n} |f_{nj}(t) - 1 - it E(X_{nj})|
+\quad
+\text{by \eqref{ez}}
+\\
+&=
+\max_{1 \leq j \leq k_n} 
+\lvert
+\int (e^{itx} - 1 - itx) dF_{nj}(x)
+\rvert
+\\
+&\leq
+\max_{1 \leq j \leq k_n}
+\int |e^{itx} - 1 -itx| 
+dF_{nj}(x)
+\quad
+\text{by modulus inequality}
+\\
+&\leq
+\max_{1 \leq j \leq k_n}
+\int
+\frac{1}{2}
+(tx)^2
+dF_{nj}(x)
+\quad
+\text{by \textbf{Lemma 2}}
+\\
+&=
+\max_{1 \leq j \leq k_n}
+\frac{1}{2} t^2 
+\left(
+\int_{|x| \leq \eta}
+x^2
+dF_{nj}(x)
++
+\int_{|x| > \eta}
+x^2
+dF_{nj}(x)
+\right)
+\\
+&\leq
+\frac{1}{2} t^2 \eta^2
++
+\frac{1}{2}t^2
+\max_{1 \leq j \leq k_n}
+\int_{|x| > \eta}
+x^2
+dF_{nj}(x)
+\\
+&\leq
+\frac{1}{2} t^2 \eta^2
++
+\frac{1}{2} t^2 
+\sum_{j=1}^{k_n}
+\int_{|x| > \eta}
+x^2
+dF_{nj}(x)
+\end{align*}
+since the max of a set of positive numbers is less than or equal to the sum of all of them.
+Thus, by \eqref{lc},
+\[
+0 
+\leq
+\lim_{n \to \infty} 
+\left(
+\max_{1 \leq j \leq k_n} |\theta_{nj}|
+\right)
+\leq 
+\frac{1}{2} t^2 \eta^2
++
+\frac{1}{2}t^2
+\lim_{n \to \infty}
+\left(
+\sum_{j=1}^{k_n}
+\int_{|x| > \eta}
+x^2
+dF_{nj}(x)
+\right)
+=
+\frac{1}{2} t^2 \eta^2
+\]
+Since there is no dependence on $\eta$ in the second term above, and since $\eta$ is arbitrary and positive,
+\[
+0
+\leq
+\lim_{n \to \infty} 
+\left(
+\max_{1 \leq j \leq k_n} |\theta_{nj}|
+\right)
+%=
+%\lim_{\eta \to 0}
+%\left(
+%\lim_{n \to \infty} 
+%\left(
+%\max_{1 \leq j \leq k_n} |\theta_{nj}|
+%\right)
+%\right)
+\leq
+\lim_{\eta \to 0}
+\left(
+\frac{1}{2} t^2 \eta^2
+\right)
+=
+0
+\]
+Hence \textbf{Condition (i)} holds.
+\subsubsection*{Condition (ii)}
+Calculating,
+\begin{align*}
+\sum_{j=1}^{k_n} |\theta_{nj}|
+&=
+\sum_{j=1}^{k_n} |f_{nj}(t) - 1|
+\\
+&\leq
+\sum_{j=1}^{k_n}
+\int
+\frac{1}{2} (tx)^2
+dF_{nj}(x)
+\quad
+\text{by same calculations as for \textbf{Condition (i)}}
+\\
+&=
+\frac{1}{2}t^2 
+\sum_{j=1}^{k_n}
+\int
+x^2
+dF_{nj}(x)
+\\
+&=
+\frac{1}{2}t^2 
+\sum_{j=1}^{k_n}
+\sigma^2(X_{nj})
+\\
+&=
+\frac{1}{2}t^2 
+\quad
+\text{by \eqref{vo}.}
+\end{align*}
+Since this bound does not depend on $n$ and it is finite, \textbf{Condition (ii)} holds.
+
+\subsubsection*{Condition (iii)}
+Let $\eta >0$.
+It is claimed that $\theta = -\frac{t^2}{2}$, so that 
+\[
+\sum_{j=1}^{k_n} \theta_{nj} \to \theta.
+\]
+Calculating,
+\begin{align*}
+\left|
+\left(
+\sum_{j=1}^{k_n} \theta_{nj} 
+\right)
+- \theta
+\right|
+&=
+\left|
+\sum_{j=1}^{k_n} 
+\left(
+f_{nj}(t) 
+- 1 
+\right)
++ \frac{t^2}{2}
+\right|
+\\
+&=
+\left|
+\sum_{j=1}^{k_n} 
+\left(
+f_{nj}(t) 
+- 1
+\right)
+- 
+\frac{(it)^2}{2}
+\left(\sum_{j=1}^{k_n} \sigma^2(X_{nj})\right)
+\right|
+\quad
+\text{by \eqref{vo}}
+\\
+&=
+\left|
+\sum_{j=1}^{k_n} 
+\left(
+f_{nj}(t) 
+- 1 -it E(X_{nj})
+\right)
+-
+\frac{(it)^2}{2}
+\left(\sum_{j=1}^{k_n} E(X_{nj}^2)\right)
+\right|
+\quad
+\text{by \eqref{ez}}
+\\
+&=
+\left|
+\sum_{j=1}^{k_n} 
+\left(
+f_{nj}(t) 
+- 1 
+-
+it E(X_{nj})
+-
+\frac{(it)^2}{2}E(X_{nj}^2)
+\right)
+\right|
+\\
+&=
+\left|
+\sum_{j=1}^{k_n} 
+\left(
+\int
+e^{itx}
+-1
+-itx
++\frac{(tx)^2}{2}
+dF_{nj}(x)
+\right)
+\right|
+\\
+&\leq
+\sum_{j=1}^{k_n} 
+\int
+\left|
+e^{itx}
+-1
+-itx
++\frac{(tx)^2}{2}
+\right|
+dF_{nj}(x)
+\quad
+\text{by triangle and modulus inequalities}
+\\
+&=
+\sum_{j=1}^{k_n} 
+\left(
+\int_{|x| \leq \eta}
+\left|
+e^{itx}
+-1
+-itx
++\frac{(tx)^2}{2}
+\right|
+dF_{nj}(x)
++
+\int_{|x| > \eta}
+\left|
+e^{itx}
+-1
+-itx
++\frac{(tx)^2}{2}
+\right|
+dF_{nj}(x)
+\right)
+\\
+&\leq
+\sum_{j=1}^{k_n} 
+\left(
+\int_{|x| \leq \eta}
+\frac{|x|^3}{6}
+dF_{nj}(x)
++
+%\sum_{j=1}^{k_n} 
+\int_{|x| > \eta}
+x^2
+dF_{nj}(x)
+\right)
+\quad
+\text{by \textbf{Lemma 3}}
+\\
+&\leq
+\frac{\eta}{6}
+\sum_{j=1}^{k_n} 
+\int_{|x| \leq \eta}
+x^2
+dF_{nj}(x)
++
+\sum_{j=1}^{k_n} 
+\int_{|x| > \eta}
+x^2
+dF_{nj}(x)
+\end{align*}
+Taking the limit of this nonegative quantity as $n$ tends to infinity,
+\begin{align*}
+0 
+&\leq
+\lim_{n \to \infty}
+\left|
+\left(
+\sum_{j=1}^{k_n} \theta_{nj} 
+\right)
+- \theta
+\right|
+\\
+&\leq
+\lim_{n \to \infty}
+\left(
+\frac{\eta}{6}
+\sum_{j=1}^{k_n} 
+\int_{|x| \leq \eta}
+x^2
+dF_{nj}(x)
++
+\sum_{j=1}^{k_n} 
+\int_{|x| > \eta}
+x^2
+dF_{nj}(x)
+\right)
+\\
+&=
+\frac{\eta}{6}
+\lim_{n \to \infty}
+\left(
+\sum_{j=1}^{k_n} 
+\int_{|x| \leq \eta}
+x^2
+dF_{nj}(x)
+\right)
++
+\lim_{n \to \infty}
+\left(
+\sum_{j=1}^{k_n} 
+\int_{|x| > \eta}
+x^2
+dF_{nj}(x)
+\right)
+\\
+&=
+\frac{\eta}{6}
+\quad
+\text{by \eqref{flip} and \eqref{lc}}
+\end{align*}
+Since $\eta$ is arbitrary and positive, by squeezing,
+\[
+0 
+\leq 
+\lim_{n \to \infty}
+\left|
+\left(
+\sum_{j=1}^{k_n} \theta_{nj} 
+\right)
+- \theta
+\right|
+\leq 
+\lim_{\eta \to 0}
+\frac{\eta}{6}
+=
+0
+\]
+and it follows that 
+\[
+\lim_{n \to \infty}
+\left|
+\left(
+\sum_{j=1}^{k_n} \theta_{nj} 
+\right)
+- \theta
+\right| = 0
+\]
+Hence,
+$\sum_{j=1}^{k_n} \theta_{nj} $ converges to $\theta=-\frac{t^2}{2}$ as $n$ tends to infinity. \textbf{Condition (iii)} holds. Therefore by \textbf{Lemma 1}, 
+\[
+\lim_{n \to \infty}
+f_{S_n}(t) 
+=
+\lim_{n \to \infty}
+f_n(t) 
+=
+\prod_{j=1}^{k_n} 1 + (f_{nj}(t) - 1)
+=
+\prod_{j=1}^{k_n} 1 + \theta_{nj}
+=
+e^{\theta}
+=
+e^{-\frac{t^2}{2}}
+\]
+
+Note $t \in \R$ is arbitrary. Thus for all $t \in \R$ it is the case that $f_{S_n}(t)$ converges to the ch.f. of standard normal, $e^{-\frac{t^2}{2}}$, and by \textbf{Chung Theorem 6.3.2} $S_n$ converges in distribution to $\Phi$. Thus (I).
+
+Condition (II), holospoudicity, follows from \textbf{Chung Theorem 7.1.1} since \textbf{Condition (i)} holds. Alternatively, the proof of holospoudicity copies over from Chung since it does not rely on \textbf{Chung Theorem 7.1.2}. Therefore, \eqref{lc} is sufficient for (I) and (II).
+
+\section*{Acknowledgements}
+I worked on this problem with Elizabeth, David, and Vivek.
+
+
+
+\end{document}

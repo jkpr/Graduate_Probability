@@ -1,0 +1,331 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%THIS IS STANDARD PREAMBLE-TYPE STUFF%%%
+\documentstyle[leqno]{article}
+
+\addtolength{\textheight}{+1in}
+\setlength{\textwidth}{5.75in}
+\setlength{\oddsidemargin}{0.5in}
+\addtolength{\topmargin}{-\topmargin}
+
+\nofiles
+
+\pagestyle{myheadings}
+\markright{{\rm  550.621 Final Exam, Spring 2013}}
+
+\title{550.621 Final Examination, Spring 2013}
+\author{James Allen Fill}
+\date{}
+%%%  THE NEXT LINE IS FOR MAKING TRANSPARENCIES  %%%
+%%%  \renewcommand{\baselinestretch}{2}
+
+\begin{document}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{example}[theorem]{\sl Example}
+\newtheorem{remark}[theorem]{\sl Remark}
+%%%  NEW ONES            %%%
+\newtheorem{definition}[theorem]{\sl Definition}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\qed}{\ \ \rule{1ex}{1ex}}
+\newcommand{\lc}{\left\lceil}
+\newcommand{\lf}{\left\lfloor}
+\newcommand{\rc}{\right\rceil}
+\newcommand{\rf}{\right\rfloor}
+\newcommand{\proof}{\par\noindent  {\bf  Proof.  }}
+\newcommand{\bd}[1]{{\bf  #1}}
+\newcommand{\RR}{{\bf  R}}
+\newcommand{\NN}{{\bf  N}}
+\newcommand{\ZZ}{{\bf  Z}}
+\newcommand{\CC}{{\bf  C}}
+\newcommand{\QQ}{{\bf  Q}}
+\newcommand{\SS}{{\bf  S}}
+\newcommand{\xx}{{\bf  x}}
+\newcommand{\yy}{{\bf  y}}
+\newcommand{\zz}{{\bf  z}}
+\newcommand{\ww}{{\bf  w}}
+\newcommand{\Sj}{{{\cal S}_j}}
+\newcommand{\Pt}{{\tilde{P}}}
+\newcommand{\Var}{{\rm Var}}
+\newcommand{\diag}{{\rm diag}}
+\newcommand{\Exp}{{\rm Exp}}
+\newcommand{\ave}{{\rm E}}
+\newcommand{\Xt}{{\tilde{X}}}
+\newcommand{\SSS}{{S}} %I'd like to replace this by a German S for the symm. 
+%                        gp.
+\newcommand{\gxy}{g_{xy}}
+\newcommand{\Gamxy}{{\Gamma(x, y)}}
+\newcommand{\vece}{{\vec{e}}}
+\newcommand{\vecep}{{\vece\,'}}
+\newcommand{\Qe}{{Q(\vece\,)}}
+\newcommand{\Qep}{{Q(\vecep)}}
+\newcommand{\we}{{w(\vece\,)}}
+\newcommand{\wep}{{w(\vecep)}}
+\newcommand{\Kwe}{{K_w(\vece\,)}}
+\newcommand{\phie}{{\phi(\vece\,)}}
+\newcommand{\psie}{{\psi(\vece\,)}}
+\newcommand{\be}{{b(\vece\,)}}
+\newcommand{\vecE}{{\vec{E}}}
+\newcommand{\GamxyQ}{{|\Gamma(x, y)|_Q}}
+\newcommand{\Gamxyw}{{|\Gamma(x, y)|_w}}
+\newcommand{\gamstar}{{\gamma_*}}
+\newcommand{\gamstart}{{\gamma^t_*}}
+\newcommand{\gamstarone}{{\gamma^1_*}}
+\newcommand{\gamstartwo}{{\gamma^2_*}}
+\newcommand{\gamstarthree}{{\gamma^3_*}}
+\newcommand{\gamstarfour}{{\gamma^4_*}}
+\newcommand{\bte}{{b^t(\vece\,)}}
+\newcommand{\bonee}{{b^1(\vece\,)}}
+\newcommand{\btwoe}{{b^2(\vece\,)}}
+\newcommand{\bthreee}{{b^3(\vece\,)}}
+\newcommand{\bfoure}{{b^4(\vece\,)}}
+\newcommand{\bthreeae}{{b^{3\mbox{\scriptsize a}}(\vece\,)}}
+\newcommand{\bthreebe}{{b^{3\mbox{\scriptsize b}}(\vece\,)}}
+\newcommand{\bfourae}{{b^{4\mbox{\scriptsize a}}(\vece\,)}}
+\newcommand{\bfourbe}{{b^{4\mbox{\scriptsize b}}(\vece\,)}}
+\newcommand{\Ac}{{\cal A}}
+\newcommand{\Bc}{{\cal B}}
+\newcommand{\Cc}{{\cal C}}
+\newcommand{\Ec}{{\cal E}}
+\newcommand{\Fc}{{\cal F}}
+\newcommand{\Gc}{{\cal G}}
+\newcommand{\Lc}{{\cal L}}
+\newcommand{\Nc}{{\cal N}}
+\newcommand{\Pc}{{\cal P}}
+\newcommand{\Sc}{{\cal S}}
+\newcommand{\Ft}{\Fc_t}
+\newcommand{\Fi}{\Fc_{\infty}}
+\newcommand{\Fn}{\Fc_n}
+\newcommand{\Tt}{{\tilde{T}}}
+\newcommand{\ft}{{\tilde{f}}}
+\newcommand{\Jt}{{\tilde{J}}}
+\newcommand{\tp}{t+}
+\newcommand{\tm}{t-}
+
+%%%  NEW ONES START HERE  %%%
+\newcommand{\vdn}{\| \pi_n - \pi \|}
+\newcommand{\vdt}{\| \pi_t - \pi \|}
+\newcommand{\sep}{{\rm sep}}
+\newcommand{\Fets}{\Fc^*_{=t}}
+\newcommand{\ppi}{{\mbox{\boldmath $\pi$}}}
+\newcommand{\PP}{{\bf  P}}
+\newcommand{\PPh}{\PP^{(h)}}
+\newcommand{\GG}{{\bf  G}}
+\newcommand{\II}{{\bf  I}}
+\newcommand{\XX}{{\bf  X}}
+\newcommand{\Qsp}{{Q^*}'}
+\newcommand{\sn}{\sigma \sqrt{n}}
+\newcommand{\tn}{\tau_n}
+\newcommand{\tnm}{\tau_{n-1}}
+\newcommand{\gt}{{\tilde{g}}}
+\newcommand{\Gt}{{\tilde{G}}}
+\newcommand{\pimin}{\pi_{\min}}
+\newcommand{\supf}{\left( \sup_{\delta \leq |t| < \pi} |f(t)| \right)^{n-1}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\bege}{\begin{equation}}
+\newcommand{\ene}{\end{equation}}
+\newcommand{\begp}{\begin{proposition}}
+\newcommand{\enp}{\end{proposition}}
+\newcommand{\begt}{\begin{theorem}}
+\newcommand{\ent}{\end{theorem}}
+\newcommand{\begl}{\begin{lemma}}
+\newcommand{\enl}{\end{lemma}}
+\newcommand{\begc}{\begin{corollary}}
+\newcommand{\enc}{\end{corollary}}
+\newcommand{\begr}{\begin{remark}}
+\newcommand{\enr}{\end{remark}}
+%%%  NEW ONES             %%%
+\newcommand{\begd}{\begin{definition}}
+\newcommand{\enf}{\end{definition}}
+\newcommand{\begx}{\begin{example}}
+\newcommand{\enx}{\end{example}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\bega}{\begin{array}}
+\newcommand{\ena}{\end{array}}
+
+
+%%% SOME OF MHS's STUFF FOLLOWS   %%%
+\newcommand{\Line}{$\underline{\qquad\qquad\qquad\qquad}$}
+\newcommand{\X}{$\qquad$}
+%	brackets, parenthesis, and other miscelaneous marks
+\newcommand{\lb}{\left\{}
+\newcommand{\rb}{\right\}}
+\newcommand{\lsb}{\left[}
+\newcommand{\rsb}{\right]}
+\newcommand{\lp}{\left(}
+\newcommand{\rp}{\right)}
+\newcommand{\ls}{\left|}
+\newcommand{\rs}{\right|}
+\newcommand{\lss}{\left\|}
+\newcommand{\rss}{\right\|}
+
+%	struts and spaces
+\newcommand{\vs}{\vspace{\smallskipamount}\noindent}
+\newcommand{\vm}{\vspace{\medskipamount}\noindent}
+\newcommand{\vb}{\vspace{\bigskipamount}\noindent}
+
+%	relations and implications
+\newcommand{\ra}{\rightarrow}
+\newcommand{\la}{\leftarrow}
+\newcommand{\implies}{\Longrightarrow}
+% END OF MHS's STUFF
+
+
+%%%THIS IS THE END OF STANDARD PREAMBLE-TYPE STUFF%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{550.621 Final Examination, Spring 2013}
+
+\subsection*{Official Examination Policy}
+
+\hspace{\parindent}
+This take-home final examination for 550.621 Probability Theory~II is due {\em
+no later than\/} {\bf 5:00 PM~EDT, Thursday, May~16, 2013}.  There
+are only three acceptable ways of turning in your exam: (1) Hand it to me in
+person, or (2) slide it under the door of my office, 306-F Whitehead Hall, or
+(3) submit it electronically to me at {\tt jimfill@jhu.edu}.  If you choose option~(3),
+please \emph{also} submit an electronic copy to Teaching Assistant Jason Matterer at 
+{\tt jmatter4@jhu.edu}. 
+
+You are not to discuss the exam with anyone except me before 
+the due deadline.  Conversation, even on the most casual level, about the exam
+will be considered a violation of the university's honor code.
+
+Your work should be legibly written in complete English sentences (and paragraphs!). 
+Every solution must be clearly explained.  Be sure that your name is on every page of
+your solutions.  Please write on only one side of each page.
+
+You may consult your class notes and the course texts by
+Billingsley and Chung.  You may also consult references on elementary
+probability and real analysis; these should not, however, make use of
+measure theory.  {\em You may not use any other references of any kind.\/}
+
+Point values for each question are shown in parentheses.
+
+{\bf Your exam will be graded on a 300-point basis.}
+
+\subsection*{Examination Problems (300 points total)}
+
+\begin{enumerate}
+
+\item {\bf (100 total)} Let $X_j$, $j \geq 1$, be a sequence of independent
+random variables, and set $S_n := \sum_{j=1}^n X_j$.  Suppose $\alpha \geq 1$
+and 
+$$
+X_j = \left\{ \begin{array}{ll}
+               \pm j^{\alpha}, & \mbox{with probability\ }\frac{1}{4
+                                  j^{2(\alpha - 1)}} \mbox{\ each;} \\
+               0,              & \mbox{with probability\ }1 - \frac{1}{2
+                                  j^{2(\alpha - 1)}}.
+              \end{array}
+      \right.
+$$  
+ \begin{enumerate}
+\item {\bf (25)} For precisely which values of $\alpha$ does the sequence
+$(S_n)$ converge almost surely to an almost surely finite limit? 
+\item {\bf (25)} Calculate $s_n^2 := \sum_{j=1}^n \Var(X_j)$ for each $n$.
+Describe the associated normalized double
+array, and prove by considering variances that it is holospoudic for
+any value of $\alpha$.
+\item {\bf (25)} For precisely which values of $\alpha$ is Lindeberg's condition
+satisfied?
+\item {\bf (25)} For precisely which values of $\alpha$ does $S_n/s_n$ converge
+in distribution to standard normal?  [Here's something to think about after the
+exam.  Does $S_n/s_n$ have {\em any\/} limiting distribution if not standard
+normal?  If so, what?]
+ \end{enumerate}
+
+\item {\bf (70)} Let $(\Omega,\Fc,P)$ be a probability space, let $\Fc_0$,
+$\Fc_1$, and $\Fc_2$ be three sub-$\sigma$-fields of $\Fc$, and suppose that
+$\Fc_0 \subset \Fc_1$.  Show that
+\bege
+\mbox{$\forall A \in \Fc_1$\ \ $\forall B \in \Fc_2$:\ \ $P(A \cap B|\Fc_0) =
+P(A|\Fc_0)\ P(B|\Fc_0)$\,\ a.s.}
+\ene
+if and only if
+\bege
+\mbox{$\forall B \in \Fc_2$:\ \ $P(B|\Fc_0) = P(B|\Fc_1)$\,\ a.s.} 
+\ene
+
+\item {\bf (130 total)} Let $S_n = \sum_{j=1}^n X_j$, where the $X_j$'s are
+independent random variables with a common distribution function $F$ of the
+integer lattice type with span $1$.  Suppose that $X_1$ has mean $0$ and
+variance $\sigma^2 \in (0,\infty)$.  The main objective of this problem is to
+prove the {\em local central limit theorem\/} result that
+\begin{equation}
+\sn \left[ P\left\{ \frac{S_n}{\sn} = \frac{j}{\sn} \right\} - \frac{1}{\sn}
+\varphi\!\left( \frac{j}{\sn} \right) \right] \longrightarrow 0 \mbox{\ \
+uniformly in $j \in \ZZ$} 
+\end{equation}
+as $n \to \infty$, where $\varphi$ denotes the standard normal density
+function.  
+ \begin{enumerate}
+\item {\bf (25)} Grant~(3) for the moment and use it to derive the {\em global
+central limit theorem\/} for $S_n$: for real numbers $-\infty<a<b<\infty$,
+$$
+P\left\{ a < \frac{S_n}{\sn} \leq b \right\} \longrightarrow P\{a < Z \leq b\}
+$$
+as $n \to \infty$, where $Z$ has a standard normal distribution.
+\item {\bf (40)} Let $f$ denote the characteristic function of $X_1$.  Begin the
+proof of (3) by showing that the expression there equals $1/(2 \pi)$ times
+\begin{equation}
+\int_{|u|< \pi \sn} \left[ \left( f\left(\frac{u}{\sn} \right) \right)^n -
+e^{-\frac{1}{2}u^2} \right] e^{-ji \frac{u}{\sn}}\,du - \int_{|u| \geq \pi
+\sn} e^{-\frac{1}{2} u^2} e^{-ji \frac{u}{\sn}}\,du.
+\end{equation}
+\item {\bf (10)} Show that the second integral in (4) tends to $0$ uniformly in $j
+\in \ZZ$ as $n \to \infty$.
+\item {\bf (55)} The first integral in (4) is dominated by the integral
+$$
+\int_{|u|< \pi \sn} \left| \left( f\left(\frac{u}{\sn} \right) \right)^n -
+e^{-\frac{1}{2}u^2} \right|\,du.
+$$
+Complete the proof of (3) by showing that this integral tends to $0$ as $n
+\to \infty$.  [{\sc hint:}  Divide the range $|u| < \pi \sn$ into the three
+regions $|u| \leq M$, $M < |u| < \delta \sn$, and $\delta \sn \leq |u| < \pi
+\sn$ for suitably chosen constants $M$ and $\delta$.  Show that each of the
+three corresponding integrals is small.]   
+ \end{enumerate}
+ \end{enumerate}
+ \bigskip
+ \bigskip
+ 
+ I would make the following problem a 100-point exam problem except that its solution
+ may be found both in Billingsley's book and in Chung's.  I regret that I don't have
+ a martingale problem to replace it on the exam!
+
+\begin{enumerate}
+
+\item[4.] (Convergence Theorem for Backward Martingales.)  Let $(X_n)_{n
+\leq 0}$ be a martingale with respect to $(\Fc_n)_{n \leq 0}$.  Then (with no
+conditions!)\ there exists an integrable random variable $X_{- \infty}$ such
+that $X_n$ converges, both in L$^1$ and a.s.,\ to $X_{- \infty}$ as $n \to -
+\infty$.  Prove this.
+
+\end{enumerate}
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

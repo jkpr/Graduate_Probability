@@ -1,0 +1,130 @@
+\documentclass[letterpaper,10pt]{article}
+%\usepackage[utf8x]{inputenc}
+
+\usepackage{amsmath,amsfonts,amsthm,amssymb}
+\usepackage{mathrsfs} %script font
+
+%\parindent=0pt
+%\parskip=10pt
+\usepackage[margin=1in]{geometry}
+
+\usepackage{parskip}
+\parskip=1.5\baselineskip
+
+\newcommand{\io}{\;\text{i.o.}}
+\renewcommand{\aa}{\;\text{a.a.}}
+\newcommand{\Ft}{F^\sim}
+\newcommand{\N}{\mathbf{N}}
+
+\def \B {\mathscr{B}}
+\def \F {\mathscr{F}}
+\def \Q {\mathbb{Q}}
+\def \R {\mathbf{R}}
+
+\begin{document}
+
+\thispagestyle{empty}
+
+\textsf{
+\begin{flushleft}
+\sc James K. Pringle \\
+\normalfont 550.620 \\
+Dr. Jim Fill \\
+Assignment 6 \\
+14 November 2012, Wednesday
+\end{flushleft}
+} \bigskip
+
+\begin{center}
+\bf Homework \#6 (to turn in)
+\end{center}
+
+\begin{enumerate}
+\item
+Use Fatou's Lemma to prove Pratt's Theorem.
+\begin{proof}
+First we prove a lemma to this proof. 
+\textbf{Lemma:} Let $x_n \rightarrow x$ and $\{y_n\}$ be some series not necessarily convergent. Then 
+\[
+\liminf_n (x_n + y_n) = x + \liminf_n y_n \text{.}
+\]
+It is clear that $\inf_{ n > m} (x_n + y_n) \geq \inf_{n >m} (x_n) + \inf_{n > m} (y_n)$. Taking the limit as $m$ approaches infinity, the definition of $\liminf$, we have 
+\[
+\liminf_n (x_n + y_n) \geq \liminf (x_n) + \liminf_n y_n = x + \liminf_n y_n \text{.}
+\]
+Now, $\liminf$ always exists as some number in the extended real line. Let $\liminf_n y_n = l$. 
+From the properties of $\liminf$ we know that there exists some subsequence $\{y_{n_k}\} \subset \{y_n \}$ such that $\{y_{n_k} \}$ converges to $l$. 
+Furthermore, if we ``thin out'' the sequence $\{x_n + y_n\}$ we can only increase the $\liminf$ of that sequence.
+Hence
+\[
+\liminf_n (x_n + y_n) \leq \liminf_n (x_{n_k} + y_{n_k}) = \lim_n (x_{n_k} + y_{n_k}) = x + \liminf_n (y_n) \text{.}
+\]
+Thus, we have $\liminf_n (x_n + y_n) = x + \liminf_n y_n$ as desired. This completes the lemma.
+
+Now we move on to the proof of the homework problem. We assume Fatou's Lemma to be true. We also assume the hypotheses of Pratt's Theorem, which are threefold. First, $L_n \rightarrow L$, $X_n \rightarrow X$ and $U_n \rightarrow U$. Notice those are all random variables. Second, for all $n$ we have $L_n \leq X_n \leq U_n$. Third, $L_n, L, U_n, U$ are integrable and $\int L_n \rightarrow \int L$ and $\int U_n \rightarrow \int U$. 
+
+We show two things. The first is that $X_n$ and $X$ are integrable. And here is the proof. 
+By hypothesis, $X_n \leq U_n$. Thus $X_n^+ \leq U_n^+$. By the properties of integral, it follows $\int X_n^+ \leq \int U_n^+ < \infty$. 
+By hypothesis, $X_n^- \leq L_n^-$ and consequently $\int X_n^- \leq \int L_n^- < \infty$. 
+Therefore, since the integral of its positive and negative part is finite, $X_n$ is integrable. 
+Taking the limit of the inequality $L_n \leq X_n \leq U_n$ we see $L \leq X \leq U$. 
+Using the exact same argument above without subscripts allows us to conclude that $X$ is integrable.
+
+The second thing we show is that $\int X_n \rightarrow \int X$. Since $U_n - X_n \geq 0$, it follows $U_n - X_n \in Q_-$. Thus we can use our lemma from above to get
+\[
+\int U - \int \limsup X_n = \int U + \int \liminf (- X_n) = \int ( U + \liminf (- X_n) )
+= \int \liminf (U_n - X_n)\text{.}
+\]
+Starting with what we have from above and using Fatou's Lemma we have
+\begin{align*}
+\int U - \int \limsup X_n &= \int \liminf (U_n - X_n) \\
+&\leq \liminf \int (U_n - X_n) \\
+&= \liminf (\int U_n - \int X_n) \\
+&= \int U - \limsup (\int X_n)
+\end{align*}
+that last equality coming by our lemma. Thus 
+\[
+\limsup (\int X_n) \leq \int \limsup X_n \text{.}
+\]
+Next we do nearly identical calculations on $X_n - L_n$ since it is also nonnegative and hence in $Q_-$. Also note that since $L_n \rightarrow L$ and $\int L_n \rightarrow \int L$, clearly $-L_n \rightarrow -L $ and $\int -L_n \rightarrow \int -L$.
+Using our lemma from above we get
+\[
+\int \liminf (X_n) + \int (-L) = \int (\liminf(X_n) + (- L))
+= \int \liminf (X_n - L_n)\text{.}
+\]
+Continuing using Fatou's Lemma we have 
+\begin{align*}
+\int \liminf (X_n) + \int (-L) &= \int \liminf (X_n - L_n) \\
+& \leq \liminf \int (X_n - L_n) \\
+&= \liminf ( \int (X_n) + \int (-L_n) ) \\
+&= \liminf \int (X_n) + \int (-L)
+\end{align*}
+that last equality coming by our lemma. Thus
+\[
+\int \liminf (X_n) \leq \liminf (\int X_n) \text{.}
+\]
+Since the $\liminf$ is always less than or equal to the $\limsup$ of any given series we have
+\[
+\int \liminf (X_n) \leq \liminf (\int X_n) \leq \limsup (\int X_n) \leq \int \limsup X_n \text{.}
+\]
+By hypothesis $X_n \rightarrow X$. Thus we can rewrite the above statement to be
+\[
+\int X \leq \liminf (\int X_n) \leq \limsup (\int X_n) \leq \int X \text{.}
+\]
+And hence $\liminf (\int X_n) = \limsup (\int X_n) = \int X$. Since the $\liminf$ and the $\limsup$ are equal, they are both equal to the limit of $\int X_n$. Finally, we can conclude that $\lim \int X_n = \int X$, which finishes the proof of Pratt's Theorem. 
+\end{proof}
+
+
+\item
+Use Pratt's Theorem to prove Dominated Convergence Theorem.
+\begin{proof}
+We assume Pratt's Theorem to be true. We also assume the hypotheses of Dominated Convergence Theorem. 
+Namely, let $\sup_n | X_n |$ be integrable and $X_n \rightarrow X$. From the definition of $\sup$ we have $\sup_n | X_n | \leq X_n \leq \sup_n | X_n |$ and $\sup_n | X_n | \leq X \leq \sup_n | X_n |$. 
+Clearly $X$ is bounded above by $\sup_n | X_n |$ and below by $-\sup_n | X_n |$. 
+Both bounds are integrable, therefore $X$ is integrable. In order to apply Pratt's Theorem, we take our lower bound series of random variables to be the constant series with the element $-\sup_n | X_n |$ and the upper bound series to be the constant series with the element $\sup_n | X_n |$. 
+It is obvious that all the hypotheses of Pratt's Theorem hold, so its conclusion $\int X_n \rightarrow \int X$ is true. 
+This finishes the proof of Dominated Convergence Theorem.
+\end{proof}
+\end{enumerate}
+
+\end{document}

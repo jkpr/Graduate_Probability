@@ -1,0 +1,802 @@
+\documentclass[letterpaper, 12pt]{article}
+
+% This package has an easy way to set the margins
+\usepackage[margin=1in]{geometry}
+% These packages include nice commands from AMS-LaTeX
+\usepackage{amssymb,amsmath,amsthm}
+
+% Script font
+\usepackage{mathrsfs}
+
+% Enumerate package
+\usepackage{enumerate}
+
+\usepackage{fancyhdr}
+% Adds a line at the top of almost every page
+\pagestyle{fancy}
+% Puts in the information I need
+\lhead{\textsc{\mathclass}}
+\chead{\textsc{\assignmentnumber}}
+\rhead{\textsc{\myname}}
+
+% Make the space between lines slightly more
+% generous than normal single spacing, but compensate
+% so that the spacing between rows of matrices still
+% looks normal.  Note that 1.1=1/.9090909...
+\renewcommand{\baselinestretch}{1.1}
+\renewcommand{\arraystretch}{.91}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%                                                                        %%%%%%%%
+%%%%%%%                          \newcommand                       %%%%%%%%
+%%%%%%%                                                                        %%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\Fc}{{\cal F}}
+\newcommand{\Pc}{{\cal P}}
+\newcommand{\Ac}{\cal A}
+\newcommand{\lf}{\left\lfloor}
+\newcommand{\rf}{\right\rfloor}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Ls}{\mathscr{L}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%                                                                        %%%%%%%%
+%%%%%%%                   Change this information                %%%%%%%%
+%%%%%%%                                                                        %%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\myname}{James K. Pringle}
+\newcommand{\mathclass}{550.620}
+\newcommand{\assignmentnumber}{Final Exam}
+
+\begin{document}
+\section*{550.620 Final Examination, Fall 2012}
+
+\subsection*{Official Examination Policy}
+
+\hspace{\parindent}
+This take-home final examination for 550.620 Probability Theory is due {\em
+no later than\/} {\bf 12:00:00 noon EST, Monday, December 17, 2012}.  There
+are only three acceptable ways of turning in your exam: (1) Hand it to me in
+person, or (2) slide it under the door of my office, 306-F Whitehead Hall, or
+(3) submit it electronically to me at {\tt jimfill@jhu.edu}.  If you choose option~(3),
+please \emph{also} submit an electronic copy to Teaching Assistant Jason Matterer at {\tt jmatter4@jhu.edu}. 
+
+You are not to discuss the exam with anyone except me before 
+the due deadline.  Conversation, even on the most casual level, about the exam
+will be considered a violation of the university's honor code.
+
+Your work should be legibly written in complete English sentences (and
+paragraphs!).  Every solution must be clearly explained.  Be sure that your name
+is on every page of your solutions.  Please write on only one side of each page.
+
+You may consult your class notes and the course texts by Billingsley and Chung. 
+You may also consult references on elementary probability and real analysis;
+these should not, however, make use of measure theory.  {\em You may not use any
+other references of any kind.\/}
+
+Point values for each question are shown in parentheses.
+
+{\bf You will be graded on a 200-point basis.  You MUST indicate which problem
+parts totaling 200 points you wish to have graded.\ \ }Your indicated problem parts
+may not exceed the total of 200 points except due to discreteness; that is, if your
+total exceeds 200 points, it must be that exclusion of any one of your indicated
+parts would lower your total below the 200-point threshold. 
+
+\newpage
+
+\subsection*{Examination Problems (400 points total)}
+
+\begin{enumerate}
+\item {\bf (70 total)}
+ \begin{enumerate}
+\item {\bf (50)} Let $X_n$ and $X$ be finite real-valued random variables on a
+measure space $(\Omega, \Fc, \mu)$, and let $A \in \Fc$ with $\mu(A) <
+\infty$.  Suppose that $X_n(\omega) \to X(\omega)$ for each $\omega \in A$. 
+Prove that for each $\epsilon > 0$ there exists a subset $B \in \Fc$ of $A$
+such that $\mu(B) < \epsilon$ and $X_n(\omega) \to X(\omega)$ uniformly for
+$\omega \in A - B$.  [{\sc Hint:} Let $B_n^{(k)} := A\,\cap\,\cup_{p \geq n} 
+\{|X - X_p| > 1/k\}$.  Show (i) that $B_n^{(k)} \downarrow \emptyset$ 
+for each $k$ as
+$n \uparrow \infty$, (ii) that it is possible to choose a strictly increasing
+sequence of integers $n_k$ so that $\mu(B_{n_k}^{(k)}) < \epsilon/2^k$ for each
+$k$, and (iii) that $B := \cup_{k=1}^{\infty} B_{n_k}^{(k)}$ does the job.]
+\item {\bf (20)}  Show that (a) is false without the hypothesis $\mu(A) <
+\infty$.  [{\sc Hint:} On the integers with counting measure, consider the
+indicators of 
+$\{n, n+1, \ldots\}$.]   
+ \end{enumerate}
+
+
+\item {\bf (70 total)}
+ \begin{enumerate}
+\item {\bf (10)} On an arbitrary probability space, prove that if an event $A$
+is independent of a $\pi$-system $\Pc$ and $A \in \sigma(\Pc)$, then $P(A)$ is
+either $0$ or $1$.
+\item {\bf (15)} The goal of parts (b)--(d) is to prove the
+following theorem.  Let $f$ be a real-valued Borel function on $[0,1]$ with
+arbitrarily small periods:  For each $\epsilon$ there is a $p$ with $0 < p <
+\epsilon$ such that $f(x) = f(x + p)$ for $0 \leq x \leq 1-p$.  Then $f$ is
+constant almost everywhere.  Begin the proof here by showing that it is
+enough to prove that $P(f^{-1}B)$ is $0$ or $1$ for every Borel set $B$,
+where $P$ is Lebesgue measure on the unit interval.
+\item{\bf (30)} Show that $f^{-1}B$ is independent of each interval $[0,x]$. 
+[{\sc Hint:} Let $A:= f^{-1}B$ and suppose $p$ is a (small) period of $f$.  Let
+$m = \lf x/p \rf$ and $n = \lf 1/p \rf$.  Using periodicity, prove that $P(A \cap
+[y,y+p])$ is the same for all periods $y \in [0,1-p]$ and deduce $|P(A \cap
+[0,x]) - m P(A \cap [0,p])| \leq p$, $|P(A) - nP(A \cap [0,p])| \leq p$, and
+$|P(A \cap [0,x]) - P(A)x| \leq 2p + |x - m/n| \leq 3p$.  Since $p$ can be taken
+arbitrarily small, $P(A \cap [0,x]) = P(A)x$.]
+\item {\bf (5)} Conclude that $P(f^{-1}B)$ is $0$ or $1$.
+\item {\bf (10)} Show by example that $f$ need not be constant.
+ \end{enumerate}  
+
+
+\item {\bf (70 total)} Let $Y_{k, n}$ be real-valued random variables, all defined on a common probability space, for 
+$k \in \{1, 2, \dots\}$ and $n \in \{1, 2, \dots\}$.  Fix two real numbers~$p$ and~$p'$ satisfying $1 \leq p < p' < \infty$ and suppose for some nonnegative sequences $(b_k)$ and $(b'_k)$ that
+\begin{enumerate}
+\item[(i)] for each~$k$ the sequence $(Y_{k, 1}, Y_{k, 2}, \dots)$ is a martingale (see below),
+\item[(ii)] for each~$k$ we have $\| Y_{k, n} \|_p \leq b_k$ for all $n \in \{1, 2, \dots\}$,
+\item[(ii$'$)] for each~$k$ we have $\| Y_{k, n} \|_{p'} \leq b'_k < \infty$ for all $n \in \{1, 2, \dots\}$, and
+\item[(iii)] $\sum_{k = 1}^{\infty} b_k < \infty$.
+\end{enumerate}
+Prove the following six assertions.  In solving a given part, you may use the results of any previous parts but not those of later parts.  You don't need to know about martingales---these will be treated thoroughly next semester---but you do need to know, and may use without proof, the \emph{almost sure convergence theorem for martingales}, which asserts that an $L^1$-bounded martingale converges almost surely.
+\begin{enumerate}
+\item {\bf (10)} For each~$k$ there exists a real-valued random variable $Y_{k, 0}$ such that $Y_{k, n} \to Y_{k, 0}$ almost surely as $n \to \infty$.
+\item {\bf (10)} With $Y_{k, 0}$ as in part~(a), hypotheses~(ii) and~(ii$'$) extend to $n = 0$.
+\item {\bf (10)} For each $n \in \{0, 1, 2, \dots\}$ the series $\sum_{k = 1}^{\infty} Y_{k, n}$ converges in $L^p$ to some 
+real-valued random variable~$S_n$.
+\item {\bf (15)} For each~$k$, the sequences $|Y_{k, n}|^p$ and $|Y_{k, n} - Y_{k, 0}|^p$ are both uniformly integrable in 
+$n \in \{1, 2, \dots\}$.
+\item {\bf (10)} For each~$k$ we have $Y_{k, n} \to Y_{k, 0}$ in $L^p$ as $n \to \infty$.
+\item {\bf (15)} $S_n \to S_0$ in $L^p$ as $n \to \infty$.
+\end{enumerate}
+
+\item {\bf (60)} Let $(X_n)$ be a sequence of (not necessarily independent)
+identically distributed strictly positive random variables.  For any $\phi$ such
+that $\liminf_{n \to \infty} \phi(n)/n = 0$, show that $P\{S_n >
+\phi(n) \mbox{\ i.o.}\} = 1$, where $S_n := \sum_{k=1}^n X_k$ for each~$n$. 
+Deduce that $S_n \to \infty$ almost surely.
+[{\sc Hint:}\ Let $N_n$ denote the number of $k \leq n$ such that $X_k \leq 2
+\phi(n)/n$.  Use Markov's inequality to estimate $P\{N_n \geq n/2\}$ and thereby
+obtain a lower bound on $P\{S_n > \phi(n)\}$ for each $n$.]
+
+
+\item {\bf (130 total) (On Moment Generating Functions)}
+Let~$X$ be a real-valued random variable defined on some probability space.  The
+function $\Psi$, defined over $[-\infty,\infty]$ (i.e.,\ for $t \in
+[-\infty,\infty]$) by
+$$
+\Psi(t) := E \left( e^{tX} \right),
+$$
+is called the {\em moment generating function\/} (mgf) {\em of~$X$\/}.  (Use our
+usual convention that $c \times \infty$ equals $\infty$, if $c > 0$; equals $0$,
+if $c = 0$; equals $-\infty$, if $c < 0$.)
+ \begin{enumerate}
+\item {\bf (15)} Show that $0 \leq \Psi \leq \infty$ over $[-\infty,\infty]$,
+that $0 < \Psi \leq \infty$ over $(-\infty,\infty)$, and that $\Psi(0) = 1$.
+\item {\bf (5)} Show that $\Psi$ is convex over $(-\infty,\infty)$.
+\item {\bf (15)} Show that $T := \{t \in [-\infty,\infty]:\,\Psi(t) < \infty\}$
+is a (possibly degenerate) interval containing~$0$.  This interval~$T$ is called
+the {\em interval of finiteness\/} of~$\Psi$.
+ \end{enumerate}
+Let~$a$ (resp.,~$b$) be the left (resp.,\ right) endpoint of the interval of
+finiteness of~$\Psi$.
+ \begin{enumerate}
+\item[(d)] {\bf (20)} Show that~$\Psi$ is left (resp.,\ right) continuous
+everywhere except possibly at~$a$ (resp.,~$b$).
+\item[(e)] {\bf (25)} Illustrate the various possibilities for the behavior
+of~$\Psi$ at~$a$ and/or~$b$ using for~$X$ random variables with (at least) the
+following distributions: (i)~Cauchy, (ii)~positive part of a Cauchy, (iii)
+exponential, (iv)~normal.  Explicit computation of the mgfs, though desirable,
+is not necessary.
+ \end{enumerate}
+Suppose now that the interval~$(a,b)$ is nondegenerate.
+ \begin{enumerate}
+\item[(f)] {\bf (25)} Show that~$\Psi$ is infinitely differentiable on $(a,b)$,
+with
+$$
+\Psi^{(n)}(t) = E \left( X^n e^{tX} \right),\ \ \ a < t < b,
+$$
+and
+$$
+\Psi^{(n)}(a+) := \lim_{t \downarrow a} \Psi^{(n)}(t) = E \left( X^n e^{aX}
+\right),\ \ 
+\Psi^{(n)}(b-) := \lim_{t \uparrow b} \Psi^{(n)}(t) = E \left( X^n e^{bX}
+\right)
+$$
+for all~$n$.  In particular, $X^n$ is quasi-integrable, with
+$$
+E \left( X^n \right) = \Psi^{(n)}(0(\pm))
+$$
+for all~$n$.
+\item[(g)] {\bf (25)} For precisely which values of~$t$ is it true that
+\begin{equation}
+\label{expand}
+\Psi(t) = \sum_{n=0}^{\infty} E \left( X^n \right) t^n / n!\ \ \ \mbox{?}
+\end{equation}
+Use~(\ref{expand}) to compute the moment generating function of a standard
+normal random variable.
+ \end{enumerate}
+\end{enumerate}
+
+\pagebreak
+
+\section*{Problem 1}
+\subsection*{Part (a) 50 points}
+
+Let $X_n$ and $X$ be finite real-valued random variables on a
+measure space $(\Omega, \Fc, \mu)$, and let $A \in \Fc$ with $\mu(A) <
+\infty$.  Suppose that $X_n(\omega) \to X(\omega)$ for each $\omega \in A$. 
+Prove that for each $\epsilon > 0$ there exists a subset $B \in \Fc$ of $A$
+such that $\mu(B) < \epsilon$ and $X_n(\omega) \to X(\omega)$ uniformly for
+$\omega \in A - B$.  [{\sc Hint:} Let $B_n^{(k)} := A\,\cap\,\cup_{p \geq n} 
+\{|X - X_p| > 1/k\}$.  Show (i) that $B_n^{(k)} \downarrow \emptyset$ 
+for each $k$ as
+$n \uparrow \infty$, (ii) that it is possible to choose a strictly increasing
+sequence of integers $n_k$ so that $\mu(B_{n_k}^{(k)}) < \epsilon/2^k$ for each
+$k$, and (iii) that $B := \cup_{k=1}^{\infty} B_{n_k}^{(k)}$ does the job.]
+
+
+\begin{proof}
+For this proof we will follow the guidelines of the hint. Let
+\[
+B_n^{(k)} := A\,\cap\,\cup_{p \geq n} \{|X - X_p| > 1/k\}
+\]
+To show decreasingness for each $k$, note
+\begin{align*}
+\cup_{p \geq n} \{|X - X_p| > 1/k\} 
+&= \cup_{p = n} \{|X - X_p| > 1/k\} \bigcup \cup_{p \geq n + 1} \{|X - X_p| > 1/k\} \\
+& \supset \cup_{p \geq n + 1} \{|X - X_p| > 1/k\}
+\end{align*}
+It is clear that all $\omega$ in $A$ and in $\cup_{p \geq n + 1} \{|X - X_p| > 1/k\}$ are also in $A$ and in $\cup_{p \geq n} \{|X - X_p| > 1/k\}$. Hence,
+\[
+B_n^{(k)} = A\,\cap\,\cup_{p \geq n} \{|X - X_p| > 1/k\}
+\supset 
+A\,\cap\,\cup_{p \geq n + 1}  \{|X - X_p| > 1/k\} = B_{n+1}^{(k)} 
+\text{,}
+\]
+and it follows that for each positive $k$, the series $\{B_n^{(k)}\}_n$ is decreasing.
+
+Suppose that the limit of $\{B_n^{(k)}\}_n$ were not the empty set. 
+Then there would be some $\omega \in B_n^{(k)}$ for all $n$.
+By hypothesis, $X_n(\omega) \to X(\omega)$ for each $\omega \in A$. 
+By the definition of convergence, there exists $N$ such that for all $n \geq N$, we have $|X_n(\omega) \to X(\omega)| < 1/k$. Therefore $\omega \notin \{B_n^{(k)}\}_{n=N}^\infty$. This is a contradiction, and therefore the limit of $\{B_n^{(k)}\}_n$ is the empty set.
+
+Summarizing up to this point, $B_n^{(k)} \downarrow \emptyset$ for each $k$ as $n \uparrow \infty$.
+
+Next we show it is possible to choose a strictly increasing sequence of integers $n_k$ so that $\mu(B_{n_k}^{(k)}) < \epsilon/2^k$ for each $k$.
+By the corollary to theorem 3.1.5 in Chung (pg. 39), $|X - X_n|$ is a random variable for all $n$. 
+Since $(1/k , \infty)$ is in the borel sets on the real line, it follows that the set $\{\omega : |X(\omega) - X_n(\omega)| \in (1/k , \infty)\}$ is a measurable set. 
+Therefore, since $A \in \Fc$ and $\Fc$ is closed under countable union and intersection, it is clear $B_n^{(k)} = A\,\cap\,\cup_{p \geq n} \{|X - X_p| > 1/k\}$ is measurable.
+Furthermore, $\emptyset \in \Fc$ and $\mu(B_{1}^{(k)}) < \mu(A) < \infty$. 
+Now all the hypotheses of theorem 10.2 in Billingsley (pg 171) are met.
+Therefore, the conclusion $\mu(B_{n}^{(k)}) \downarrow \mu(\emptyset) = 0$, the limit in $n$, is true for all $k$.
+By the definition of convergence, given $\epsilon > 0$, there exists $N_1$ such that for all $n \geq N_1$, it follows $\mu(B_{n}^{(1)}) < \epsilon / 2^1$. Set $n_1 := N_1$ for the sequence $\{n_k\}$. 
+Next, there exists $N_2$ such that for all $n > N_2$, it follows $\mu(B_{n}^{(2)}) < \epsilon/2^2$. If $N_2 > N_1$, set $n_2 := N_2$. 
+Else $N_2 \leq N_1$. 
+It is true, then, that for all $n \geq N_1 + 1 > N_2$, it follows $\mu(B_{n}^{(2)}) < \epsilon/2^2$. Set $n_2 := N_1 + 1 = n_1 + 1$. 
+In other words, we define $n_2$ to be $\max(N_2 ~, \, n_1 + 1)$.
+We can follow this process as $k$ increases for all sequences $\{B_{n}^{(k)}\}$.
+For the next $k$ in the sequence $\{n_k\}$, find $N_k$ such that for all $n \geq N_k$, we have $\mu(B_{n}^{(k)}) < \epsilon / 2^k$. Then set $n_k := \max(N_k ~,\, n_{k-1}+1)$.
+Hence we constructively determine a strictly increasing sequence $\{n_k\}$ such that $\mu(B_{n_k}^{(k)}) < \epsilon/2^k$ for each $k$.
+
+Now let $B = \cup_{k=1}^{\infty} B_{n_k}^{(k)}$. Note $B \in \Fc$ because it is the countable union of $B_{n_k}^{(k)}$, sets in $\Fc$. By subadditivity and by construction, 
+\[
+\mu(B) = \mu(\cup_{k=1}^{\infty} B_{n_k}^{(k)}) < \cup_{k=1}^{\infty} \mu(B_{n_k}^{(k)}) < \cup_{k=1}^{\infty} \epsilon / 2^k = \epsilon
+\]
+Finally we show that $X_n(\omega) \to X(\omega)$ uniformly for each $\omega \in A - B$. 
+Let $\epsilon > 0$.
+There exists $K$ such that for all $k \geq K$ we have $1/k < \epsilon$.
+We claim that for all $n \geq n_K$, the inequality $|X(\omega) - X_n(\omega)| < \epsilon$ holds for all $\omega \in A - B$. 
+From our construction above, the set of all $\omega \in A$ such that $|X(\omega) - X_n(\omega)| \geq \epsilon$ for some $n \geq n_K$ is precisely
+\[
+A\, \cap \, \cup_{p > n_K} \{|X - X_p| \geq \epsilon\} \subset A\, \cap \, \cup_{p > n_K} \{|X - X_p| > 1 / K\} = B_{n_K}^{(K)} \subset B
+\]
+Therefore, all the `offending' sample points are in $B$. Hence, the claim is verified that $X_n(\omega) \to X(\omega)$ uniformly for all $\omega \in A - B$, as desired.
+\end{proof}
+
+\pagebreak
+
+\section*{Problem 1}
+\subsection*{Part (b) 20 points}
+Show that (a) is false without the hypothesis $\mu(A) < \infty$.  
+[{\sc Hint:} On the integers with counting measure, consider the indicators of $\{n, n+1, \ldots\}$.]   
+
+\begin{proof}
+Proof by counterexample. 
+Take $\Omega$ to be $\Z^+$, the positive integers. Let $\Fc$ to be the total $\sigma$-field of $\Omega$. Define $\mu$ to be the counting measure. Then $(\Omega, \Fc, \mu)$ is a measure space (course slides, pg 126). Let $A = \Omega$. Let $X_n$ be the indicator of the set $\{n, n+1, \cdots\}$. Hence
+\[
+X_n(\omega) = 
+\begin{cases}
+1 & \text{if $\omega \geq n$} \\
+0 & \text{if $\omega < n$}
+\end{cases}
+\]
+Suppose $\omega = k \in \Z^+$. Then for all $n > k$, we have $X_n(\omega) = 0$. Since this is true for all $\omega$, it is clear that the random variable $X(\omega) = 0$ for all $\omega \in \Omega$ is the limiting random variable. 
+Hence $X_n(\omega) \to X(\omega)$ for each $\omega \in A$. 
+Let $1 > \epsilon > 0$. Since for all sets $S \neq \emptyset$, we have $\mu (S) \geq 1$, it follows that the only set $B$ with measure less than $\epsilon$ is the empty set. Hence $A - B = \Omega - \emptyset = \Omega$. 
+It is left to show that $X_n(\omega)$ cannot converge to $X(\omega)$ uniformly on $\Omega$.
+
+We show the negation of the definition of uniform convergence on $\Omega$ is true. The negation is ``there exists $\epsilon > 0$ such that for all positive $N$, there exists $n \geq N$ and there exists $\omega \in \Omega$ such that $|X(\omega) - X_n(\omega)| \geq \epsilon$. ''
+
+Let $\epsilon = 0.5$. For all positive $N$, let $n = N$ and let $\omega = N$. Therefore
+\[
+|X(\omega) - X_N(\omega)| = |X(N) - X_N(N)| = |0 - 1| = 1 \geq 0.5 = \epsilon
+\text{.}
+\]
+This concludes the counterexample and shows that (a) is false without the hypotesis that $\mu(A) < \infty$.
+\end{proof}
+
+\pagebreak
+
+\section*{Problem 2}
+\subsection*{Part (a) 10 points}
+On an arbitrary probability space, prove that if an event $A$ is independent of a $\pi$-system $\Pc$ and $A \in \sigma(\Pc)$, then $P(A)$ is either $0$ or $1$.
+
+\begin{proof}
+For reference, we follow closely the proof of theorem 4.2 in Billingsley (pg 58).
+Let event $A$ be independent of a $\pi$-system $\Pc$ and let $A \in \sigma(\Pc)$. 
+
+
+% We throw in $\Omega$ to make the $\lambda$-system argument work. 
+%Let $\bar{\Pc}$ be $\Pc$ augmented with $\Omega$. 
+%Note $\Omega$ may or may not have been an element $\Pc$ before augmentation. 
+Let $\Ls = \{ F \in \Fc : P(F \cap A) = P(F)P(A)\}$. By hypothesis, $\Pc \subset \Ls$. We claim $\Ls$ is a $\lambda$-system. Clearly, $\Omega \in \Ls$, as $P(\Omega \cap A) = P(A) = P(\Omega)P(A)$. Suppose $B \in \Ls$. It follows
+\begin{align*}
+P(B \cap A) + P(B^c \cap A) &= P(A) \\
+P(B \cap A) + P(B^c \cap A) &= P(A)(P(B) + P(B^c) )\\
+P(B)P(A) + P(B^c \cap A) &= P(A)P(B) + P(A)P(B^c) \\
+P(B^c \cap A) &=P(A)P(B^c)
+\text{,}
+\end{align*}
+demonstrating that $B^c \in \Ls$. Suppose $B_1, B_2, \cdots, \in \Ls $ and $B_m \cap B_n = \emptyset$ for $m \neq n$. Then
+\begin{align*}
+P\left((\cup_n B_n) \cap A\right) 
+= P\left(\cup_n (B_n \cap A)\right) 
+&= \cup_n P(B_n \cap A) 
+\text{ by additivity} \\
+&= \cup_n P(B_n) P( A)
+= (\cup_n P(B_n)) P(A) \\
+&= P(\cup_n P(B_n))P(A) 
+\text{ again by additivity,}
+\end{align*}
+demonstrating that $\cup_n B_n \in \Ls$. Thus $\Ls$ is proven to be a $\lambda$-system.
+
+By theorem 3.2 in Billingsley, $\Ls$ contains $\sigma(\Pc)$. Therefore, $A$ is independent of $\sigma(\Pc)$. In particular, since $A \in \sigma(\Pc)$, we have $P(A) = P(A \cap A) = P(A)P(A)$. Thus, $P(A)$ is either $0$ or $1$.
+\end{proof}
+
+\pagebreak
+
+\section*{Problem 2}
+\subsection*{Part (b) 15 points}
+The goal of parts (b)--(d) is to prove the
+following theorem.  Let $f$ be a real-valued Borel function on $[0,1]$ with
+arbitrarily small periods:  For each $\epsilon$ there is a $p$ with $0 < p <
+\epsilon$ such that $f(x) = f(x + p)$ for $0 \leq x \leq 1-p$.  Then $f$ is
+constant almost everywhere.  Begin the proof here by showing that it is
+enough to prove that $P(f^{-1}B)$ is $0$ or $1$ for every Borel set $B$,
+where $P$ is Lebesgue measure on the unit interval.
+
+\begin{proof}
+Let $P(f^{-1}B)$ be $0$ or $1$ for every Borel set $B$. We show  constructively that $f$ is constant almost everywhere. 
+First, if $P(f^{-1}{1}) = 1$, then we are done, i.e. $f = 1$ almost everywhere. Otherwise, consider the interval $[0,1)$, call this $I$. We generate a sequence of $0$ and $1$, call it $B = \{b_k\}$.
+Start this ``loop.'' 
+\begin{enumerate}[1.]
+\item
+$I$ is of the form $[a,b)$. Set $I_0 := [a, \frac{a+b}{2})$ and $I_1 := [\frac{a+b}{2},b)$.
+\item
+Note $P(f^{-1}I) = 1$. Thus $P(f^{-1}I_0) = 1$ or $P(f^{-1}I_1) = 1$ but not both. If $P(f^{-1}I_0) = 1$ and $P(f^{-1}I_1) = 0$, set $b_k := 0$ where this is the $k$-th iteration of this loop. 
+Set $I := I_0$. 
+Else $P(f^{-1}I_0) = 0$ and $P(f^{-1}I_1) = 1$. Set $b_k := 1$ where this is the $k$-th iteration of this loop. Set $I := I_1$.
+\item
+Repeat the loop
+\end{enumerate}
+For example, in the first loop, $I = [0,1)$. From step one, we have $I_0 = [0,1/2)$ and $I_1 = [1/2,0)$. From the reasoning in step two, either $P(f^{-1}I_0) = 1$ or $P(f^{-1}I_1) = 1$, but not both. Whichever one it is (suppose it is $I_1$), set $b_1$ appropriately ($b_1 = 1$) and set $I$ to that interval ($I := I_1$).
+
+We claim $B$ is a sequence of binary digits for a number $M \in [0,1)$. In particular, $M = 0.b_1b_2b_3\cdots$. 
+To prove the claim, first it is clear that $M \in [0,1]$. We show $M \neq 1 = 0.111\cdots$ in the binary exansion. Suppose by way of contradiction $M = 0.111\cdots$. Then $B = \{1,1,1,\cdots \}$. By construction, 
+\[
+1 = P(f^{-1}[1/2,1)) = P(f^{-1}[3/4,1)) = P(f^{-1}[7/8,1)) = \cdots
+\]
+In other words, $P(f^{-1}[1 - (1/2)^k,1)) = 1$ for all $k$. Notice as $k \uparrow \infty$, we have $[1 - (1/2)^k,1) \downarrow \emptyset$. By monotone sequential continuity from above, $P(f^{-1}[1 - (1/2)^k,1)) \downarrow 0$. This is a contradiction, because $P(f^{-1}[1 - (1/2)^k,1)) = 1$ for all $k$, so the limit cannot be $0$. Therefore, $M \neq 0.111\cdots$, and $M \in [0,1)$.
+
+Since we are constructively defining $M$, consider the first $j$ elements of $B$. 
+Those first $j$ elements define a number by binary representation $0.b_1b_2\cdots b_j = \sum_{i=1}^j b_i (1/2)^i = M_j$. 
+We prove by induction $P(f^{-1} [M_j,M_j + (1/2)^j) ) = 1$. 
+The base step is when $j = 1$. 
+Therefore, $0.0 = 0 = M_1$ or $0.1 = 1/2 = M_1$. 
+Case 1: $0.0=0=M_1$. Then on the first iteration of the loop, $I = [0,1)$, and $I_0 = [0,0 +1/2^1) = [0,1/2)$, and $P(f^{-1}I_0) = 1$, as desired. Case 2: $0.1 = 1/2 = M_1$. Then in the first iteration of the loop $I = [0,1)$ and $I_1 = [1/2, 1/2 + 1/2^1 = [1/2,1)$, and $P(f^{-1}I_1) = 1$, as desired. This completes the base step. Now for the inductive step, assume $P(f^{-1}[M_k, M_k + (1/2)^k )) = 1$ for some $k$. We show the statement is true for $k+1$. On the $k + 1$-th iteration of the loop, $I = [M_k, M_k + (1/2)^k )$. Therefore, $I_0 = [M_k, M_k + (1/2)^{k+1})$ and $I_1 = [M_k + (1/2)^{k+1}, M_k + (1/2)^k)$. Case 1: $P(f^{-1}I_0) = 1$. Then $M_{k+1} = 0.b_1b_2\cdots b_k0 = M_k$. Thus 
+\[
+P(f^{-1} [M_k, M_k + (1/2)^{k+1})) = P(f^{-1}[M_{k+1}, M_{k+1} + (1/2)^{k+1})
+\]
+as desired. Case 2: $P(f^{-1}I_1) = 1$. Then $M_{k+1} = 0.b_1b_2\cdots b_k1 = M_k + (1/2)^{k+1}$. Thus
+\[
+P(f^{-1}[M_k + (1/2)^{k+1}, M_k + (1/2)^k)) = P(f^{-1}[M_{k+1},M_{k+1} + (1/2)^{k+1})
+\]
+as desired. This completes the inductive step, and it follows that $P(f^{-1} [M_j,M_j + (1/2)^j) ) = 1$ for all positive $j$ by induction.
+
+As $j \uparrow \infty$, the sets $[M_j, M_j + (1/2)^j) \downarrow \lim_{j \to \infty}\{M_j\} = \{M\}$. By monotone sequential continuity from above, $P(f^{-1}[M_j, M_j + (1/2)^j)) \downarrow P(f^{-1}\{M\})$. Since  $P(f^{-1}[M_j, M_j + (1/2)^j)) = 1$ for all $j$, we have $P(f^{-1}\{M\}) = 1$. Therefore, $f = M$ with probability $1$, meaning that $f$ is constant almost everywhere.
+\end{proof}
+
+\pagebreak
+
+\section*{Problem 2}
+\subsection*{Part (c) 30 points}
+Show that $f^{-1}B$ is independent of each interval $[0,x]$. 
+[{\sc Hint:} Let $A:= f^{-1}B$ and suppose $p$ is a (small) period of $f$.  
+Let $m = \lf x/p \rf$ and $n = \lf 1/p \rf$.  
+Using periodicity, prove that $P(A \cap [y,y+p])$ is the same for all periods $y \in [0,1-p]$ and deduce $|P(A \cap [0,x]) - m P(A \cap [0,p])| \leq p$, $|P(A) - nP(A \cap [0,p])| \leq p$, and $|P(A \cap [0,x]) - P(A)x| \leq 2p + |x - m/n| \leq 3p$.  Since $p$ can be taken
+arbitrarily small, $P(A \cap [0,x]) = P(A)x$.]
+
+\begin{proof}
+We follow the outline in the hint. Let $A = f^{-1}B$. Suppose $p$, a period of $f$, is much smaller than $x$ (so that $m =  \lf x/p \rf \neq 0$). 
+
+First we prove a lemma. Let $S = A \cap [y,y+q]$ for $y \in [0, 1 - q]$ and $0 \leq q \leq p$. 
+We claim $S +np = A \cap [y + np, y +np + q]$ for integer $n$ and $[y + np, y +np + q] \subset [0,1]$. 
+To show one set inclusion, suppose $x \in S + np$. 
+It follows $x - np \in S$. 
+Since $x - np \in A$, it is clear that $f(x - np) \in B$.
+By the periodicity of $f$, we have that $f(x) = f(x - np)$.
+Therefore, $f(x) \in B$ as well, and thus $x \in A$.
+Since $x - np \in S$, we have $x - np \in [y, y+q]$. 
+Thus $x \in [y +np, y + np + q]$.
+It follows $x \in A \cap [y +np, y + np + q]$.
+Now to show the other set inclusion, suppose $x \in A \cap [y +np, y + np + q]$.
+Given $x \in A$, by the same periodicity argument above, $x - np \in A$.
+Furthermore, since $x \in [y +np, y + np + q]$, it follows $x - np \in [y, y+q]$.
+Thus, $x - np \in A \cap [y, y + q] = S$.
+Finally, we see that $x \in S + np$.
+This concludes the lemma that $S + np = A \cap [y +np, y + np + q]$.
+As an immediate consequence, notice $P(S) = P(S + np)$ because $P$ is Lebesgue measure.
+
+
+Next we show $P(A \cap [y,y+p]) = P(A \cap [0,p])$ for all $y \in [0,1-p]$. 
+Let $S = A \cap [y,y+p]$ and let $l = \lf y/p \rf$. 
+By the consequence of the lemma, $P(S) = P(S - lp) = P(A \cap [y - lp, y -lp+p])$. 
+By another application of the lemma, $P(A \cap [0, y -lp]) = P(A \cap [p, y - lp + p])$. From additivity,
+\begin{align*}
+P(A \cap [y,y+p]) = P(S) &= P(S - lp) \\
+&= P(A \cap [y - lp, y -lp+p] \\
+&= P(A \cap [ y -lp, p]) + P(A \cap [p, y - lp + p]) \\
+&= P(A \cap [0, y - lp]) + P(A \cap [ y -lp, p]) \\
+&= P(A \cap [0,p])
+\text{,}
+\end{align*}
+as desired. 
+For $y$ and $y'$ in $[0, 1 - p]$, it is clear that $P(A \cap [y,y+p]) = P(A \cap [0,p]) = P(A \cap [y',y'+p])$. 
+As a consequence of this, by additivity it follows 
+\begin{align*}
+P(A \cap [y, y + np]) &= P\left(A \cap \left( \bigcup_{k = 1}^n [y + (k -1)p, y+kp]\right)\right) \\
+&= \bigcup_{k = 1}^n P\left(A \cap  [y + (k -1)p, y+kp]\right) \\
+&= \bigcup_{k = 1}^n P\left(A \cap  [y , y+p]\right) \\
+&= n P\left(A \cap  [y , y+p]\right)
+\text{.}
+\end{align*}
+Stated succinctly, 
+\begin{equation}
+\label{np}
+P(A \cap [y, y + np]) = n P(A \cap  [y , y+p])
+\end{equation}
+
+Let $m = \lf x/p \rf$ and $n = \lf 1/p \rf$.
+Calculating,
+\begin{align*}
+0 &\leq P(A \cap [0,x]) - m P(A \cap [0,p]) \\
+&= P(A \cap [0,x]) - P(A \cap [0,mp]) \\
+&= P(A \cap [mp, x]) \\
+&\leq P([mp,x]) \\
+&\leq p
+\text{,}
+\end{align*}
+and
+\begin{align*}
+0 &\leq P(A) - n P(A \cap [0,p]) \\
+&= P(A) - P(A \cap [0,np]) \\
+&= P(A \cap [np, 1]) \\
+&\leq P([np,1]) \\
+&\leq p
+\text{.}
+\end{align*}
+Thus $0 \leq P(A \cap [0,x]) - m P(A \cap [0,p]) \leq p$ and $0 \leq P(A) - nP(A \cap [0,p]) \leq p$. Adding these two inequalities together, we have 
+\begin{align*}
+0 \leq P(A \cap [0,x]) - m P(A \cap [0,p]) + P(A) - nP(A \cap [0,p]) &\leq 2p \\ 
+0 \leq P(A \cap [0,x]) -  P(A \cap [0,mp]) + P(A) - P(A \cap [0,np]) &\leq 2p \\
+0 \leq P(A \cap [0,x]) -  P(A \cap [0,mp]) + P(A \cap [np,1]) &\leq 2p \\
+0 \leq P(A \cap [0,x]) -  P(A \cap [0,mp]) + P(A \cap [0,1-np]) &\leq 2p 
+\text{ by \eqref{np}} \\
+0 \leq P(A \cap [0,x]) -  P(A \cap [1 - np,mp]) &\leq 2p \\
+P(A \cap [1 - np,mp]) \leq P(A \cap [0,x])  &\leq 2p + P(A \cap [1 - np,mp]) \\ 
+P(A \cap [1 - np,mp]) - P(A)x \leq P(A \cap [0,x]) - P(A)x  &\leq 2p + P(A \cap [1 - np,mp]) - P(A)x
+\end{align*}
+Consider the right-hand inequality.
+\begin{align*}
+P(A \cap [0,x]) - P(A)x  &\leq 2p + P(A \cap [1 - np,mp]) - P(A)x \\
+ &\leq 2p + P(A \cap [0,mp]) - P(A)x \\
+ &= 2p + m P(A \cap [0,p]) - P(A)x \\
+ &= 2p + m/n P(A \cap [0,np]) - P(A)x \\
+ &\leq 2p + m/n P(A) - P(A)x \\
+ &= 2p + (m/n - x)P(A) \\
+ &\leq 2p + (m/n - x) \\
+ &\leq 2p + | x - m/n | 
+\end{align*}
+Now consider the left-hand inequality from before.
+\begin{align*}
+P(A \cap [0,x]) - P(A)x &\geq P(A \cap [1 - np,mp]) - P(A)x \\
+&\geq -p + P(A \cap [0,mp]) - P(A)x \\
+&= -p + m P(A \cap [0,p]) - P(A)x \\
+&= -p + m/n P(A \cap [0,np]) - P(A)x \\
+&\geq -2p + m/n P(A) - P(A)x \\
+&= -2p + (m/n - x) P(A) \\
+&\geq -2p - |m/n -x| P(A) \\
+&\geq -2p - |m/n - x|
+\end{align*}
+And combining the results of both those inequalities, we have 
+\[
+|P(A \cap [0,x]) - P(A)x | \leq 2p +  |m/n - x|
+\text{.}
+\]
+
+Now consider $|m/n - x|$. Note $m \in (x/p -1, x/p]$ and $n \in (1/p -1 , 1/p]$. Calculating,
+\begin{align*}
+\frac{x/p - 1}{1/p} &< m/n \\
+\frac{x/p - p/p}{1/p} - p &< m/n -p \\
+\frac{p(x - p)}{p} - p &< m/n -p \\
+x - 2p &< m/n - p \\
+x - m/n &< p
+\end{align*}
+Now calculating some more,
+\begin{align*}
+\frac{x/p}{1/p -1} &> m/n \\
+\frac{x}{1-p} &> m/n \\
+x &> m/n - mp/n \\
+x - m/n &> -mp/n \geq -p 
+\text{ since $m \leq n$}
+\end{align*}
+Combining these two most recent inequalities, we have 
+\[
+|x - m/n| < p
+\text{.}
+\]
+Now we can extend the inequality
+\[
+|P(A \cap [0,x]) - P(A)x | \leq 2p +  |m/n - x| < 3p
+\]
+Since $p$ can be taken arbitrarily small, we have $|P(A \cap [0,x]) - P(A)x | = 0$, so that $P(A \cap [0,x]) = P(A)x$. 
+Therefore $A = f^{-1}B$ is independent of each interval $[0,x]$. 
+\end{proof}
+
+\pagebreak
+
+\section*{Problem 2}
+\subsection*{Part (d) 5 points}
+Conclude that $P(f^{-1}B)$ is $0$ or $1$.
+
+\begin{proof}
+Let $S = \{[0,x] : x \in [0,1]\}$. Notice $S$ is a $\pi$-system. We show that $\sigma(S)$ is the Borel $\sigma$-field on $[0,1]$. 
+We know from Billingsley, $T = \{(a,b] : a<b \text{ and } a,b \in [0,1] \}$ generates the Borel $\sigma$-field on $(0,1]$. 
+Therefore, $T \cup \{0\}$ generates the Borel $\sigma$-field on $[0,1]$. 
+Thus it is left to us to show that $T \cup \{0\} \subset \sigma(S)$.
+
+Certainly, $\{0\} = [0,0] \in S \subset \sigma(S)$. 
+Let $a < b$ and $a$ and $b$ be in $[0,1]$. 
+Using the set operations that $\sigma$-fields are closed under, we see $[0,a]^c = (a,1] \in \sigma(S)$. 
+Also, $[0,b] \in \sigma(S)$, so $[0,b] \cap (a,1] = (a,b] \in \sigma(S)$.
+Therefore, $T \cup \{0\} \subset \sigma(S)$, and it follows that the smallest $\sigma$-field containing $S$ is the Borel $\sigma$-field. Finally, since $B$ is a Borel set and $f$ is a measurable function, $f^{-1}B$ is also a Borel set, meaning $f^{-1}B \in \sigma(S)$.
+
+By problem 2 part (b), the event $f^{-1}B$ is independent of $S$, a $\pi$-system. Furthermore, $f^{-1}B \in \sigma(S)$. By problem 2 part (a), it follows $P(f^{-1}B)$ is either $0$ or $1$.
+\end{proof}
+
+\pagebreak
+
+\section*{Problem 2}
+\subsection*{Part (e) 10 points}
+Show by example that $f$ need not be constant.
+
+\begin{proof}
+Let $f$ be the measurable function $[0,1] \to [0,1]$ defined by 
+\[
+f(x) =
+\begin{cases}
+&1 \text{ if $x$ is rational} \\
+&0 \text{ if $x$ is irrational} 
+\end{cases}
+\]
+For every $\epsilon > 0$, there exists a rational number $0 < q < \epsilon$. Remember that a rational plus a rational is a rational and an irrational plus a rational is an irrational. Thus
+\[
+f(x + q) =
+\begin{cases}
+&1 \text{ if $x$ is rational} \\
+&0 \text{ if $x$ is irrational}
+\end{cases}
+\text{,}
+\]
+and we have $f(x) = f(x+q)$ for $0 \leq x \leq 1 - q$. Hence $f$ is constant on the set of irrational numbers, which is to say almost everywhere. However, $f$ is not constant.
+\end{proof}
+
+\pagebreak
+
+\section*{Problem 3}
+Let $Y_{k, n}$ be real-valued random variables, all defined on a common probability space, for 
+$k \in \{1, 2, \dots\}$ and $n \in \{1, 2, \dots\}$.  Fix two real numbers~$p$ and~$p'$ satisfying $1 \leq p < p' < \infty$ and suppose for some nonnegative sequences $(b_k)$ and $(b'_k)$ that
+\begin{enumerate}
+\item[(i)] for each~$k$ the sequence $(Y_{k, 1}, Y_{k, 2}, \dots)$ is a martingale (see below),
+\item[(ii)] for each~$k$ we have $\| Y_{k, n} \|_p \leq b_k$ for all $n \in \{1, 2, \dots\}$,
+\item[(ii$'$)] for each~$k$ we have $\| Y_{k, n} \|_{p'} \leq b'_k < \infty$ for all $n \in \{1, 2, \dots\}$, and
+\item[(iii)] $\sum_{k = 1}^{\infty} b_k < \infty$.
+\end{enumerate}
+Prove the following six assertions.  In solving a given part, you may use the results of any previous parts but not those of later parts.  You don't need to know about martingales---these will be treated thoroughly next semester---but you do need to know, and may use without proof, the \emph{almost sure convergence theorem for martingales}, which asserts that an $L^1$-bounded martingale converges almost surely.
+
+\subsection*{Part (a) 10 points}
+
+For each~$k$ there exists a real-valued random variable $Y_{k, 0}$ such that $Y_{k, n} \to Y_{k, 0}$ almost surely as $n \to \infty$.
+
+\begin{proof}
+From course slides pg. 178, we have $\|X \|_p$ increases with $0 < p \leq \infty$. Therefore, for each $k$, we have $\|Y_{k,n} \|_1 \leq \|Y_{k,n} \|_p \leq b_k$ (because $1 \leq p $ by hypothesis). By the theorem above, since each sequence $\{Y_{k,n} \}_n$ is a martingale and bounded in $L^1$, it converges almost surely. Call the limit $Y_{k,0}$.
+\end{proof}
+
+\pagebreak
+
+
+\section*{Problem 3}
+\subsection*{Part (b) 10 points}
+With $Y_{k, 0}$ as in part~(a), hypotheses~(ii) and~(ii$'$) extend to $n = 0$.
+\begin{proof}
+By hypothesis, for each $k$, we have $\|Y_{k,n} \|_p \leq b_k$ for all $n$. Hence, $0 \leq (\int Y_{k,n}^p)^{1/p} \leq b_k$, whence $0 \leq \int Y_{k,n}^p \leq b_k^p$. We now use Pratt's theorem, pg. 162 of the course slides, with $b_k^p$ as the upper bound (which is constant in the limiting variable $n$) and $0$ as the lower bound. Thus, applying the limit to the latter inequality we have 
+\begin{equation*}
+\begin{array}{rcccl}
+\lim_n 0 & \leq & \lim_n \int Y_{k,n}^p & \leq & \lim_n b_k^p \\
+0 & \leq & \int Y_{k,0}^p & \leq & b_k^p
+\end{array}
+\end{equation*}
+Therefore, $\|Y_{k,0} \|_p = (\int Y_{k,0}^p)^{1/p} \leq b_k$. 
+We can do the exact same thing replacing $p$ with $p'$ and $b_k$ with $b_k'$. 
+That gives $\|Y_{k,0} \|_{p'} \leq b_{k}'$. 
+Thus it is demonstrated hypotheses~(ii) and~(ii$'$) extend to $n = 0$.
+\end{proof}
+
+\pagebreak
+
+\section*{Problem 3}
+\subsection*{Part (c) 10 points}
+For each $n \in \{0, 1, 2, \dots\}$ the series $\sum_{k = 1}^{\infty} Y_{k, n}$ converges in $L^p$ to some real-valued random variable~$S_n$.
+
+\begin{proof}
+Define the partial series sequence $\{B_m\} = \sum_{k = 1}^{m} Y_{k, n}$. 
+Since $p \geq 1$, we know $L^p$ is a normed linear space.
+Let $t \geq M$ and $t' \geq M$, and without loss of generality, assume $t' \geq t$. By the reverse triangle inequality, 
+\[
+|~ \| B_{t'} \|_p - \| B_t \|_p ~| \leq  \| B_{t'} - B_t \|_p = \| \sum_{k = t+1}^{t'} Y_{k, n} \|_p
+\]
+Let $\epsilon > 0$. Since $\sum_{k = 1}^{\infty} b_k < \infty$ and since $b_k \geq 0$, there exists $K$ such that $\sum_{k = K + 1}^{\infty} b_k < \epsilon$. 
+Therefore, for all $t \geq K$ and $t' \geq K$, and without loss of generality $t' \geq t$,  we have 
+\begin{align*}
+|~ \| B_{t'} \|_p - \| B_t \|_p ~| 
+&\leq \| \sum_{k = t+1}^{t'} Y_{k, n} \|_p \\
+&\leq \| \sum_{k = t+1}^{\infty} Y_{k, n} \|_p \\
+&\leq \sum_{k = t+1}^{\infty}  \| Y_{k, n} \|_p \\  
+&\leq \sum_{k = t+1}^{\infty} b_k \\
+&\leq \epsilon
+\text{,}
+\end{align*}
+demonstrating the Cauchy criterion for convergence for $\{\|B_m \|_p \}$. 
+By pg. 180 of the course slides, we know that Cauchy sequences converge in $L^p$. 
+Thus $\{\|B_m \|_p \}$ converges to some limit, call it $S_n$.
+\end{proof}
+\pagebreak
+
+%\item {\bf (15)} For each~$k$, the sequences $|Y_{k, n}|^p$ and $|Y_{k, n} - Y_{k, 0}|^p$ are both uniformly integrable in 
+%$n \in \{1, 2, \dots\}$.
+
+
+
+\section*{Problem 3}
+\subsection*{Part (e) 10 points}
+For each~$k$ we have $Y_{k, n} \to Y_{k, 0}$ in $L^p$ as $n \to \infty$.
+
+\begin{proof}
+Since $Y_{k,n} \to Y_{k,0}$ almost surely for each $k$, we have $Y_{k,n} \to Y_{k,0}$ in probability by pg 176 of the course slides. 
+By problem 3 part (d), we have that $|Y_{k, n} - Y_{k, 0}|^p$ is uniformly integrable. Therefore,
+\[
+\sup_{n} E( |Y_{k,n} - Y_{k,0}|^p I_{|Y_{k,n} - Y_{k,0}|^p > A}) \downarrow 0 \text{ as } A \uparrow \infty
+\text{.}
+\]
+Since $p$ is positve, this is the same as 
+\[
+\sup_{n} E( |Y_{k,n} - Y_{k,0}|^p I_{|Y_{k,n} - Y_{k,0}| \geq A}) \downarrow 0 \text{ as } A \uparrow \infty
+\text{.}
+\]
+Uniform integrability implies $L^p$ dominatedness.
+Our technique is truncation. For each $A > 0$ 
+\begin{align*}
+\|  Y_{k,n} - Y_{k,0} \|_p^p = E|Y_{k,n} - Y_{k,0}|^p 
+&= E(|Y_{k,n} - Y_{k,0}|^p  I_{|Y_{k,n} - Y_{k,0}| \geq A}) + E(|Y_{k,n} - Y_{k,0}|^p  I_{|Y_{k,n} - Y_{k,0}| < A})  \\
+&\leq E(|Y_{k,n} - Y_{k,0}|^p  I_{|Y_{k,n} - Y_{k,0}| \geq A}) + A^p 
+\end{align*}
+By uniform integrability the first term on the right tends to $0$ as $n \to \infty$. The second term goes to $0$ as $A \to 0$. Thus $Y_{k, n} \to Y_{k, 0}$ in $L^p$ as $n \to \infty$. 
+\end{proof}
+\pagebreak
+
+%\item {\bf (15)} $S_n \to S_0$ in $L^p$ as $n \to \infty$.
+
+\section*{Problem 5}
+Let~$X$ be a real-valued random variable defined on some probability space.  The
+function $\Psi$, defined over $[-\infty,\infty]$ (i.e.,\ for $t \in
+[-\infty,\infty]$) by
+$$
+\Psi(t) := E \left( e^{tX} \right),
+$$
+is called the {\em moment generating function\/} (mgf) {\em of~$X$\/}.  (Use our
+usual convention that $c \times \infty$ equals $\infty$, if $c > 0$; equals $0$,
+if $c = 0$; equals $-\infty$, if $c < 0$.)
+
+\subsection*{Part (a) 15 points}
+Show that $0 \leq \Psi \leq \infty$ over $[-\infty,\infty]$, that $0 < \Psi \leq \infty$ over $(-\infty,\infty)$, and that $\Psi(0) = 1$.
+\begin{proof}
+Let $X$ have corresponding probability measure $P$. Then
+\[
+\Psi(t) = E(e^{tX}) = \int e^{tX} P \{X \in dx\}
+\]
+Since $e^{tx} \geq 0$, for $x$ in the extended reals (using the convention that $e^\infty = \infty$ and $e^{-\infty} = 0$), it follows immediately that $\int e^{tX} P\{X \in dx\} \geq 0$. Hence, $0 \leq \Psi \leq \infty$ over $[-\infty,\infty]$. Similarly, $e^{tx} > 0$ for $x$ in the real line, and $\int e^{tX} P\{X \in dx\} > 0$. And, $0 < \Psi \leq \infty$ over $(-\infty,\infty)$. 
+Finally 
+\[
+\Psi(0) = E(e^{0X}) = E(e^0) = E(1) = \int 1 = 1
+\text{.}
+\]
+\end{proof}
+\pagebreak
+
+
+\section*{Problem 5}
+\subsection*{Part (b) 5 points}
+Show that $\Psi$ is convex over $(-\infty,\infty)$.
+\begin{proof}
+Let $t \in [0,1]$ and $x_1, x_2 \in (\infty, \infty)$ and $x_1 \leq x_2$. Note that $e^x$ is convex over $(-\infty,\infty)$. Hence 
+\[
+\displaystyle
+e^{(1-t) x_1 X+ t x_2 X} \leq (1-t)e^{x_1 X} + t e^{x_2 X}
+\text{.}
+\]
+Now taking expectations of both sides (properties of the integral preserve inequality), we have
+\[
+\int e^{(1-t) x_1 X + t x_2 X} \leq \int (1-t)e^{x_1 X} + t e^{x_2 X}
+\text{,}
+\]
+and simplifying gives
+\[
+\int e^{(1-t) x_1 X + t x_2 X} \leq (1-t) \int e^{x_1 X} + t \int e^{x_2 X}
+\text{,}
+\]
+which is the same as
+\[
+\Psi((1-t) x_1  + t x_2 ) \leq (1-t)\Psi(x_1) + t \Psi(x_2)
+\text{.}
+\]
+Thus $\Psi$ is convex over $(-\infty, \infty)$.
+\end{proof}
+\pagebreak
+
+%\item {\bf (15)} Show that $T := \{t \in [-\infty,\infty]:\,\Psi(t) < \infty\}$
+%is a (possibly degenerate) interval containing~$0$.  This interval~$T$ is called
+%the {\em interval of finiteness\/} of~$\Psi$.
+%\end{enumerate}
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

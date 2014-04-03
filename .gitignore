@@ -1,0 +1,12 @@
+## Core latex/pdflatex auxiliary files:
+*.aux
+*.synctex.gz
+*.lof
+*.log
+*.lot
+*.fls
+*.out
+*.toc
+
+## Mac files:
+.DS_Store

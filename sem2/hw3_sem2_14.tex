@@ -1,0 +1,414 @@
+% /**
+%  * A template for homework files in math classes. The 
+%  * packages and newcommands are a good starting point.
+%  *
+%  * Author: James K. Pringle
+%  * E-mail: jameskpringle@gmail.com
+%  * Last Changed: 5 September 2013
+%  *
+%  * "LaTeX countains the increasing union of MS Word"
+%  */
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                         %
+%                        PAGE SETUP                       %
+%                                                         %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[letterpaper, 12pt]{article}
+
+% 1in margins all the way around
+\usepackage[margin=1in]{geometry}
+
+% Sets \parindent to 0 and \parskip to stretchable.
+\usepackage{parskip}
+% Use for bigger spaces between paragraphs.
+%\parskip=1.5\baselineskip
+
+% Set headers and footers
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+% Header
+\renewcommand{\headrulewidth}{0.4pt}
+\lhead{\textsc{\mathclass}}
+\chead{\textsc{\today}}
+\rhead{\textsc{\mynamehdr}}
+% Footer
+\renewcommand{\footrulewidth}{0.4pt}
+\lfoot{}
+\cfoot{\thepage}
+\rfoot{}
+
+% Make the space between lines slightly more generous 
+% than normal single spacing, but compensate so that the 
+% spacing between rows of matrices still looks normal.  
+% Note that 1.1=1/.9090909...
+\renewcommand{\baselinestretch}{1.1}
+\renewcommand{\arraystretch}{.91}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                         %
+%                      USEFUL PACKAGES                    %
+%                                                         %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% The classic three
+\usepackage{amsmath,amsthm,amssymb}
+
+% Define \newtheorem for use
+% No numbers, labeled 'Theorem'
+\newtheorem*{nthm}{Theorem}
+
+% Not sure what this is for
+\usepackage{amsfonts}
+
+% Fancy script font
+\usepackage{mathrsfs}
+
+% Makes enumerate environment much easier to customize
+% by specifying the counter
+\usepackage{enumerate}
+
+% Color
+\usepackage{color}
+\usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
+
+% URL links
+\usepackage{hyperref}
+
+% For inserting graphics and images
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage[footnotesize]{caption}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                         %
+%                   USER-DEFINED COMMANDS                 %
+%                                                         %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Make a hyperlink with colored text
+\newcommand{\hrefcolor}[3]{\href{#1}{\textcolor{#3}{#2}}}
+
+% Make a hyperlink with gray text
+\newcommand{\hrefgray}[2]{\hrefcolor{#1}{#2}{Gray}}
+
+% Make the header for the first page
+\newcommand{\firstpageinfo}{
+\textsf{
+\begin{flushleft}
+\sc \myname \\
+\normalfont \mathclass \\
+\professorname \\
+\assignmentnumber \\
+\thedate
+\end{flushleft}
+} \bigskip
+}
+
+% Make problem list for "title" of page
+\newcommand{\problemlist}{ 
+\begin{center}
+\textbf{\Large \textsf{\assignmentnumber}}\\
+\textit{\textsf{\problemset}}
+\end{center}
+\bigskip
+}
+
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~%
+%                                                         %
+%               LETTERS, FUNCTIONS, AND TEXT              %
+%                                                         %
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~%
+
+% A
+\newcommand{\cA}{\mathcal{A}}
+\newcommand{\sA}{\mathscr{A}}
+\renewcommand{\aa}{\;\text{a.a.}}
+\renewcommand{\ae}{\;\text{a.e.}}
+% B
+\newcommand{\B}{\mathscr{B}}
+\newcommand{\cB}{\mathcal{B}}
+% C
+\newcommand{\cC}{\mathcal{C}}
+\newcommand{\cov}{\text{cov}}
+% E
+\newcommand{\E}{\mathbb{E}}
+% F
+\newcommand{\fF}{\mathfrak{F}}
+\newcommand{\sF}{\mathscr{F}}
+\newcommand{\cF}{\mathcal{F}}
+\newcommand{\Ft}{F^\sim}
+% G
+\newcommand{\cG}{\mathcal{G}}
+\newcommand{\sG}{\mathscr{G}}
+% I
+\newcommand{\io}{\;\text{i.o.}}
+% N
+\newcommand{\N}{\mathbb{N}}
+% P
+\newcommand{\cP}{\mathcal{P}}
+\newcommand{\sP}{\mathscr{P}}
+\newcommand{\pr}{\text{pr}}
+% Q
+\newcommand{\Q}{\mathbb{Q}}
+% R
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\bR}{\mathbf{R}}
+\newcommand{\cR}{\mathcal{R}}
+% S
+\newcommand{\cS}{\mathcal{S}}
+% U
+\newcommand{\cU}{\mathcal{U}}
+% V
+\newcommand{\var}{\text{var}}
+% Z
+\newcommand{\Z}{\mathbb{Z}}
+% Punctuation
+\newcommand{\sbs}{\;|\;} % space bar space
+% Math
+\newcommand{\imii}{\int_{-\infty}^\infty}
+\newcommand{\pion}{\prod_{i=1}^n}
+\newcommand{\pioI}{\prod_{i=1}^I}
+\newcommand{\pjon}{\prod_{j=1}^n}
+\newcommand{\pjoJ}{\prod_{j=1}^J}
+\newcommand{\pkon}{\prod_{k=1}^n}
+\newcommand{\pkoK}{\prod_{k=1}^K}
+\newcommand{\sion}{\sum_{i=1}^n}
+\newcommand{\sioI}{\sum_{i=1}^I}
+\newcommand{\sjon}{\sum_{j=1}^n}
+\newcommand{\sjoJ}{\sum_{j=1}^J}
+\newcommand{\skon}{\sum_{k=1}^n}
+\newcommand{\skoK}{\sum_{k=1}^K}
+\newcommand{\sioi}{\sum_{i=1}^\infty}
+\newcommand{\sjoi}{\sum_{j=1}^\infty}
+\newcommand{\skoi}{\sum_{k=1}^\infty}
+\newcommand{\sio}{\sum_{i=1}}
+\newcommand{\sjo}{\sum_{j=1}}
+\newcommand{\sko}{\sum_{k=1}}
+% Typography
+\newcommand{\scb}[1]{\textsc{\textbf{#1}}}
+
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~%
+%                                                         %
+%            CHANGE THESE BASED ON THE PAPER              %
+%                                                         %
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~%
+
+% Constants for fancy header and first page info
+\newcommand{\mynamehdr}{\hrefgray{http://biostat.jhsph.edu/~jpringle/}{\myname}}
+\newcommand{\mathclass}{550.621 Probability}
+\newcommand{\myname}{James K. Pringle}
+\newcommand{\professorname}{Dr. Jim Fill}
+\newcommand{\assignmentnumber}{Assignment 3}
+\newcommand{\thedate}{\today}
+\newcommand{\problemset}{Chung 6.4.19}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                         %
+%                      BEGIN DOCUMENT                     %
+%                                                         %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+% Take header off of first page
+\thispagestyle{empty}
+
+% Put in first page info (top of page)
+\firstpageinfo
+
+% Put in title for the paper
+\problemlist
+%\section*{Notation}
+%The symbol $\Rightarrow$ denotes \textit{weak convergence}. If for d.f.'s $F_n$ and $F$
+%\[
+%F_n \Rightarrow F
+%\]
+%then $F_n$ converges weakly to $F$.
+%
+%If for measures $\mu_n$ and $\mu$
+%\[
+%\mu_n \Rightarrow \mu
+%\]
+%then $\mu_n$ converges weakly to $\mu$.
+
+\section*{Problem}
+The problem is to provide a solution to Chung Exercise 6.4.19, which is:
+\begin{quote}
+Reformulate Exercise 18 in terms of d.f.'s and deduce the following consequence. Let $F_n$ be a sequence of d.f.'s $a_n$, $a_n'$ real constants, $b_n > 0$, $b_n' > 0$. If
+\[
+F_n(b_n x + a_n) \xrightarrow{v} F(x)
+\quad
+\text{and}
+\quad
+F_n(b_n' x + a_n') \xrightarrow{v} F(x),
+\]
+where $F$ is a nondegenerate d.f., then 
+\[
+\frac{b_n}{b_n'} \to 1
+\quad
+\text{and}
+\quad
+\frac{a_n - a_n'}{b_n} \to 0
+\]
+\end{quote}
+First, \textbf{Chung Exercise 6.4.18} is stated and the reformulation is presented. Following that, the consequence is deduced. 
+
+\section*{Chung Exercise 6.4.18}
+Let $f_n$ be ch.f.'s.
+Let $f$ and $g$ be two nondegenerate ch.f.'s. Suppose that there exist real constants $a_n$ and $b_n > 0$ such that for every $t$:
+\begin{equation}
+f_n(t)\to f(t) \quad \text{and} \quad
+e^{ita_n/b_n}
+f_n
+\left(
+\frac{t}{b_n}
+\right)
+\to
+g(t)
+\label{eq1}
+\end{equation}
+Then $a_n \to a$, $b_n \to b$, where $a$ is finite, $0 < b<\infty$, and $g(t) = e^{ita/b} f(t/b)$.
+
+\section*{Reformulation of 6.4.18 in terms of d.f.'s}
+
+Let $\Phi_n$ be d.f.'s with ch.f.'s $f_n$.
+Let $\Phi$ and $G$ be two nondegenerate d.f.'s with characteristic functions $f$ and $g$, respectively. Suppose that there exist real constants $\alpha_n$ and $\beta_n>0$ such that:
+\begin{equation}
+\Phi_n(x) \xrightarrow{v} \Phi(x) 
+\quad \text{and} \quad
+\Phi_n(\beta_nx - \alpha_n) 
+\xrightarrow{v}
+G(x)
+\label{rew}
+\end{equation}
+Then $\alpha_n \to \alpha$, $\beta_n \to \beta$, where $\alpha$ is finite, $0 < \beta<\infty$, and $G(x) = \Phi(\beta x - \alpha)$.
+
+\begin{proof}
+Let $\Phi_n(x) \xrightarrow{v} \Phi(x)$. 
+Then by definition, the corresponding p.m.'s on $\R$ converge weakly, and by the convergence theorem (\textbf{Chung Theoremm 6.3.1}), $f_n(t) \to f(t)$ for every $t$.
+
+Let $\Phi_n(\beta_nx - \alpha_n) 
+\xrightarrow{v}
+G(x)$. Since $\beta_n > 0$, it follows that for all $n$, the function $T_n(x) = \beta_n x - \alpha_n$ is a continuous, increasing bijection. 
+Therefore, $\Phi_n(T_n(x)) = \Phi_n(\beta_nx - \alpha_n)$ is a distribution function. 
+The characteristic function of $\Phi_n(\beta_nx - \alpha_n)$ is 
+\begin{align*}
+\int e^{itx} d\Phi_n(\beta_nx - \alpha_n)
+&=
+\int e^{it\frac{x+\alpha_n}{\beta_n}} d\Phi_n(x)
+\\
+&=
+e^{it\alpha_n/\beta_n}\int e^{i\frac{t}{\beta_n} x} d\Phi_n(x)
+\\
+&=
+e^{it\alpha_n/\beta_n} f_n
+\left(
+\frac{t}{\beta_n}
+\right)
+\end{align*}
+Since  $\Phi_n(\beta_nx - \alpha_n) 
+\xrightarrow{v}
+G(x)$, the corresponding p.m.'s on $\R$ converge weakly. Thus by the convergence theorem (\textbf{Chung Theorem 6.3.1}), the ch.f.'s converge for every $t$, i.e.
+\[
+e^{it\alpha_n/\beta_n} f_n
+\left(
+\frac{t}{\beta_n}
+\right)
+\to 
+g(t)
+\]
+for every $t$.
+
+The above shows that the set of assumptions in \eqref{rew} imply the set of assumptions in \eqref{eq1}. 
+Therefore, given \eqref{rew}, it follows by \textbf{Chung Exercise 6.4.18} that $\alpha_n \to \alpha$, $\beta_n \to \beta$, where $\alpha$ is finite, $0 < \beta < \infty$, and $g(t) = e^{it\alpha/\beta}f(t/\beta)$. 
+Additionally, by \textbf{Chung Theorem 6.3.2}, the sequence of d.f.'s $\{\Phi_n(\beta_nx - \alpha_n) \}_{n \geq 1}$ converges weakly to a d.f. $G$ with ch.f. $e^{it\alpha/\beta}f(t/\beta)$. 
+Notice that $\Phi(\beta x -\alpha)$ has ch.f. $e^{it\alpha/\beta}f(t/\beta)$. 
+Since any two d.f.'s with the same ch.f. are the same d.f. by \textbf{Chung Theorem 6.2.2}, it follows that $G(x) = \Phi(\beta x -\alpha)$.
+\end{proof}
+
+\section*{Deduction of the Consequence}
+\begin{proof}
+Let $F_n$ be a sequence of d.f.'s $a_n$, $a_n'$ real constants $b_n > 0$, $b_n' > 0$.
+Let
+\begin{equation*}
+F_n(b_n x + a_n) \xrightarrow{v} F(x)
+\quad
+\text{and}
+\quad
+F_n(b_n'x + a_n') \xrightarrow{v} F(x)
+\end{equation*}
+where $F$ is a nondegenerate d.f. Since $b_n > 0$, for all $n$ it follows that $T_n(x) = b_n x + a_n$ is a continuous, increasing bijection. 
+Therefore $\Phi_n(x) = F_n(T_n(x)) = F_n(b_n x + a_n)$ is a d.f. Using this new notation, $\Phi_n(x) \xrightarrow{v} F(x)$. Define
+\begin{align*}
+\beta_n &:= \frac{b_n'}{b_n}
+\\
+\alpha_n &:= -\frac{a_n' - a_n}{b_n}
+\end{align*}
+Notice $\beta_n$ is positive and $\alpha_n$ is some real number.
+Calculating,
+\begin{align*}
+\Phi_n(\beta_n x - \alpha_n) 
+&=
+F_n(T_n(\beta_n x - \alpha_n))
+\\
+&=
+F_n(b_n(\beta_n x - \alpha_n) + a_n)
+\\
+&=
+F_n
+\left(
+b_n
+\left(
+\frac{b_n'}{b_n} x + \frac{a_n' - a_n}{b_n}
+\right)
++ a_n
+\right)
+\\
+&=
+F(b_n' x + a_n')
+\end{align*}
+By hypothesis then, $\Phi_n(\beta_n x -\alpha_n) = F(b_n'x + a_n') \xrightarrow{v} F(x)$. 
+%Notice both $b_n'>0$ and $\beta_n' >0$
+By the \textbf{Reformulation of 6.4.18}, 
+\[
+\lim_{n \to \infty} \alpha_n = \alpha
+\]
+where $\alpha$ is finite, and 
+\[
+\lim_{n \to \infty} \beta_n = \beta
+\]
+where $0 < \beta < \infty$. Furthermore, as a result of the \textbf{Reformulation of 6.4.18}, 
+the weak limit of $\{\Phi_n(\beta_n x -\alpha_n)\}_{n \geq 1}$ is $F(x) = F(\beta x - \alpha)$. Since this equality is true for all $x$ and since $F$ is nondegenerate, by \textbf{Billingsley Section 14, Lemma 5} it follows that $\beta = 1$ and $\alpha=0$.
+
+Therefore,
+\[
+\lim_{n \to \infty}
+-\frac{a_n' - a_n}{b_n}
+=
+\lim_{n \to \infty} \frac{a_n - a_n'}{b_n} 
+=
+\lim_{n \to \infty} \alpha_n 
+= 
+\alpha 
+= 
+0
+\]
+and
+\[
+\lim_{n \to \infty} \frac{b_n'}{b_n}
+=
+\lim_{n \to \infty} \beta_n 
+= 
+\beta
+=
+1,
+\]
+whence
+\[
+\frac{b_n}{b_n'} \to 1
+\]
+as desired.
+\end{proof}
+\end{document}

@@ -1,0 +1,612 @@
+% /**
+%  * A template for homework files in math classes. The 
+%  * packages and newcommands are a good starting point.
+%  *
+%  * Author: James K. Pringle
+%  * E-mail: jameskpringle@gmail.com
+%  * Last Changed: 26 February 2013
+%  *
+%  * "LaTeX countains the increasing union of MS Word"
+%  */
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                         %
+%                        PAGE SETUP                       %
+%                                                         %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[letterpaper, 12pt]{article}
+
+% 1in margins all the way around
+\usepackage[margin=1in]{geometry}
+
+% Sets \parindent to 0 and \parskip to stretchable.
+\usepackage{parskip}
+% Use for bigger spaces between paragraphs.
+%\parskip=1.5\baselineskip
+
+% Set headers and footers
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+% Header
+\renewcommand{\headrulewidth}{0.4pt}
+\lhead{\textsc{\mathclass}}
+\chead{\textsc{\today}}
+\rhead{\textsc{\mynamehdr}}
+% Footer
+\renewcommand{\footrulewidth}{0.4pt}
+\lfoot{}
+\cfoot{\thepage}
+\rfoot{}
+
+% Make the space between lines slightly more generous 
+% than normal single spacing, but compensate so that the 
+% spacing between rows of matrices still looks normal.  
+% Note that 1.1=1/.9090909...
+\renewcommand{\baselinestretch}{1.1}
+\renewcommand{\arraystretch}{.91}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                         %
+%                      USEFUL PACKAGES                    %
+%                                                         %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% The classic three
+\usepackage{amsmath,amsthm,amssymb}
+
+% Define \newtheorem for use
+% No numbers, labeled 'Theorem'
+\newtheorem*{nthm}{Theorem}
+
+% Not sure what this is for
+\usepackage{amsfonts}
+
+% Fancy script font
+\usepackage{mathrsfs}
+
+% Makes enumerate environment much easier to customize
+% by specifying the counter
+\usepackage{enumerate}
+
+% Color
+\usepackage{color}
+\usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
+
+% URL links
+\usepackage{hyperref}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                         %
+%                   USER-DEFINED COMMANDS                 %
+%                                                         %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Make a hyperlink with colored text
+\newcommand{\hrefcolor}[3]{\href{#1}{\textcolor{#3}{#2}}}
+
+% Make a hyperlink with gray text
+\newcommand{\hrefgray}[2]{\hrefcolor{#1}{#2}{Gray}}
+
+% Make the header for the first page
+\newcommand{\firstpageinfo}{
+\textsf{
+\begin{flushleft}
+\sc \myname \\
+\normalfont \mathclass \\
+\professorname \\
+\assignmentnumber \\
+\thedate
+\end{flushleft}
+} \bigskip
+}
+
+% Make problem list for "title" of page
+\newcommand{\problemlist}{ 
+\begin{center}
+\textbf{\Large \textsf{\assignmentnumber}}\\
+\textit{\textsf{\problemset}}
+\end{center}
+}
+
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~%
+%                                                         %
+%               LETTERS, FUNCTIONS, AND TEXT              %
+%                                                         %
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~%
+
+% A
+\newcommand{\cA}{\mathcal{A}}
+\newcommand{\sA}{\mathscr{A}}
+\renewcommand{\aa}{\;\text{a.a.}}
+\renewcommand{\ae}{\;\text{a.e.}}
+% B
+\newcommand{\B}{\mathscr{B}}
+\newcommand{\cB}{\mathcal{B}}
+% C
+\newcommand{\cC}{\mathcal{C}}
+% E
+\newcommand{\E}{\mathbb{E}}
+% F
+\newcommand{\sF}{\mathscr{F}}
+\newcommand{\cF}{\mathcal{F}}
+\newcommand{\Ft}{F^\sim}
+% G
+\newcommand{\cG}{\mathcal{G}}
+\newcommand{\sG}{\mathscr{G}}
+% I
+\newcommand{\io}{\;\text{i.o.}}
+% N
+\newcommand{\N}{\mathbb{N}}
+% P
+\newcommand{\cP}{\mathcal{P}}
+\newcommand{\sP}{\mathscr{P}}
+% Q
+\newcommand{\Q}{\mathbb{Q}}
+% R
+\newcommand{\R}{\mathbf{R}}
+\newcommand{\cR}{\mathcal{R}}
+% S
+\newcommand{\cS}{\mathcal{S}}
+% U
+\newcommand{\cU}{\mathcal{U}}
+% V
+\newcommand{\var}{\text{var}}
+% Z
+\newcommand{\Z}{\mathbb{Z}}
+
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~%
+%                                                         %
+%            CHANGE THESE BASED ON THE PAPER              %
+%                                                         %
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~%
+
+% Constants for fancy header and first page info
+\newcommand{\mynamehdr}{\hrefgray{http://biostat.jhsph.edu/~jpringle/}{\myname}}
+\newcommand{\mathclass}{550.621 Probability}
+\newcommand{\myname}{James K. Pringle}
+\newcommand{\professorname}{Dr. Jim Fill}
+\newcommand{\assignmentnumber}{Assignment 2}
+\newcommand{\thedate}{\today}
+\newcommand{\problemset}{All the exercises on the transition probabilities handout}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                         %
+%                      BEGIN DOCUMENT                     %
+%                                                         %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+% Take header off of first page
+\thispagestyle{empty}
+
+% Put in first page info (top of page)
+\firstpageinfo
+
+% Put in title for the paper
+\problemlist
+
+\begin{enumerate}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                         %
+%                     Start Problem 1                     %
+%                                                         %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\item
+Let $(\Omega_1, \cA_1)$ and $(\Omega_2, \cA_2)$ be two measurable spaces and let $\pi_i : \Omega_1 \times \Omega_2 \rightarrow \Omega_i$ be the $i$th projection, $i = 1,2$. Set 
+\begin{align*}
+\cC &:= \pi_1^{-1}(\cA_1) \cup \pi_2^{-1}(\cA_2) 
+\text{, the class of \textit{measurable cylinders,}} \\
+\cR &:= \{   A_1 \times A_2 : A_1 \in \cA_1, A_2 \in \cA_2  \}
+\text{, the class of \textit{measurable rectangles,}} \\
+\cU &:= \left\lbrace \sum _{j\in J}  R_j : J \text{ finite, } R_j \in  \cR  \text{ for each }j \right\rbrace \text{.}
+\end{align*}
+\begin{enumerate}[(a)]
+\item
+Show $\cC$ is closed under complementation.
+\begin{proof}
+Given an element of $C$ of $\cC$, we have  $C = A_1 \times \Omega_2$ or $C = \Omega_1 \times A_2$ for some $A_1 \in \cA_1$ or $A_2 \in \cA_2$. 
+The complement of $C$ is  $C^c = A_1^c \times \Omega_2$ or $C^c = \Omega_1 \times A_2^c$. 
+Since $\sigma$-fields are closed under complementation, $A_1^c \in \cA_1$ and $A_2^c \in \cA_2$. 
+We have covered all possible cases to show that $C^c \in \cC$.
+\end{proof}
+\item
+Show $\cR$ is a $\pi$-system.
+\begin{proof}
+Let $A_1 \times A_2 \in \cR$ and $B_1 \times B_2 \in \cR$. 
+Taking the intersection of both sets, we have
+\begin{equation}
+\label{eq1}
+(A_1 \times A_2) \cap (B_1 \times B_2) = (A_1 \cap B_1) \times (A_2 \times B_2)
+\end{equation}
+Since $A_i \cap B_i \in \cA_i$ for $i = 1,2$ by the closure under countable intersections of $\sigma$-fields, $(A_1 \times A_2) \cap (B_1 \times B_2) \in \cR$.
+\end{proof}
+\item
+Show $\cU$ is the field generated by $\cC$ (and by $\cR$).
+\begin{proof}
+We already have $\cC \subset \cR \subset \cU$.
+Let $\langle \cC \rangle$ denote the field generated by $\cC$.
+Let $U \in \cU$. 
+By definition, $U = \sum R_j$ (a finite sum).
+Each $R_i$ in the sum can be written as $A_{i1} \times A_{i2}$. 
+By \eqref{eq1}, $A_{i1} \times A_{i2} = (A_{i1} \times \Omega_2) \cap (\Omega_1 \times A_{i2})$, the intersection of elements of $\cC$. 
+Since $\langle \cC \rangle$ is generated from finite complementation, union, and intersection of sets in $\cC$, it is clear that each $R_i \in \langle \cC \rangle$ (by finite intersection). 
+By this same reasoning, every rectangle is in $\langle \cC \rangle$. 
+Thus $\langle \cR \rangle \subset \langle \cC \rangle$.
+Furthermore, $U = \sum R_j \in \langle \cR \rangle \subset \langle \cC \rangle$ by finite union. 
+This shows $\cU \subset \langle \cR \rangle \subset \langle \cC \rangle$. 
+
+Now we show $\cU$ is field. 
+Once we have shown that, it will be clear that the smallest field containing $\cC$, which is $\langle \cC \rangle$, is a subset of $\cU$. 
+That, combined with $\cU \subset \langle \cC \rangle$, will show $\cU = \langle \cC \rangle$. 
+Likewise, that will show that the smallest field containing $\cR$, which is $\langle \cR \rangle$, is a subset of $\cU$. 
+That combined with $\cU \subset \langle \cR \rangle$ will give $\cU =\langle \cR \rangle$.
+
+\textbf{Closure under binary union:} Let $U_1, U_2 \in \cU$ with $U_i = \sum_j^{J_i} R_{ij}$, a finite sum over $j$ with $i = 1,2$. 
+Notice elements of $\cU$ are finite unions of disjoint rectangles. 
+We now show that the union of $U_1$ and $U_2$ is a union of disjoint rectangles. 
+Define 
+\begin{equation}
+\label{eq2}
+B_{1k} = R_{1k} \setminus (\sum_j R_{2j}) = R_{1k} \setminus R_{21} \setminus R_{22} \setminus \cdots \setminus R_{2J_2}
+\end{equation}
+where here we are evaluating the binary set difference operators from left to right (written that way to avoid copious amounts of  parentheses), and $k \in \{1, 2, \cdots, K\}$. 
+Since 
+\[
+(A_1 \times A_2) \setminus (B_1 \times B_2) = (A_1 \cap B_1^c) \times (A_2 \times B_2^c) + (A_1 \cap B_1) \times (A_2 \times B_2^c) + (A_1 \cap B_1^c) \times (A_2 \times B_2)
+\text{,}
+\]
+a sum of rectangles, we have by "quick" induction (quick because the obvious inductive step---a sum of rectangles minus a last rectangle is the sum of each rectangle in the sum minus the last rectangle---is skipped) that \eqref{eq2} is a sum of rectangles. 
+Therefore, each $B_{1j}$ is a sum of rectangles. 
+Since $B_{1j} \subset R_{1j}$ the $B_{1j}$ are mutually disjoint. 
+Then by construction, $B_{1j}$ and $R_{2j}$ are mutually disjoint and their sum is the union is the finite sum of disjoint rectangles equal to the union of $U_1$ and $U_2$. 
+Hence $\cU$ is closed under binary union.
+
+\textbf{Closure under complementation:} First a little lemma. 
+Let $R = A_1 \times A_2$ be a rectangle in $\cR$. 
+Then 
+\[
+R^c = (A_1^c \times A_2) \cup (A_1 \times A^c_2) \cup (A_1^c \times A_2^c)
+\]
+is a finite union of rectangles in $\cR$. 
+Let $U \in \cU$. 
+Then $U = \sum_{j=1}^J R_j$ for rectangles $R_j$. 
+We have
+\[
+U^c = \left(\sum_{j=1}^J R_j\right)^c = \bigcap_{j=1}^JR_j^c 
+= \bigcap_{j=1}^J (\cup_{i=1}^{I_j} S_i)
+\]
+where $S_i$ are rectangles by the little lemma. 
+By the distributive law for sets, $\cap_{j=1}^J (\cup_{i=1}^{I_j} S_i)$ is the union of intersections of rectangles (it is hard to write a closed form since $I_j$ is variable).
+By ``quick'' induction, the intersection of any finite number of rectangles is a rectangle (the base case is \eqref{eq1}, and we skip the obvious inductive step). 
+Therefore, the union of intersections of rectangles is the union of rectangles, and we have
+\[
+U^c = \bigcap_{j=1}^J (\cup_{i=1}^{I_j} S_i) = \bigcup_{i = 1}^I T_i
+\]
+where $T_i$ are rectangles and $I$ is finite. 
+Now we show $U^c$ can be reduced to the union of disjoint rectangles.
+ We do the classic trick where we let $B_1 = T_1$, then $B_i = T_i \setminus (\cup_{j=1}^{i-1}T_j)$. 
+Then we have $\cup_{i=1}^I B_i = \cup_{i=1}^I T_i$ and the $B_i$ are mutually disjoint. 
+Furthermore, by the ``quick'' induction based on \eqref{eq2}, each $B_i$ is a sum of dijoint rectangles. 
+This shows $U^c \in \cU$ and we conclude $\cU$ is a field. 
+From our argument above, we can finally conclude $\cU = \langle \cC \rangle$ and $\cU = \langle \cR \rangle$. 
+\end{proof}
+\end{enumerate}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                         %
+%                     Start Problem 2                     %
+%                                                         %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\item
+Let $\Omega_1$ and $\Omega_2$ be two spaces; set $\Omega = \Omega_1\times\Omega_2$. 
+Let $X:\Omega\to\Psi$ (respectively, $A\subset\Omega$). 
+The section of $X$ (resp., of $A$) at $\omega_1\in\Omega_1$ is defined to be the function $X_{\omega_1}:\Omega_2\to\Psi$ 
+(resp., the set $A_{\omega_1}\subset\Omega_2$) 
+given by $X_{\omega_1}(\omega_2)=X(\omega_1,\omega_2)$ 
+(resp., by $A_{\omega_1}=\{ \omega_2\in\Omega_2: (\omega_1,\omega_2)\in A \}$).
+
+Show that $(I_A)_{\omega_1}=I_{A_{\omega_1}}$ for $A\subset\Omega$ and $(X^{-1}(B))_{\omega_1}=X_{\omega_1}^{-1}(B)$ for $B\subset\Psi$.
+
+\begin{proof}
+Let $A \subset \Omega$.
+Suppose $\omega_2 \in A_{\omega_1}$. 
+Thus $(\omega_1, \omega_2) \in A$. 
+Therefore, $I_{A_{\omega_1}}(\omega_2) = 1$ 
+and $(I_A)_{\omega_1}(\omega_2) = I_A(\omega_1, \omega_2) = 1$.
+And we see both functions agree. 
+Now suppose $\omega_2 \notin A_{\omega_1}$. 
+Then $(\omega_1, \omega_2) \notin A$. 
+Thus $I_{A_{\omega_1}}(\omega_2) = 0$ 
+and $(I_{A})_{\omega_1} (\omega_1) = I_A (\omega_1, \omega_2) = 0$. 
+And we conclude $(I_A)_{\omega_1}=I_{A_{\omega_1}}$ for $A\subset\Omega$.
+
+For the second part, note for all $B \subset \Psi$
+\begin{align*}
+(X^{-1}(B))_{\omega_1} 
+&= \{\omega_2 \in \Omega_2 : (\omega_1, \omega_2) \in X^{-1}(B)\} \\
+&= \{\omega_2 \in \Omega_2 : X(\omega_1, \omega_2) \in B\} \\
+&= \{\omega_2 \in \Omega_2 : X_{\omega_1}(\omega_2) \in B\} \\
+&= (X_{\omega_1})^{-1}(B) \\
+&= X_{\omega_1}^{-1}(B)
+\end{align*}
+as desired.
+\end{proof}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                         %
+%                     Start Problem 3                     %
+%                                                         %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\item
+Notations are the same as Problem 2. 
+Let $i_{\omega_1}:\Omega_2\to\Omega$ be the injection mapping defined by
+\[
+i_{\omega_1}(\omega_2) = (\omega_1,\omega_2).
+\]
+Show that
+\[
+A_{\omega_1} = i_{\omega_1}^{-1}(A),
+\qquad 
+X_{\omega_1} = X \circ i_{\omega_1}.
+\]
+
+\begin{proof}
+For the first part, notice
+\begin{align*}
+A_{\omega_1} 
+&= \{\omega_2 \in \Omega_2 : (\omega_1, \omega_2) \in A \} \\
+&= \{\omega_2 \in \Omega_2 : i_{\omega_1}(\omega_2) \in A\} \\
+&= (i_{\omega_1})^{-1}(A) \\
+&= i_{\omega_1}^{-1}(A)
+\end{align*}
+as desired. 
+Also, for all $\omega_2 \in \Omega_2$ it is the case that 
+\[
+X_{\omega_1}(\omega_2) = X(\omega_1, \omega_2) = X(i_{\omega_1}(\omega_2)) = X \circ i_{\omega_1} (\omega_2)
+\text{.}
+\]
+Hence $X_{\omega_1} = X \circ i_{\omega_1}$ as desired.
+\end{proof}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                         %
+%                     Start Problem 4                     %
+%                                                         %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\item
+Let $\Psi$ be an uncountable set, and let $\cB$ be the $\sigma$-field in $\Psi$ generated by the singletons. 
+($\cB$ consists of the countable and co-countable subsets of $\Psi$.) 
+Take $(\Omega_1,\cA_1) = (\Psi,\cB) = (\Omega_2,\cA_2)$. 
+Consider the diagonal $\Delta:=\{ (\psi,\psi):\psi\in\Psi \}$ of $\cA = \cB\otimes\cB$. 
+Show that every section of $\Delta$ is in $\cB$, but $\Delta\notin\cA$.
+
+\begin{proof}
+Since $\cB$ is generated by the singletons of $\Psi$, it follows that $\cA = \cB\otimes\cB$ is generated by sets of the form $\{\psi\} \times \Psi$ and $\Psi \times \{\psi\}$ for all $\psi \in \Psi$. 
+Let
+\[
+\cS = \{  \{\psi \} \times \Psi \; | \; \psi \in \Psi \} \cup \{ \Psi \times \{\psi \} \; | \; \psi \in \Psi \}
+\text{,}
+\]
+and with the new notation, $\cA = \sigma(\cS)$.
+
+Suppose, by way of contradiction, $\Delta \in \sigma(\cS)$.
+Problem 2.9 in Billingsley states
+\begin{nthm}
+If $B \in \sigma(\sA)$, then there exists a countable subclass $\sA_B$ of $\sA$ such that $B \in \sigma(\sA_B)$.
+\end{nthm}
+In the current solution, by problem 2.9, there exists some countable sublass $\cS_\Delta$ of $\cS$ such that $\Delta \in \sigma(\cS_\Delta)$. 
+Now it is possible to write out the members of $\cS_\Delta$. 
+We conclude
+\[
+\cS_\Delta = \{ \{\psi_i\} \times \Psi \; | \; i \in I_1\} \cup \{ \Psi \times \{ \psi_i \} \;| \; i \in I_2 \}
+\text{,}
+\]
+Where $I_1$ and $I_2$ are at most countable indexing sets and could possibly be empty. 
+Let $Q = \{\psi_i \; | \;i \in I_1 \cup I_2\}$ so that $Q$ is the set of all elements of $\Psi$ that form a singleton cylinder in $\cS_\Delta$.
+
+Let $\cP$ be the class containing $Q^c$ and the singletons $\{\psi_i\}$ where $i \in I_1 \cup I_2$. 
+Let $\cP'$ be the class of countable unions of sets (or blocks) in the partition $[P_1 \times P_2 : P_1, P_2 \in \cP]$ (partition of $\Psi \times \Psi$) and let $\cP'$ include the empty set.
+(An example, for demonstration, of an element in $\cP'$ is the set $\{\psi_1\} \times \{\psi_1\} \cup \{\psi_2\} \times Q^c)$. 
+We claim (i) $\cP'$ is a $\sigma$-field and (ii) $\sigma(\cS_\Delta) \subset \cP'$.
+\begin{enumerate}[(i)]
+\item
+By definition, $\cP'$ includes the empty set. 
+Since $\cP$ is countable, then the blocks of the partition $[P_1 \times P_2 : P_1, P_2 \in \cP]$ are countable. 
+The union of all those blocks is $\Psi \times \Psi$, which is therefore contained in $\cP'$. 
+A set of $\cP'$ is the countable union of blocks of the partition, and that set's complement is the countable union of all the other blocks. 
+Thus $\cP'$ is closed under complementation.
+Finally, $\cP'$ is closed under countable union by definition. 
+Hence $\cP'$ has the three properties of a $\sigma$-field.
+
+\item
+The elements of $\cS_\Delta$ are contained in $\cP'$ since 
+\begin{align*}
+\{\psi_i\} \times \Psi &= \left( \bigcup_{P \in \cP} \{\psi_i\} \times P \right) \in \cP' 
+\quad \text{and similarly} \\
+\Psi \times \{ \psi_i \} &= \left( \bigcup_{P \in \cP} P \times \{\psi_i\} \right) \in \cP'
+\text{.}
+\end{align*}
+By (i), $\cP'$ is a $\sigma$-field containing $\cS_\Delta$. 
+Thus $\sigma(\cS_\Delta) \subset \cP'$ and $\Delta \in \cP'$.
+\end{enumerate}
+Now we seek the contradiction. Set 
+\[
+D = \Delta \setminus (\bigcup_{\psi \in Q} \{\psi\} \times \{\psi\}) \subset Q^c \times Q^c
+\text{.}
+\]
+We have $D \in \cP'$ by the closure properties of $\cP'$. Since $Q^c$ is uncountable, there exist $\psi_1$ and $\psi_2$ in $Q^c$ with $\psi_1 \neq \psi_2$. It follows that $(\psi_1, \psi_2)$ is an element of $Q^c \times Q^c$ but it is not an element of $D$. Thus $D$ is a strict subset of $Q^c \times Q^c$.
+Since $D \in \cP'$ it is equal to $U$, some countable union of sets in the partition from above. 
+One of those sets in the union that is $U$ must be $Q^c \times Q^c$ (if not, then $D$ is not in $U$). 
+However, $D$ is a strict subset $Q^c \times Q^c \subset U$. 
+Thus $D \neq U$. This is our contradiction. Therefore $\Delta \neq \sigma(\cS) = \cA$ as desired. However, for all $\psi_0 \in \Psi$, the section 
+\[
+\Delta_{\psi_0} = \{\psi : (\psi_0, \psi) \in \Psi \times \Psi\} = \{\psi : (\psi, \psi_0) \in \Psi \times \Psi\} = \{\psi_0\}
+\]
+is an element of $\cB$.
+\end{proof}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                         %
+%                     Start Problem 5                     %
+%                                                         %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\item
+A transition probability is defined as follows:
+
+A mapping $T:\Omega_1\times \cA_2 \to [0,1]$ is called a transition probability from $(\Omega_1,\cA_1)$ to $(\Omega_2,\cA_2)$ (briefly, from $\Omega_1$ to $\Omega_2$) if
+\begin{enumerate}
+\item[(1)] $T(\omega_1;\;\cdot\;)$ is a probability measure on $(\Omega_2,\cA_2)$ for each $\omega_1\in\Omega_1$, and 
+
+\item[(2)] $T(\;\cdot\;;A_2)$ is $\cA_1$-measurable for each $A_2\in\cA_2$.
+\end{enumerate} 
+
+Show that given (1), then (2) holds if $T(\;\cdot\; ;A_2)$ is $\cA_1$-measurable for all $A_2$ in some $\pi$-system generating $\cA_2$.
+
+\begin{proof}
+Let (1) be true. Let $T(\;\cdot\; ;A_2)$ be $\cA_1$-measurable for all $A_2$ in some $\pi$-system $\sP$ generating $\cA_2$. 
+Define 
+\[
+\sG = \{  A_2 \in \cA_2 : T( \;\cdot \;; A_2) \text{ is $\cA_1$-measurable }\}
+\]
+We now show that $\sG$ is a $\lambda$-system. 
+\textbf{Contains $\Omega_2$:} By (1), we have $T(\omega_1; \Omega_2) = 1$ for all $\omega_1 \in \Omega_1$. 
+Thus $T( \; \cdot \; ; \Omega_2)$ is a constant function. Hence it is $\cA_1$-measurable, and $\Omega_2 \in \sG$. 
+\textbf{Closure under proper difference:} Now suppose $B_1$ and $B_2$ are elements of $\sG$ with $B_1 \subset B_2$. 
+By (1), it follows $T(\omega_1; B_2 \setminus B_1) = T(\omega_1; B_2) - T(\omega_1; B_1)$ for all $\omega_1 \in \Omega_1$. 
+Since, $T( \; \cdot \; ; B_1)$ and $T( \; \cdot \; ; B_2)$ are $\cA_1$-measurable, then, by the corollary to Theorem 3.1.5 in Chung (the closure theorem), their difference, $T(\; \cdot\; ; B_2 \setminus B_1)$, is $\cA_1$-measurable and is therefore a member of $\sG$. 
+\textbf{Closure under increasing union:} Finally, let $B_1, B_2, \cdots$ be a sequence of sets in $\sG$ with $B_n \subset B_{n+1}$ for all $n \geq 1$. 
+By (1) and the properties of a probability measure (i.e. monotone sequential continuity from below), for all $\omega_1 \in \Omega_1$ it is true that
+\[
+\lim_{n \to \infty} T(\omega_1; B_n) = T(\omega_1; \cup_n B_n)
+\]
+and the limit exists because it is the limit of a bounded monotone increasing.
+By Theorem 13.4 in Billingsley, since the limit of $\cA_1$-measurable $T(\; \cdot \; ; B_n)$ exists everywhere (on $\Omega_1$), then that limit, $T(\; \cdot \; ; \cup_n B_n)$, is $\cA_1$-measurable. 
+Thus it is in $\sG$. We can conclude that $\sG$ is a $\lambda$-system.
+
+By hypothesis, $\sP \subset \sG$, whence by the $\pi$-$\lambda$ theorem we have $\sigma(\sP) = \cA_2 \subset \sG$. 
+By the definition of $\sG$, it is clear $\sG \subset \cA_2$. Therefore $\sG = \cA_2$, which demonstrates (2). 
+\end{proof}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                         %
+%                     Start Problem 6                     %
+%                                                         %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\item
+Let $(\Omega_1,\cA_1),(\Omega_2,\cA_2)$ be measurable spaces, $\Omega=\Omega_1\times\Omega_2$, $\cA=\cA_1\otimes\cA_2$. 
+Let $M$ be a probability on $(\Omega_1,\cA_1)$, and let $(T_{\omega_1})_{\omega_1\in\Omega_1}$ be a transition probability from $\Omega_1$ to $\Omega_2$. 
+Let $\sG = \{ A\in\cA:\omega_1\mapsto T_{\omega_1}(A_{\omega_1})$ is $\cA_1$-measurable$\}$. 
+Show that
+\begin{equation} 
+\label{eq3}
+T_{\omega_1}((A_1\times A_2)_{\omega_1}) = I_{A_1}(\omega_1)T_{\omega_1}(A_2).
+\end{equation}
+Also show $\sG$ contains the $\pi$-system $\cR$.
+\begin{proof}
+Calculating, 
+\[
+T_{\omega_1}((A_1 \times A_2)_{\omega_1})
+= T(\omega_1; (A_1 \times A_2)_{\omega_1})
+= 
+\begin{cases}
+T(\omega_1; \emptyset) = 0 & \text{if $\omega_1 \notin A_1$} \\
+T(\omega_1; A_2) = T_{\omega_1}(A_2) & \text{if $\omega_1 \in A_1$}
+\end{cases}
+\text{.}
+\]
+Since,
+\[
+I_{A_1}(\omega_1) T_{\omega_1}(A_2)
+=
+\begin{cases}
+0 & \text{if $\omega_1 \notin A_1$} \\
+T_{\omega_1}(A_2) & \text{if $\omega_1 \in A_1$}
+\end{cases}
+\text{,}
+\]
+we have \eqref{eq3}, as desired.
+
+To show $\sG$ contains $\cR$, let $R = A_1 \times A_2 \in \cR$. Our task is to show that the function on $\Omega_1$ that sends $\omega_1\mapsto T_{\omega_1}(R_{\omega_1})$ is a $\cA_1$-measurable function. By the \eqref{eq3}, we have
+\[
+T_{\omega_1}(R_{\omega_1}) = T_{\omega_1}((A_1\times A_2)_{\omega_1}) = I_{A_1}(\omega_1)T_{\omega_1}(A_2).
+\]
+Since $T_{\omega_1}$ is a transition probability, for all $\omega_1 \in \Omega_1$, we have $T_{\omega_1}(A_2)$ is constant. 
+The product of $\cA_1$-measurable functions (an indicator and a constant function) is measurable by the corollary to Theorem 3.1.5 in Chung (the closure theorem). Hence $T_{\omega_1}(R_{\omega_1})$ is measurable and $R \in \sG$. Therefore, $\cR \subset \sG$. 
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                         %
+%                     Start Problem 7                     %
+%                                                         %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\item
+Notations are the same as Problem 6. Show that $\sG$ is a $\lambda$-system.
+\begin{proof}
+\textbf{Contains $\Omega$:} Since for all $\omega_1 \in \Omega_1$, we have $T_{\omega_1}(\Omega_{\omega_1}) = T_{\omega_1}(\Omega_2) = 1$ is constant, then $\omega_1\mapsto T_{\omega_1}(R_{\omega_1})$ is $\cA_1$-measurable.
+\textbf{Closure under complementation:} Let $A \in \sG$. Thus $\omega_1\mapsto T_{\omega_1}(A_{\omega_1})$ is $\cA_1$-measurable. Then, since sectioning commutes with set operations, 
+\[
+\omega_1 \mapsto T_{\omega_1} ((A^c)_{\omega_1}) = T_{\omega_1}((A_{\omega_1})^c) = 1 - T_{\omega_1} (A_{\omega_1})
+\]
+is $A_1$-measurable by the closure theorem.
+\textbf{Closure under countable union of disjoint sets: } Let $B_1, B_2, \cdots$ be mutually disjoint elements of $\sG$. Then for all $\omega_1 \in \Omega_1$ we have
+\begin{align*}
+\omega_1 \mapsto T_{\omega_1} \left(\left( \lim_{I \to \infty}\bigcup_{i = 1}^I B_i\right)_{\omega_1} \right) 
+&= T_{\omega_1}\left( \lim_{I \to \infty} \bigcup_{i=1}^I (B_i)_{\omega_1} \right) 
+\quad \text{since sectioning commutes}\\
+&= \lim_{I \to \infty} T_{\omega_1}\left(\bigcup_{i=1}^I (B_i)_{\omega_1} \right)  
+\end{align*}
+by monotone sequential continuity from below, and that limit exists because it is the limit of a bounded, monotone increasing sequence. Thus by Theorem 13.4 in Billingsley, we have  $\omega_1 \mapsto T_{\omega_1} \left(\left( \lim_{I \to \infty}\cup_{i = 1}^I B_i\right)_{\omega_1} \right)$ is measurable. Hence, $\lim_{I \to \infty}\cup_{i = 1}^I B_i \in \sG$.
+We conclude $\sG$ is a $\lambda$-system.
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                         %
+%                     Start Problem 8                     %
+%                                                         %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\item
+Notations are the same as Problem 6. 
+Let $M$ be a probability on $(\Omega_1, \cA_1)$. 
+The set function $MT$, defined on $\cA$ is 
+\[
+MT(A) := \int_{\Omega_1} T_{\omega_1} (A_{\omega_1}) M (d \omega_1)
+\text{.}
+\]
+Furthermore, for any nonnegative $\cA$-random variable $X$ on $\Omega$, the map $TX$ on $\Omega_1$ is defined as 
+\[
+\omega_1 \mapsto \int_{\Omega_2} X_{\omega_1} (\omega_2) T_{\omega_1} (d \omega_2)
+\]
+Let $\cG$ denote the collection of $\cA$-measurable nonnegative random variables $X$ such that $\omega_1\mapsto\int_{\Omega_2}X_{\omega_1}(\omega_2)T_{\omega_1}(\text{d}\omega_2)$ is $A_1$-measurable and $\langle MT,X\rangle= \langle M,TX \rangle$. 
+Show that $I_A\in\cG$ for every $A\in\cA$.
+
+\begin{proof}
+Let $A \in \cA$.
+By problem 2 of this homework, we have $(I_A)_{\omega_1} = I_{A_{\omega_1}}$. Thus
+\begin{align}
+\omega_1 \mapsto
+\int_{\Omega_2} (I_A)_{\omega_1}(\omega_2) T_{\omega_1}(d\omega_2)
+&= \int_{\Omega_2} I_{A_{\omega_1}}(\omega_2) T_{\omega_1}(d\omega_2) \label{eq4} \\
+&= \int_{A_{\omega_1}} T_{\omega_1} (d \omega_2) \\
+&= T_{\omega_1} (A_{\omega_1}) \label{eq6}
+\end{align}
+is $\cA_1$-measurable by the reasoning that follows after problem 7 in the course slides (that $\sG = \cA$).
+
+For the second part, calculating gives
+\begin{align*}
+\langle MT, I_A \rangle 
+&= \int_{\Omega} I_A(\omega) MT(d\omega) \\
+&= \int_A MT(d \omega) \\
+&= MT(A) \\
+&= \int_{\Omega_1} T_{\omega_1} (A_{\omega_1}) M (d \omega_1)
+\quad \text{ by the definition of $MT$} \\
+&= \int_{\Omega_1} \left( \int_{\Omega_2} I_{A_{\omega_1}}(\omega_2) T_{\omega_1}(d\omega_2) \right) M (d \omega_1)
+\quad \text{by $\eqref{eq4} = \eqref{eq6}$}\\
+&= \int (TI_A) dM 
+\quad \text{by the definition of $TI_A$}\\
+&= \langle M, TI_A \rangle
+\end{align*}
+Thus $I_A \in \cG$.
+\end{proof}
+
+\end{enumerate}
+
+\section*{Acknowledgements}
+I would like to thank Tianchen for TeXing some of the problems. That saved time. I am grateful to Jason for spending time with me to explain problems 4 and 5, and for proving Problem 2.9 in Billingsley in Fall 2012. Also, I explained problem 4 to most of the biostats people, so they may have similar notation and methods to mine.
+
+
+\end{document}

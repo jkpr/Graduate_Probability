@@ -1,0 +1,386 @@
+% /**
+%  * A template for solutions to textbook problems. 
+%  *
+%  * The packages and newcommands are a good starting point.
+%  *
+%  * Author: James K. Pringle
+%  * E-mail: jameskpringle@gmail.com
+%  * Last Changed: 5 September 2013
+%  *
+%  * "LaTeX countains the increasing union of MS Word"
+%  */
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                         %
+%                        PAGE SETUP                       %
+%                                                         %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[letterpaper, 12pt]{article}
+
+% 1in margins all the way around
+\usepackage[margin=1in]{geometry}
+
+% Sets \parindent to 0 and \parskip to stretchable.
+\usepackage{parskip}
+% Use for bigger spaces between paragraphs.
+%\parskip=1.5\baselineskip
+
+% Set headers and footers
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+% Header
+\renewcommand{\headrulewidth}{0.4pt}
+\lhead{\textsc{\textauthor}}
+\chead{\textsc{\thedate}}
+\rhead{\textsc{\mynamehdr}}
+% Footer
+\renewcommand{\footrulewidth}{0.4pt}
+\lfoot{}
+\cfoot{\thepage}
+\rfoot{}
+
+% Make the space between lines slightly more generous 
+% than normal single spacing, but compensate so that the 
+% spacing between rows of matrices still looks normal.  
+% Note that 1.1=1/.9090909...
+\renewcommand{\baselinestretch}{1.1}
+\renewcommand{\arraystretch}{.91}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                         %
+%                      USEFUL PACKAGES                    %
+%                                                         %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% The classic three
+\usepackage{amsmath,amsthm,amssymb}
+
+% Define \newtheorem for use
+% No numbers, labeled 'Theorem'
+\newtheorem*{nthm}{Theorem}
+
+% Not sure what this is for
+\usepackage{amsfonts}
+
+% Fancy script font
+\usepackage{mathrsfs}
+
+% Makes enumerate environment much easier to customize
+% by specifying the counter
+\usepackage{enumerate}
+
+% Color
+\usepackage{color}
+\usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
+
+% URL links
+\usepackage{hyperref}
+
+% For inserting graphics and images
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage[footnotesize]{caption}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                         %
+%                   USER-DEFINED COMMANDS                 %
+%                                                         %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Make a hyperlink with colored text
+\newcommand{\hrefcolor}[3]{\href{#1}{\textcolor{#3}{#2}}}
+
+% Make a hyperlink with gray text
+\newcommand{\hrefgray}[2]{\hrefcolor{#1}{#2}{Gray}}
+
+% Make the header for the first page
+\title{\textbook\\\normalsize\textsl{by} \textsc{\textauthor}}
+\author{\small\textsl{Solutions by}\\\large\myname}
+\date{\thedate}
+
+% Make problem list for "title" of page
+\newcommand{\problemlist}{ 
+\begin{center}
+\textsf{\Large \assignment}\\
+\textit{\textsf{\problemset}}
+\end{center}
+\bigskip
+}
+
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~%
+%                                                         %
+%               LETTERS, FUNCTIONS, AND TEXT              %
+%                                                         %
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~%
+
+% A
+\newcommand{\cA}{\mathcal{A}}
+\newcommand{\sA}{\mathscr{A}}
+\renewcommand{\aa}{\;\text{a.a.}}
+\renewcommand{\ae}{\;\text{a.e.}}
+% B
+\newcommand{\B}{\mathscr{B}}
+\newcommand{\cB}{\mathcal{B}}
+% C
+\newcommand{\cC}{\mathcal{C}}
+\newcommand{\cov}{\text{cov}}
+% E
+\newcommand{\E}{\mathbb{E}}
+% F
+\newcommand{\sF}{\mathscr{F}}
+\newcommand{\cF}{\mathcal{F}}
+\newcommand{\Ft}{F^\sim}
+% G
+\newcommand{\cG}{\mathcal{G}}
+\newcommand{\sG}{\mathscr{G}}
+% I
+\newcommand{\io}{\;\text{i.o.}}
+% N
+\newcommand{\N}{\mathbb{N}}
+% P
+\newcommand{\cP}{\mathcal{P}}
+\newcommand{\sP}{\mathscr{P}}
+\newcommand{\pr}{\text{pr}}
+% Q
+\newcommand{\Q}{\mathbb{Q}}
+% R
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\bR}{\mathbf{R}}
+\newcommand{\cR}{\mathcal{R}}
+% S
+\newcommand{\cS}{\mathcal{S}}
+% U
+\newcommand{\cU}{\mathcal{U}}
+% V
+\newcommand{\var}{\text{var}}
+% Z
+\newcommand{\Z}{\mathbb{Z}}
+% Punctuation
+\newcommand{\sbs}{\;|\;} % space bar space
+% Math
+\newcommand{\imii}{\int_{-\infty}^\infty}
+\newcommand{\pion}{\prod_{i=1}^n}
+\newcommand{\pioI}{\prod_{i=1}^I}
+\newcommand{\pjon}{\prod_{j=1}^n}
+\newcommand{\pjoJ}{\prod_{j=1}^J}
+\newcommand{\pkon}{\prod_{k=1}^n}
+\newcommand{\pkoK}{\prod_{k=1}^K}
+\newcommand{\sion}{\sum_{i=1}^n}
+\newcommand{\sioI}{\sum_{i=1}^I}
+\newcommand{\sjon}{\sum_{j=1}^n}
+\newcommand{\sjoJ}{\sum_{j=1}^J}
+\newcommand{\skon}{\sum_{k=1}^n}
+\newcommand{\skoK}{\sum_{k=1}^K}
+\newcommand{\sioi}{\sum_{i=1}^\infty}
+\newcommand{\sjoi}{\sum_{j=1}^\infty}
+\newcommand{\skoi}{\sum_{k=1}^\infty}
+\newcommand{\sio}{\sum_{i=1}}
+\newcommand{\sjo}{\sum_{j=1}}
+\newcommand{\sko}{\sum_{k=1}}
+% Typography
+\newcommand{\scb}[1]{\textsc{\textbf{#1}}}
+
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~%
+%                                                         %
+%            CHANGE THESE BASED ON THE PAPER              %
+%                                                         %
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~%
+
+% Constants for fancy header and first page info
+\newcommand{\mynamehdr}{\hrefgray{http://biostat.jhsph.edu/~jpringle/}{\myname}}
+\newcommand{\textbook}{Probability and Measure}
+\newcommand{\myname}{James K. Pringle}
+\newcommand{\textauthor}{Billingsley}
+\newcommand{\assignment}{Section 1}
+\newcommand{\thedate}{\today}
+\newcommand{\problemset}{Problems 1, 2, 3, 4, 5, 6, 7}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                         %
+%                      BEGIN DOCUMENT                     %
+%                                                         %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+% Add title
+\maketitle
+
+\bigskip
+
+% Add problem set description
+\problemlist
+
+\begin{enumerate}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                         %
+%                     Start Problem 1                     %
+%                                                         %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\item[1.1]
+\begin{enumerate}
+\item[(a)]
+Show that a \textit{discrete} probability space (see Example 2.8 for the formal definition) cannot contain an infinite sequence $A_1, A_2, \dots$ of independent events each of probability $\frac{1}{2}$. Since $A_n$ could be identified with heads on the $n$th toss of a coin, the existence of such a sequence would make this section superfluous.
+
+\begin{proof}
+Apply 1.1(b). Let $p_n = 0.5$. Therefore $\alpha_n=\min\{0.5,0.5\} = 0.5$ and $\sum_n \alpha_n$ diverges. Hence a discrete probability space cannot contain independent events $A_1, A_2, \dots$ each with probability $\frac{1}{2}$. 
+\end{proof}
+
+\item[(b)]
+Suppse that $0 \leq p_n \leq 1$, and put $\alpha_n = \min\{p_n, 1-p_n\}$. Show that if $\sum_n \alpha_n$ diverges, then no discrete probability space can contain independent events $A_1, A_2, \dots$ such that $A_n$ has probability $p_n$.
+
+\begin{proof}
+Suppose $B_i$ is $A_i$ or $A_i^c$. Note $\alpha_n \leq P(B_n) \leq 1-\alpha_n$. It follows that
+\begin{align}
+0 \leq P(B_1 \cap \cdots \cap B_n) &= P(B_1)\cdots P(B_n) \\
+&\leq \pion (1 -\alpha_i) \\
+&\leq \exp \left[ -\sion \alpha_i \right] 
+\label{ineq1}
+\end{align}
+Inequality \eqref{ineq1} comes from combining several $1+x \leq e^x$ with the added condition that $0 \leq 1+x$. Since $\sum_n \alpha_n$ diverges, $\exp \{ -\sion \alpha_i \} \downarrow 0$.  Taking the limit in $n$ of the inequality above, 
+\begin{equation}
+0 \leq P\left( \cap_{i=1}^\infty B_i  \right) \leq 0.
+\end{equation}
+
+For all $i$, each $\omega$ in the sample space is in $A_i$ or $A_i^c$. Therefore, for all $n$, each $\omega$ is in $\cap_{i=1}^n B_i$. Thus, $\omega \in \cap_{i=1}^\infty B_i$ and
+\begin{equation}
+P(\omega) \leq P(\cap_{i=1}^\infty B_i) = 0
+\end{equation}
+Supposing that $\Omega$ were a discrete space leads to the conclusion that
+\begin{equation}
+1 = P(\Omega) = \sum_{\omega \in \Omega} P(\omega) = \sum_{\omega \in \Omega} 0 = 0,
+\end{equation}
+a contradiction. Thus no discrete probability space can contain independent events $A_1, A_2, \dots$ such that $A_n$ has probability $p_n$.
+
+\end{proof}
+
+\end{enumerate}
+
+\item[1.2]
+Show that $N$ and $N^c$ are dense [A15] in (0,1].
+
+\begin{proof}
+The definition of \textit{dense}: The set $A$ is \textit{dense} in the set $B$ if for each $x$ in $B$ and each open interval $J$ containing $x$, $J$ meets $A$ ($J \cap A \neq \emptyset$).
+
+\textbf{Part 1, $N$ is dense:} From Theorem 1.2, $N$ has negligible complement, and therefore $P(N)=1$. Suppose $N$ is not dense. Then there exists an open interval $J = (a,b) \in (0,1]$ (with $a \neq b$) such that $J \cap N = \emptyset$. Since this section discusses probabilities of intervals open on the left and closed on the right, take $J' = (a, \frac{a+b}{2}] \subset J$. It follows that $J' \cap N = \emptyset$. Therefore, since $N \subset (0,1] \setminus J' = (0,a] \cup (\frac{a+b}{2}, 1]$,
+\begin{align}
+P(N) \leq P((0,1] \setminus J') 
+&= P\left((0,a] \cup \left(\frac{a+b}{2}, 1\right]\right) 
+\\
+&= P((0,a]) + P\left(\left(\frac{a+b}{2}, 1\right]\right) 
+\\
+&= a + \left(1 - \frac{a+b}{2}\right) 
+\\
+&= 1 + \frac{a}{2} - \frac{b}{2} 
+\\
+&< 1,
+\end{align}
+a contradiction, since $P(N) = 1$. Therefore $N$ is dense.
+
+\textbf{Part 2, $N^c$ is dense:} Let $J$ be a non-trivial open interval $(a,b)$ in $(0,1]$. Let $K = \min \{k : 2^{-k} < (b-a)/2, \; k \in \Z^+ \}$. By definition, $K$ is constructed such that the length of a dyadic interval of rank $K$ is the largest dyadic interval length less than $\frac{b-a}{2}$. This choice of $K$ guarantees that at least one of the $2^K$ dyadic intervals of rank $K$ that decompose the unit interval is contained in $J$. In other words for some integer $n$ with $0 \leq n \leq 2^{K} - 1$, it follows that $I = (n / 2^K, (n+1)/2^K] \subset J$. Note, $\omega \in I$ means that $d_i(\omega)$ is fixed for $i \leq K$. Next, consider a finite sequence, $S$, of $0$'s and $1$'s---not all $0$'s---the mean of which is $\mu \neq \frac{1}{2}$. For the purposes of this proof, let $S_1 = 1, S_2=1, S_3=0$. Choose the $\omega \in I$ such that $d_{K+n}(\omega) = S_{K+n \mod |S|} = S_{K+n \mod 3}$ for $n \in \Z^+$. Calculating,
+\begin{align}
+\label{ineq2}
+\lim_{n \to \infty} \frac{1}{n} \sion d_i(\omega)
+&= 
+\lim_{n \to \infty} \frac{1}{n|S|} \sio^{n|S|} d_i(\omega) \\
+&= 
+\lim_{n \to \infty} \frac{1}{n|S|} 
+\left(\sio^K d_i(\omega) + \sum_{i = K+1}^{n|S|} d_i(\omega) \right) \\
+&=\lim_{n \to \infty} \frac{1}{n|S|} 
+\sio^K d_i(\omega)
++ \lim_{n \to \infty} \frac{1}{n|S|} 
+\sum_{i = K+1}^{n|S|} d_i(\omega) \\
+&= 0 + \mu \\
+& \neq \frac{1}{2}
+\label{neq1}
+\end{align}
+Since the series of partial sums converges to a limit on the left-hand side, all subsequences converge to that same limit, thus justifying \eqref{ineq2}. By construction, $\omega$ is in $J$, and by \eqref{neq1}, $\omega \in N^c$ and thus $N^c$ is dense in $(0,1]$.
+\end{proof}
+
+\item[1.3]
+$\uparrow$ Define a set $A$ to be \textit{trifling} if for each $\epsilon$ there exists a \textit{finite} sequence of intervals $I_k$ satisfying (1.22) and (1.23). This definition and the definition of negligibility apply as they stand to all sets on the real line, not just to subsets of $(0,1]$.
+\begin{enumerate}[(a)]
+\item
+Show that a trifling set is negligible
+\begin{proof}
+Definition of \textbf{negligible}: A subset $A$ of $\Omega$ is negligible if for each positive $\epsilon$ there exists a finite or countable collection $I_1, I_2, \dots$ of intervals (they may overlap) satisfying
+\begin{equation}
+A \subset \bigcup_k I_k
+\end{equation}
+and 
+\begin{equation}
+\sum_k |I_k| < \epsilon
+\end{equation}
+For trifling set $A$, take the finite sequence of intervals $I_k$ and use them for the finite or countable collection of intervals for the definition of negligible. Therefore $A$ is also negligible.
+\end{proof}
+\item
+Show that the closure of a trifling set is also trifling.
+\begin{proof}
+Suppose $A$ is trifling and let $A^-$ be its closure. Given $\epsilon > 0$, choose intervals $(a_k, b_k], k=1,\dots,n$, such that $A \subset \cup_{k=1}^n (a_k, b_k]$ and $\sum_{k=1}^n (b_k - a_k) < \epsilon/2$. Let $x_k = a_k - \epsilon/2$. Then $A^- \subset \cup_{k=1}^n (x_k, b_k]$ and $\sum_{k=1}^n (b_k - x_k) < \epsilon$.
+\end{proof}
+\item
+Find a bounded negligible set that is not trifling.
+\begin{proof}
+
+\end{proof}
+\item
+Show that the closure of a neglibigle set may not be negligible.
+\item
+Show that finite unions of trifling sets are trifling but that this can fail for countable unions.
+\end{enumerate}
+
+\item[1.4]
+$\uparrow$ For $i = 0, \dots, r-1$, let $A_r(i)$ be the set of numbers in $(0,1]$ whose nonterminating expansions in the base $r$ do not contain digit $i$.
+\begin{enumerate}[(a)]
+\item
+Show that $A_r(i)$ is trifling.
+\item
+Find a trifling set $A$ such that every point in the unit interval can be represented in the form $x+y$ with $x$ and $y$ in $A$.
+\item
+Let $A_r(i_l, \dots, i_k)$ consist of the numbers in the unit interval in whose base-$r$ expansion the digits $i_l, \dots, i_k$ nowhere appear consecutively in that order. Show that it is trifling. What does this imply about the monkey that types at random?
+\end{enumerate}
+
+\item[1.5]
+$\uparrow$ The \textit{Cantor set} $C$ can be defined as the closure of $A_3(1)$.
+\begin{enumerate}[(a)]
+\item
+Show that $C$ is uncountable but trifling.
+\item
+From $[0,1]$ remove the open middle third $\left(\frac{1}{3}, \frac{2}{3}\right)$; from the remainder, a union of two closed intervals, remove the two open middle thirds $\left(\frac{1}{9},\frac{2}{9}\right)$ and $\left(\frac{7}{9},\frac{8}{9}\right)$. Show that $C$ is what remains when this process is continued ad infinitum.
+\item
+Show that $C$ is perfect [A15].
+\end{enumerate}
+
+\item[1.6]
+Put $M(t) = \int_0^1 e^{ts_n(\omega)} d\omega$, and show by successive differentiation under the integral that
+\begin{equation}
+M^{(k)}(0) = \int_0^1 s_n^k(\omega) d\omega.
+\end{equation}
+Over each dyadic interval of rand $n$, $s_n(\omega)$ has a constant value of the form $\pm 1 \pm 1 \pm \cdots \pm 1$, and therefore $M(t) = 2^{-n} \sum \exp t(\pm 1 \pm 1 \pm \cdots \pm 1)$, where the sum extends over all $2^n$ $n$-long sequences of $+1$'s and $-1$'s. Thus
+\begin{equation}
+M(t) = \left(  \frac{e^t+e^{-t}}{2}   \right) ^n = (\cosh t)^n.
+\end{equation}
+Use this and (1.38) to give new proofs of (1.16), (1.18), and (1.28). (This, the moethod of moment generating functions, will be investigated systematically in Section 9).
+
+\item[1.7]
+$\uparrow$ By an argument similar to that leading to (1.39) show that the Rademacher functions satisfy
+\begin{align}
+\int_0^1 \exp \left[ i \sum_{k=1}^n a_k r_k(\omega) \right] d\omega
+&=
+\prod_{k=1}^n \frac{e^{ia_k} + e^{-ia_k}}{2}
+\\
+&= \prod_{k=1}^n \cos a_k.
+\end{align}
+Take $a_k = t2^{-k}$, and from $\skoi r_k(\omega) 2^{-k} = 2\omega -1$ deduce
+\begin{equation}
+\frac{\sin t}{t} = \prod_{k=1}^n \cos \frac{t}{2^k}
+\end{equation}
+by letting $n \to \infty$ inside the integral above. Derive Vieta's formula
+\begin{equation}
+\frac{2}{\pi} = \frac{\sqrt{2}}{2} \frac{\sqrt{2 + \sqrt{2}}}{2} 
+\frac{\sqrt{2 + \sqrt{2 + \sqrt{2}}}}{2} \cdots.
+\end{equation}
+
+\end{enumerate}
+\end{document}

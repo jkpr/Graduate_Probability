@@ -1,0 +1,1429 @@
+% /**
+%  * A template for homework files in math classes. The 
+%  * packages and newcommands are a good starting point.
+%  *
+%  * Author: James K. Pringle
+%  * E-mail: jameskpringle@gmail.com
+%  * Last Changed: 5 September 2013
+%  *
+%  * "LaTeX countains the increasing union of MS Word"
+%  */
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                         %
+%                        PAGE SETUP                       %
+%                                                         %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[letterpaper, 12pt]{article}
+
+% 1in margins all the way around
+\usepackage[margin=1in]{geometry}
+
+% Sets \parindent to 0 and \parskip to stretchable.
+\usepackage{parskip}
+% Use for bigger spaces between paragraphs.
+%\parskip=1.5\baselineskip
+
+% Set headers and footers
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+% Header
+\renewcommand{\headrulewidth}{0.4pt}
+\lhead{\textsc{\mathclass}}
+\chead{\textsc{\today}}
+\rhead{\textsc{\mynamehdr}}
+% Footer
+\renewcommand{\footrulewidth}{0.4pt}
+\lfoot{}
+\cfoot{\thepage}
+\rfoot{}
+
+% Make the space between lines slightly more generous 
+% than normal single spacing, but compensate so that the 
+% spacing between rows of matrices still looks normal.  
+% Note that 1.1=1/.9090909...
+\renewcommand{\baselinestretch}{1.1}
+\renewcommand{\arraystretch}{.91}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                         %
+%                      USEFUL PACKAGES                    %
+%                                                         %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% The classic three
+\usepackage{amsmath,amsthm,amssymb}
+
+% Define \newtheorem for use
+% No numbers, labeled 'Theorem'
+\newtheorem*{nthm}{Theorem}
+\newtheorem{lem}{Lemma}
+
+% Not sure what this is for
+\usepackage{amsfonts}
+
+% Fancy script font
+\usepackage{mathrsfs}
+
+% Makes enumerate environment much easier to customize
+% by specifying the counter
+\usepackage{enumerate}
+
+% Color
+\usepackage{color}
+\usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
+
+% URL links
+\usepackage{hyperref}
+
+% For inserting graphics and images
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage[footnotesize]{caption}
+
+% This package helps one to draw boxes around paragraphs
+\usepackage{boxedminipage}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                         %
+%                   USER-DEFINED COMMANDS                 %
+%                                                         %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Make a hyperlink with colored text
+\newcommand{\hrefcolor}[3]{\href{#1}{\textcolor{#3}{#2}}}
+
+% Make a hyperlink with gray text
+\newcommand{\hrefgray}[2]{\hrefcolor{#1}{#2}{Gray}}
+
+% Make the header for the first page
+\newcommand{\firstpageinfo}{
+\textsf{
+\begin{flushleft}
+\sc \myname \\
+\normalfont \mathclass \\
+\professorname \\
+\assignmentnumber \\
+\thedate
+\end{flushleft}
+} \bigskip
+}
+
+% Make problem list for "title" of page
+\newcommand{\problemlist}{ 
+\begin{center}
+\textbf{\Large \textsf{\assignmentnumber}}\\
+\textit{\textsf{\problemset}}
+\end{center}
+\bigskip
+}
+
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~%
+%                                                         %
+%               LETTERS, FUNCTIONS, AND TEXT              %
+%                                                         %
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~%
+
+% A
+\newcommand{\cA}{\mathcal{A}}
+\newcommand{\sA}{\mathscr{A}}
+\renewcommand{\aa}{\;\text{a.a.}}
+\renewcommand{\ae}{\;\text{a.e.}}
+\newcommand{\as}{\;\text{a.s.}}
+% B
+\newcommand{\B}{\mathscr{B}}
+\newcommand{\cB}{\mathcal{B}}
+% C
+\newcommand{\cC}{\mathcal{C}}
+\newcommand{\cov}{\text{cov}}
+% E
+\newcommand{\E}{\mathbb{E}}
+% F
+\newcommand{\sF}{\mathscr{F}}
+\newcommand{\cF}{\mathcal{F}}
+\newcommand{\Ft}{F^\sim}
+% G
+\newcommand{\cG}{\mathcal{G}}
+\newcommand{\sG}{\mathscr{G}}
+% I
+\newcommand{\io}{\;\text{i.o.}}
+% N
+\newcommand{\N}{\mathbb{N}}
+% P
+\newcommand{\cP}{\mathcal{P}}
+\newcommand{\sP}{\mathscr{P}}
+\newcommand{\pr}{\text{pr}}
+% Q
+\newcommand{\Q}{\mathbb{Q}}
+% R
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\bR}{\mathbf{R}}
+\newcommand{\cR}{\mathcal{R}}
+% S
+\newcommand{\cS}{\mathcal{S}}
+% U
+\newcommand{\cU}{\mathcal{U}}
+% V
+\newcommand{\var}{\text{var}}
+% Z
+\newcommand{\Z}{\mathbb{Z}}
+% Punctuation
+\newcommand{\sbs}{\;|\;} % space bar space
+% Math
+\newcommand{\imii}{\int_{-\infty}^\infty}
+\newcommand{\pion}{\prod_{i=1}^n}
+\newcommand{\pioI}{\prod_{i=1}^I}
+\newcommand{\pjon}{\prod_{j=1}^n}
+\newcommand{\pjoJ}{\prod_{j=1}^J}
+\newcommand{\pkon}{\prod_{k=1}^n}
+\newcommand{\pkoK}{\prod_{k=1}^K}
+\newcommand{\sion}{\sum_{i=1}^n}
+\newcommand{\sioI}{\sum_{i=1}^I}
+\newcommand{\sjon}{\sum_{j=1}^n}
+\newcommand{\sjoJ}{\sum_{j=1}^J}
+\newcommand{\skon}{\sum_{k=1}^n}
+\newcommand{\skoK}{\sum_{k=1}^K}
+\newcommand{\sioi}{\sum_{i=1}^\infty}
+\newcommand{\sjoi}{\sum_{j=1}^\infty}
+\newcommand{\skoi}{\sum_{k=1}^\infty}
+\newcommand{\smoi}{\sum_{m=1}^\infty}
+\newcommand{\snoi}{\sum_{n=1}^\infty}
+\newcommand{\sio}{\sum_{i=1}}
+\newcommand{\sjo}{\sum_{j=1}}
+\newcommand{\sko}{\sum_{k=1}}
+% Typography
+\newcommand{\scb}[1]{\textsc{\textbf{#1}}}
+
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~%
+%                                                         %
+%            CHANGE THESE BASED ON THE PAPER              %
+%                                                         %
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~%
+
+% Constants for fancy header and first page info
+\newcommand{\mynamehdr}{\hrefgray{http://biostat.jhsph.edu/~jpringle/}{\myname}}
+\newcommand{\mathclass}{550.621 Probability}
+\newcommand{\myname}{James K. Pringle}
+\newcommand{\professorname}{Dr. Jim Fill}
+\newcommand{\assignmentnumber}{Assignment 1}
+\newcommand{\thedate}{\today}
+\newcommand{\problemset}{An application of the strong law of large numbers}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                         %
+%                      BEGIN DOCUMENT                     %
+%                                                         %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+% Take header off of first page
+\thispagestyle{empty}
+
+% Put in first page info (top of page)
+\firstpageinfo
+
+% Put in title for the paper
+\problemlist
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                         %
+%                     Start Problem 1                     %
+%                                                         %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Suppose $X, X_1, X_2, \dots$ are i.i.d. r.v.'s. Find necessary and sufficient conditions on the distribution of $X$ in order that
+\begin{equation}
+\frac{S_n}{n/\log n} \to 0 \quad \text{wp}1
+\label{one}
+\end{equation}
+where $S_n = \sion X_i$
+
+\section*{Discussion}
+Notice $x/\log x$ is decreasing on the interval $x \in (0,e]$. To create an increasing function on $[0, \infty)$, define
+\[
+f(x) =
+\begin{cases}
+x &\text{ for } x \in [0,e) \\
+\frac{x}{\log x} &\text{ for } x\in[e,\infty)
+\end{cases}
+\]
+Since $f'(x) = 1$ on $(0, e)$ and $f'(x) = (1/\log x)(1-1/\log x)$ on $(e, \infty)$, it is clear $f$ is strictly increasing, except at $x=e$ where the derivative does not exist. 
+On $(e, \infty)$, the function $f$ grows sublinearly ($f'(x) < 1$ for all $x \in (e, \infty)$).
+Nonetheless, $f$ is injective. 
+Since $f$ tends to infinity as $x$ tends to infinity, $f$ is also surjective. 
+Therefore, $f$ has an inverse $f^{-1}$, which sends $y \in [0, \infty)$ to $x \in [0, \infty)$ such that $f(x) = y$. 
+A \textbf{fact} that will be needed later is that $f(n+1)/f(n) \leq 2$ for all positive integers $n$. This follows because $f'(x) \leq 1$ for all $x \in (0, e) \cup (e, \infty)$.
+
+
+It is proposed that the necessary and sufficient condition for $\eqref{one}$ is that
+\begin{equation}
+E[f^{-1}(|X|)] < \infty
+\label{two}
+\end{equation}
+and
+\begin{equation}
+EX = 0
+\label{twoprime}
+\end{equation} 
+
+\section*{Results given without proof}
+\subsection*{Chung 3.2.1}
+\[
+\snoi P(|X| \geq n) \leq E(|X|) \leq 1+\snoi P(|X| \geq n)
+\]
+
+
+\subsection*{First Borel-Cantelli Lemma} 
+For arbitrary events $\{E_n\}$,
+\[
+\snoi P(E_n) <\infty \quad \Rightarrow \quad P(E_n \io) = 0
+\]
+
+\subsection*{Second Borel-Cantelli Lemma} 
+If the events $\{E_n\}$ are independent, then
+\[
+\snoi P(E_n) = \infty \quad\Rightarrow \quad P(E_n \io) = 1
+\]
+
+\subsection*{Course Notes Lemma 3}
+Let $\{X_n\}_{n\geq 1}$ be a sequence of independent random variables with 	zero means (and finite variances). Then
+\[
+\skoi \var(X_k) < \infty 
+\]
+implies (finite variances and)
+\[
+P\left\{ \sum X_k \text{ converges to a finite limit}   \right\} =1 
+\]
+\subsection*{Kronecker's Lemma}
+Let $\{b_n\}_{n \geq 1}$ and $\{x_n\}_{n \geq 1}$ be two real sequences such that 
+\begin{enumerate}[(i)]
+\item
+$\smoi \frac{x_m}{b_m}$ exists and is finite
+\item
+$b_n \uparrow \infty$
+\end{enumerate}
+Then
+\begin{enumerate}
+\item[(iii)]
+$\frac{S_n}{b_n} \to 0$
+\end{enumerate}
+where $S_n = \sum_{m=1}^nx_m$
+
+\subsection*{Classical Strong Law of Large Numbers}
+Let $\{X_n\}$ be a sequence of independent and identically distributed r.v.'s. Then we have
+\[
+E(|X_1|) < \infty \quad\Rightarrow\quad \frac{S_n}{n} \to E(X_1) \quad \ae
+\]
+
+\subsection*{Dominated Convergence Theorem}
+If $\lim_{n \to \infty} X_n = X \ae$ or merely in measure on $\Lambda$ and $\forall n: |X_n| \leq Y \ae$ on $\Lambda$, with 
+$\int_\Lambda Y dP < \infty$, then
+\[
+\lim_{n \to \infty} \int_\Lambda X_n dP 
+= 
+\int_\Lambda X dP 
+=
+\int_\Lambda \lim_{n \to \infty} X_n dP
+\]  
+
+\subsection*{A Generalization of Cesaro's Theorem}
+If real numbers $x, x_1, x_2, \dots$ satisfy $x_n \to x$, and if $b_n \uparrow \infty$, then, with $b_0 := 0$
+\[
+\frac{1}{b_n} \sum_{m=1}^n (b_m - b_{m-1})x_m \to x
+\text{ as }
+n \to \infty
+\]
+
+\section*{Lemmas}
+\begin{lem}
+Fix $\omega \in \Omega$.
+Let $\{a_n\}$ be a sequence of positive numbers increasing to infinity. Then
+\[
+\frac{S_n}{a_n} \to 0 \quad\text{ implies }\quad \frac{X_n}{a_n} \to 0
+\]
+\end{lem}
+\begin{proof}
+Let $\epsilon > 0$ and let $S_n/a_n \to 0$. Since $S_n/a_n \to 0$, for $\epsilon/2$, there exists an integer $M(\epsilon/2)$ such that for all $m > M(\epsilon/2)$, it is true that $|S_m/a_m| < \epsilon/2$. Calculating with $m > M(\epsilon/2)$,
+\begin{align*}
+\left\lvert
+\frac{X_{m+1}}{a_{m+1}}
+\right\rvert
+&=
+\left\lvert
+\frac{S_{m}}{a_{m+1}}
++
+\frac{X_{m+1}}{a_{m+1}}
+-
+\frac{S_{m}}{a_{m+1}}
+\right\rvert
+\\
+&=
+\left\lvert
+\frac{S_{m+1}}{a_{m+1}}
+-
+\frac{S_{m}}{a_{m+1}}
+\right\rvert
+\\
+&\leq
+\left\lvert
+\frac{S_{m+1}}{a_{m+1}}
+\right\rvert
++
+\left\lvert
+\frac{S_{m}}{a_{m+1}}
+\right\rvert
+\text{ by triangle inequality}
+\\
+&=
+\left\lvert
+\frac{S_{m+1}}{a_{m+1}}
+\right\rvert
++
+\left\lvert
+\frac{S_{m}}{a_{m}}
+\right\rvert
+\left\lvert
+\frac{a_{m}}{a_{m+1}}
+\right\rvert
+\\
+&\leq
+\left\lvert
+\frac{S_{m+1}}{a_{m+1}}
+\right\rvert
++
+\left\lvert
+\frac{S_{m}}{a_{m}}
+\right\rvert
+\text{ since $\{a_n\}$ increases}
+\\
+&\leq
+\frac{\epsilon}{2}
++ 
+\frac{\epsilon}{2}
+=
+\epsilon
+\end{align*}
+Therefore, for all $m > M(\epsilon/2) + 1$ it is true that $|X_m/a_m| < \epsilon$. Since $\epsilon$ is arbitrary, it follows $X_n/a_n \to 0$, and the proof is concluded.
+\end{proof}
+
+\begin{lem}
+Fix $\omega \in \Omega$.
+Let $\{a_n\}$ be a sequence of positive numbers increasing to infinity. Then
+\[
+\frac{S_n}{a_n} \to 0 \text{ only if for every positive integer } 
+N, \text{ both }
+\frac{1}{a_n} \sum_{i=1}^N X_i \to 0
+\text{ and }
+\frac{1}{a_n} \sum_{i=N+1}^n X_i \to 0
+\text{ as } n \to \infty
+\]
+\end{lem}
+\begin{proof}
+Let $\epsilon > 0$ and let $S_n/a_n \to 0$. Since the sequence $\{S_n/a_n\}$ converges, it follows that $\{X_i\} < \infty$. Therefore, $\sum_{i=1}^N X_i$ is finite. Hence, 
+\[
+\frac{1}{a_n} \sum_{i=1}^N X_i \to 0 \text{ as } n \to \infty
+\]
+because $a_n \to \infty$. By definition of limit, there exists $N_1$ and $N_2$ such that
+\[
+\left\lvert \frac{1}{a_n} \sum_{i=1}^N X_i \right\rvert < \frac{\epsilon}{2}
+\]
+for $n > N_1$, and 
+\[
+\left\lvert \frac{1}{a_n} \sum_{i=1}^n X_i \right\rvert < \frac{\epsilon}{2}
+\]
+for $n > N_2$. Let $N_3 = \max(N_1, N_2)$. Therefore, for $n > N_3$
+\begin{align*}
+\left\lvert \frac{1}{a_n} \sum_{i=N+1}^n X_i \right\rvert 
+&=
+\left\lvert \frac{1}{a_n} \sum_{i=1}^n X_i  - \frac{1}{a_n}
+\sum_{i=1}^N X_i
+\right\rvert 
+\\
+&\leq
+\left\lvert \frac{1}{a_n} \sum_{i=1}^n X_i \right\rvert
++
+\left\lvert 
+\frac{1}{a_n}
+\sum_{i=1}^N X_i
+\right\rvert 
+\\
+&=
+\frac{\epsilon}{2}
++ 
+\frac{\epsilon}{2}
+=
+\epsilon
+\end{align*}
+Since $\epsilon$ is arbitrary, it follows $\frac{1}{a_n} \sum_{i=N+1}^n \to 0$ as $n \to \infty$, and the proof is concluded.
+\end{proof}
+
+\begin{lem}
+Suppose r.v.'s $\{X_n\}$ converge to r.v. $X$ almost everywhere and r.v.'s $\{Y_n\}$ conerge to r.v. $Y$ almost everywhere, then r.v.'s
+\[
+\{X_n + Y_n\} \text{ converge to } X+Y \text{ almost everwhere}
+\]
+\end{lem}
+\begin{proof}
+By definition of convergence almost everywhere, there exists a null set $N_1$ such that for all $\omega \in \Omega \setminus N_1$
+\[
+\lim_{n\to\infty} X_n(\omega) = X(\omega)
+\]
+Similarly, there exists a null set $N_2$ such that for all 
+$\omega \in \Omega \setminus N_2$
+\[
+\lim_{n\to\infty} Y_n(\omega) = Y(\omega)
+\]
+Let $\epsilon > 0$.
+Let $\omega \in \Omega \setminus (N_1 \cup N_2)$. Then there exists $M_1$ such that for all $m > M_1$
+\[
+|X_m(\omega) - X(\omega)| < \frac{\epsilon}{2}
+\]
+and there exists $M_2$ such that for all $m > M_2$
+\[
+|Y_m(\omega) - Y(\omega)| < \frac{\epsilon}{2}
+\]
+Therefore for all $m > M_3 = \max(M_1, M_2)$
+\begin{align*}
+|X_m(\omega) + Y_m(\omega) - X(\omega) - Y(\omega)|
+&=
+|X_m(\omega)- X(\omega) + Y_m(\omega) - Y(\omega)|
+\\
+&\leq
+|X_m(\omega)- X(\omega)| + |Y_m(\omega) - Y(\omega)|
+\\
+&<
+\frac{\epsilon}{2} + \frac{\epsilon}{2} = \epsilon
+\end{align*}
+Since $\epsilon$ is arbitrary and $N_1 \cup N_2$ is a null set, it follows that
+\[
+\lim_{n \to \infty} X_n + Y_n = X+Y
+\] 
+almost everywhere.
+\end{proof}
+
+\section*{Proof of the main result}
+\begin{proof}
+$(\Rightarrow)$ Let $\eqref{one}$ hold. Then for $n \geq 3$
+\[
+\frac{S_n}{n \log n} = \frac{S_n}{f(n)} \quad\text{ so }\quad \frac{S_n}{f(n)} \to 0 \quad\text{wp}1
+\]
+By \textbf{Lemma 1},
+\begin{equation}
+\frac{X_n}{f(n)} \to 0
+\label{three}
+\end{equation}
+almost surely. Define 
+\[
+E_k := 
+\left\{
+\left\lvert
+\frac{X_k}{f(k)}
+\right\rvert
+\geq 1
+\right\}
+\]
+By definition of convergence of the limit in \eqref{three}, for all $\omega$ off a null set, there exists an integer $N(\omega)$ such that for $n > N(\omega)$ it is the case that
+\[
+\left\lvert
+\frac{X_n(\omega)}{f(n)}
+\right\rvert
+<1
+\]
+Therefore, $P(E_k \io) = 0$. Since $X_k$ are independent by assumption, it follows that $E_k$ are independent. Applying the contrapositive of the \textbf{Second Borel-Cantelli Lemma}, 
+\[
+\sioi P(E_k) < \infty
+\]
+Therefore, by \textbf{Chung 3.2.1}
+\begin{align*}
+\infty 
+&>
+1 + \skoi P(E_k)
+\\
+&=
+1 + \skoi P\{|X_k| \geq f(k)\}
+\\
+&=
+1 + \skoi P\{|X| \geq f(k)\} 
+\text{ since $\{X_i\}$ are identically distributed}
+\\
+&=
+1 + \skoi P\{f^{-1}|X| \geq k\} 
+\text{ because $f^{-1}$ is increasing}
+\\
+&\geq
+E[f^{-1}(|X|)]
+\end{align*}
+Thus condition \eqref{two} is met.
+
+Note $f^{-1}(x) = x$ for $x \in (0,e]$. For $x \in (e,\infty)$, the first derivative of $f(x)$ is strictly between $0$ and $1$. 
+That means that $f(x) \leq x$, or equivalently $x \leq f^{-1}(x)$, for $x \in (0, \infty)$. Thus $E[|X|]$ is finite, i.e.
+\begin{equation}
+E|X| \leq E[f^{-1}(|X|)] < \infty
+\label{finite}
+\end{equation}
+Therefore, by the \textbf{Classical Strong Law of Large Numbers},
+\begin{equation}
+S_n / n \to EX \as
+\label{four}
+\end{equation} 
+Fix $\epsilon > 0$. Fix $\omega$ such that \eqref{one} and \eqref{four} hold. Then there exists $N_1$ such that for all $n > N_1$, 
+\[
+\left\lvert 
+\frac{S_n}{n} - EX
+\right\rvert
+< \frac{\epsilon}{2}
+\quad
+\text{ or equivalently}\quad
+\left\lvert 
+EX \log n - \frac{S_n}{n/\log n}
+\right\rvert
+< \frac{\epsilon \log n}{2}
+\]
+By \eqref{one} there exists $N_2$ such that for all $n > N_2$, 
+\[
+\left\lvert 
+\frac{S_n}{n/\log n}
+\right\rvert
+< \frac{\epsilon}{2}
+\]
+Therefore, for all $n > N_3=\max(N_1, N_2, e)$,
+\begin{align*}
+\left\lvert 
+EX \log n
+\right\rvert
+&=
+\left\lvert 
+EX \log n - \frac{S_n}{n/\log n} + \frac{S_n}{n/\log n}
+\right\rvert
+\\
+&\leq
+\left\lvert 
+EX \log n - \frac{S_n}{n/\log n} 
+\right\rvert
++ 
+\left\lvert 
+\frac{S_n}{n/\log n}
+\right\rvert
+\text{ by triangle inequality}
+\\
+&\leq
+\frac{\epsilon \log n}{2}
++
+\frac{\epsilon}{2}
+\end{align*}
+Dividing by $\log n$,
+\begin{align*}
+|EX|
+&\leq
+\frac{\epsilon}{2}
++
+\frac{\epsilon}{2 \log n}
+\text{ and by definition of $N_3$}
+\\
+&\leq
+\frac{\epsilon}{2}
++
+\frac{\epsilon}{2}
+= \epsilon
+\end{align*}
+Since $\epsilon$ is arbitrary, $|EX| = EX = 0$, i.e. \eqref{twoprime}.
+
+Thus \eqref{one} implies \eqref{two} and \eqref{twoprime}.
+\end{proof}
+\begin{proof}
+($\Leftarrow$) Let \eqref{two} and \eqref{twoprime} hold. 
+Define 
+\[
+Y_n = X_n I_{\{|X_n| < f(n)\}}
+\]
+
+Calculating,
+\begin{align}
+\snoi \var(Y_n / f(n)) 
+&\leq \snoi E\left[\frac{Y_n^2}{f(n)^2} \right]
+\notag
+\\
+&=
+\snoi E\left[\frac{(X_n I_{\{|X_n| < f(n)\}})^2}{f(n)^2} \right]
+\notag
+\\
+&=
+\snoi E\left[\frac{(X I_{\{|X| < f(n)\}})^2}{f(n)^2} \right]
+\text{ since $X_n$ are i.i.d.}
+\notag
+\\
+&=
+E\left[ \snoi \frac{X^2 I_{\{|X| < f(n)\}}}{f(n)^2}  \right]
+\text{ by Monotone Convergence Theorem}
+\notag
+\\
+&\leq
+E\left[ \sum_{n=1}^2 \frac{f(n)^2}{f(n)^2} + \sum_{n=3}^\infty \frac{X^2 I_{\{|X| < f(n)\}}}{f(n)^2} \frac{f(n+1)^2}{f(n+1)^2} \right]
+\notag
+\\
+&=
+E\left[ 2 + X^2\sum_{n=3}^\infty \frac{ I_{\{f^{-1}(|X|) < n\}}}{f(n+1)^2} \frac{f(n+1)^2}{f(n)^2} \right]
+\notag
+\\
+&\leq
+E\left[ 2 + 4X^2\sum_{n=3}^\infty \frac{ I_{\{f^{-1}(|X|) < n\}}}{f(n+1)^2} \right]
+\text{ by the \textbf{fact} above}
+\notag
+\\
+&\leq
+E\left[ 2 + 4X^2 
+\left(
+I_{\{f^{-1}(|X|) \geq 3\}}
+\int_{f^{-1}(|X|)}^\infty \frac{d\xi}{f(\xi)^2}  
++
+I_{\{f^{-1}(|X|) < 3\}}
+\int_{3}^\infty \frac{d\xi}{f(\xi)^2}  
+\right)
+\right]
+\notag
+\\
+&=
+2 
++
+E
+\left[
+4X^2 
+I_{\{f^{-1}(|X|) \geq 3\}}
+\int_{f^{-1}(|X|)}^\infty \frac{d\xi}{f(\xi)^2} 
+\right]
++
+E
+\left[
+4X^2 
+I_{\{f^{-1}(|X|) < 3\}}
+\int_{3}^\infty \frac{d\xi}{f(\xi)^2}  
+\right]
+\label{thrter}
+\end{align}
+For the first expectation in \eqref{thrter}, let $Y=f^{-1}(|X|)$. Then $X^2 = f(Y)^2$. On the set $\{f^{-1}(|X|) \geq 3\} = \{Y \geq 3\}$, it is the case that $f(Y)^2=Y^2/\log^2Y$. Calculating, 
+\begin{align*}
+E
+\left[
+4X^2 
+I_{\{f^{-1}(|X|) \geq 3\}}
+\int_{f^{-1}(|X|)}^\infty \frac{d\xi}{f(\xi)^2} 
+\right]
+&=
+E\left[I_{\{Y \geq 3\}}4f(Y)^2 \int_{Y}^\infty \frac{\log^2 \xi}{\xi^2}  d \xi \right]
+\\
+&=
+E\left[I_{\{Y \geq 3\}}4
+\left(
+\frac{Y^2}{\log^2Y}
+\right)
+\left(
+-\frac
+{\log^2 \xi + 2 \log\xi + 2}
+{\xi}
+\right\rvert_{\xi=Y}^\infty
+\right]
+\\
+&=
+E\left[I_{\{Y \geq 3\}}4
+\left(
+\frac{Y^2}{\log^2Y}
+\right)
+\frac
+{\log^2Y + 2 \log Y + 2}
+{Y}
+\right]
+\\
+&=
+E\left[
+I_{\{Y \geq 3\}}
+\left( 
+4Y
++
+\frac{8Y}{\log Y}
++
+\frac{8Y}{\log^2Y}
+\right)
+\right]
+\\
+&\leq
+E[I_{\{Y \geq 3\}}20Y]
+\\
+&=
+20 E[I_{\{f^{-1}(|X|) \geq 3\}} f^{-1}(|X|)]
+\\
+&\leq
+20 E[f^{-1}(|X|)] \qquad\text{ since $f^{-1}(|X|) \geq 0$}
+\\
+&<
+\infty
+\end{align*}
+For the second expectation in \eqref{thrter}, over the set $\{f^{-1}(|X|) < 3\}$, it is the case that $0 \leq X^2 \leq f(3)^2 = 9 /\log^2 3$. Thus
+\begin{align*}
+E
+\left[
+4X^2 
+I_{\{f^{-1}(|X|) < 3\}}
+\int_{3}^\infty \frac{d\xi}{f(\xi)^2}  
+\right]
+&\leq
+E\left[
+I_{\{f^{-1}(|X|) < 3\}}
+4
+\left(
+\frac{9}{\log^2 3}
+\right)
+\int_{3}^\infty \frac{\log^2 \xi}{\xi^2}  d \xi \right]
+\\
+&=
+E\left[
+I_{\{f^{-1}(|X|) < 3\}}
+4
+\left(
+\frac{9}{\log^2 3}
+\right)
+\left(
+-\frac
+{\log^2\xi + 2 \log\xi + 2}
+{\xi}
+\right\rvert_{\xi=3}^\infty
+\right]
+\\
+&=
+E\left[
+I_{\{f^{-1}(|X|) < 3\}}
+4
+\left(
+\frac{9}{\log^2 3}
+\right)
+\frac
+{(\log^2(3/\log 3)) + 2 \log(3 /\log 3) + 2}
+{3/\log 3}
+\right]
+\\
+&< 
+\infty
+\end{align*}
+%
+%
+%
+%\textbf{Case 1:} Suppose $f^{-1}(|X|) \leq 3$. Then $|X| \leq f(3) = 3/\log 3$. Hence
+%\begin{align*}
+%\snoi \var(Y_n / f(n)) 
+%&\leq
+%E\left[ 2 + 4X^2 \int_{\max(f^{-1}(|X|), 3)}^\infty \frac{\log^2 \xi}{\xi^2}  d \xi \right]
+%\\
+%&\leq
+%E\left[ 2 + 4
+%\left(
+%\frac{9}{\log^2 3}
+%\right)
+% \int_{3}^\infty \frac{\log^2 \xi}{\xi^2}  d \xi \right]
+%\\
+%&=
+%E\left[ 2 + 4
+%\left(
+%\frac{9}{\log^2 3}
+%\right)
+%\left(
+%-\frac
+%{\log^2\xi + 2 \log\xi + 2}
+%{\xi}
+%\right\rvert_{\xi=3}^\infty
+%\right]
+%\\
+%&=
+%E\left[ 2 + 4
+%\left(
+%\frac{9}{\log^2 3}
+%\right)
+%\frac
+%{(\log^2(3/\log 3)) + 2 \log(3 /\log 3) + 2}
+%{3/\log 3}
+%\right]
+%\\
+%&< 
+%\infty
+%\end{align*}
+%
+%\textbf{Case 2:} Suppose $f^{-1}(|X|) > 3$. Let $Y=f^{-1}(|X|)$. Then $X^2 = f(Y)^2$. Furthermore, 
+%\begin{align*}
+%\snoi \var(Y_n / f(n)) 
+%&\leq
+%E\left[ 2 + 4X^2 \int_{\max(f^{-1}(|X|), 3)}^\infty \frac{\log^2 \xi}{\xi^2}  d \xi \right]
+%\\
+%&= 
+%E\left[ 2 + 4f(Y)^2 \int_{Y}^\infty \frac{\log^2 \xi}{\xi^2}  d \xi \right]
+%\\
+%&=
+%E\left[ 2 + 4
+%\left(
+%\frac{Y^2}{\log^2Y}
+%\right)
+%\left(
+%-\frac
+%{\log^2 \xi + 2 \log\xi + 2}
+%{\xi}
+%\right\rvert_{\xi=Y}^\infty
+%\right]
+%\\
+%&=
+%E\left[ 2 + 4
+%\left(
+%\frac{Y^2}{\log^2Y}
+%\right)
+%\frac
+%{\log^2Y + 2 \log Y + 2}
+%{Y}
+%\right]
+%\\
+%&=
+%E\left[
+%2 + 
+%4Y
+%+
+%\frac{8Y}{\log Y}
+%+
+%\frac{8Y}{\log^2Y}
+%\right]
+%\\
+%&\leq
+%E[2 + 20Y]
+%\\
+%&\leq
+%E[2 + 20 f^{-1}(|X|)]
+%\\
+%&=
+%2 + 20 E[f^{-1}(|X|)]
+%\\
+%&<
+%\infty
+%\end{align*}
+Since all three terms in \eqref{thrter} are finite, their sum is finite, and it follows that
+\[
+\snoi \var(Y_n / f(n)) <\infty
+\]
+As shown above, the series of the variances of the truncated $\{X_n / f(n)\}$ converges. 
+By definition of $Y_n$, it is true that $|Y_n| < f(n)$, thus
+\begin{equation}
+|EY_n| \leq E|Y_n| < f(n) < \infty
+\label{eyfin}
+\end{equation}
+Hence the series of variances of the centered, truncated $\{X_n/f(n)\}$ also converges, i.e.
+\[
+\snoi \var\left(\frac{Y_n - EY_n}{f(n)}\right) 
+=\snoi \var(Y_n / f(n)) 
+<\infty
+\]
+By \textbf{Course Notes Lemma 3},
+\[
+P\left(\snoi \frac{Y_n - EY_n}{f(n)} \text{ converges to a finite limit}\right) = 1
+\]
+Then by \textbf{Kronecker's Lemma},
+\[
+\lim_{n \to \infty} \frac{1}{f(n)} \sion (Y_i - EY_i) = 0
+\]
+almost surely. Calculating,
+\begin{align*}
+\snoi P\{Y_n \neq X_n\} 
+&=
+\snoi  P\{|X_n| \geq f(n)\}
+\\
+&=
+\snoi P\{|X| \geq f(n)\} 
+\\
+&=
+\snoi P\{f^{-1}(|X|) \geq n\} 
+\\
+&\leq
+E[f^{-1}(|X|)] 
+\\
+&< \infty
+\end{align*}
+By the \textbf{First Borel-Cantelli Lemma}, $P(Y_n \neq X_n \io) = 0$. 
+It follows that for $\omega$ off a null set there exists $N(\omega)$ with the property that for all $n > N(\omega)$, one has $Y_n(\omega) = X_n(\omega)$.  By \textbf{Lemma 2}, as $n$ increases to infinity, 
+\[
+\frac{1}{f(n)} \sum_{i=N(\omega)+1}^n (X_i(\omega) - EY_i) = \frac{1}{f(n)} \sum_{i=N(\omega)+1}^n (Y_i(\omega) - EY_i) \to 0
+\]
+Since $E[f^{-1}(|X|)] < \infty$ by hypothesis,  $E|X| < \infty$ by the reasoning in \eqref{finite}. 
+Therefore $\{X_i\}$ is finite off a null set. For $\omega$ off the union of the previously two mentioned null sets, it follows that
+\[
+\sum_{i=1}^{N(\omega)} X_i(\omega)
+\]
+is finite. Since $|EY_i|$ is finite by \eqref{eyfin}, it follows that 
+\[
+\sum_{i=1}^{N(\omega)} (X_i(\omega) - EY_i)
+\]
+is finite. Since $f(n)$ diverges to infinity,
+\[
+\lim_{n\to\infty}\frac{1}{f(n)} 
+\sum_{i=1}^{N(\omega)} 
+(X_i(\omega) - EY_i) 
+= 0
+\]
+Combining the previous four statements, it is possible to conclude
+\begin{equation}
+\lim_{n\to\infty}\frac{1}{f(n)} \sum_{i=1}^n (X_i - EY_i) 
+=
+\lim_{n\to\infty}\frac{1}{n/\log n} \sum_{i=1}^n (X_i - EY_i)
+= 
+0
+\label{both}
+\end{equation}
+almost surely.
+
+Next, the task is to show that 
+\begin{equation}
+\lim_{n\to\infty}\frac{1}{f(n)}\sum_{i=1}^n EY_i 
+= 
+\lim_{n\to\infty}\frac{1}{n/\log n}\sum_{i=1}^n EY_i
+=
+0
+\label{second}
+\end{equation}
+First, it is claimed that 
+\[
+f^{-1}(x) = x \log f^{-1}(x)
+\]
+for $x > e$.
+Calculating,
+\begin{align*}
+f^{-1}(f(x)) = f(x) \log f^{-1}(f(x)) = \frac{x}{\log x} \log x = x
+\end{align*}
+ends the short proof.
+Notice that
+\[
+(\log n) X I_{\{|X| \geq f(n)\}} = (\log n) X I_{\{f^{-1}(|X|) \geq n\}} \to X
+\]
+pointwise as $n$ tends to $\infty$. Furthermore, for $\omega \in {\{f^{-1}(|X|) \geq \max(e,n)\}}$ it is the case that
+\begin{align*}
+f^{-1}(|X|) 
+&\geq 
+n
+\\
+\log f^{-1}(|X|) 
+&\geq
+\log n
+\\
+|X| \log f^{-1}(|X|) 
+&\geq 
+(\log n) |X|
+\\
+f^{-1}(|X|) 
+&\geq
+(\log n )|X|I_{\{f^{-1}(|X|) \geq n\}}
+\text{ by what was claimed above}
+\end{align*}
+For $\omega \in {\{e \leq f^{-1}(|X|) < n\}}$,
+\begin{align*}
+f^{-1}(|X|) 
+&\geq 
+0
+\\
+f^{-1}(|X|) 
+&\geq 
+I_{\{f^{-1}(|X|) \geq n\}}
+\\
+f^{-1}(|X|) 
+&\geq
+(\log n )|X|I_{\{f^{-1}(|X|) \geq n\}}
+\end{align*}
+For $\omega \in {\{f^{-1}(|X|) \leq e\}}$,
+\[
+|X| = f^{-1}(|X|) \geq (\log n) |X|I_{\{f^{-1}(|X|) \geq n\}}
+\]
+since $0 \leq (\log n) I_{\{f^{-1}(|X|) \geq n \}} \leq 1$ on this set. Therefore, $f^{-1}(|X|)$ dominates $(\log n )|X|I_{\{f^{-1}(|X|) \geq n\}}$ for all $n$. 
+Since $f^{-1}(|X|)$ is integrable by \eqref{two},
+by the \textbf{Dominated Convergence Theorem}
+\[
+E[ (\log n) X I_{\{f^{-1}(|X|) \geq n\}}] \to EX = 0
+\quad \text{as}
+\quad
+n \to \infty
+\]
+Note $EX = 0$ by \eqref{twoprime}. 
+Calculating, 
+\[
+0 = EX = E[X I_{\{f^{-1}(|X|) \geq n\}} + X I_{\{f^{-1}(|X|) < n\}}]
+\]
+so that by flip-flop
+\[
+E[X I_{\{f^{-1}(|X|) \geq n\}}] = - E[X I_{\{f^{-1}(|X|) < n\}}] = -EY_n
+\]
+By the previous calculations
+\begin{align*}
+%-E[(\log n)Y_n] 
+%&= 
+-(\log n)EY_n
+&=
+(\log n) E[X I_{\{f^{-1}(|X|) \geq n\}}]
+\\
+&=
+E[(\log n)X I_{\{f^{-1}(|X|) \geq n\}}]
+\to 
+0
+\text{ as }n \to \infty
+\end{align*}
+Define $a_n = -(\log n)EY_n$. 
+Since $\{a_n\} \to 0$, it follows that the sequence of absolute values $\{|a_n|\} = \{\log(n)|EY_n|\}$ also converges to 0. 
+Let $b_0 = 0, b_1=1, b_2=2$ and $b_n = n/\log n$ for $n \geq 3$. 
+Applying \textbf{A Generalization of Cesaro's Theorem},
+\[
+\frac{1}{b_n} \sum_{m=1}^n (b_m - b_{m-1})|a_m| \to 0
+\quad\text{ as }
+n \to \infty
+\]
+or equivalently (for $n \geq 3$),
+\begin{equation}
+\frac{1}{n/ \log n} 
+\left(
+\log 2|EY_2|
++ 
+(3-2\log 3)|EY_3|
++
+\sum_{m=4}^n 
+\left(
+\frac{m}{\log m} - \frac{m-1}{\log (m-1)} 
+\right)
+(\log m) |E Y_m| 
+\right)
+\to 
+0 
+\label{series}
+\end{equation}
+as $n \to \infty$.
+Let $c_1 = 0, c_2 = \log 2, c_3 = 3- 2\log 3$ and 
+\[
+c_n = \left(\frac{n}{\log n} - \frac{n-1}{\log (n-1)} \right) (\log n)
+\]
+for $n \geq 4$.
+It can be shown that
+\begin{equation}
+\lim_{n \to \infty} c_n = 1
+\label{cn}
+\end{equation}
+by tedious algebra and successive applications of L'Hospital's rule. Also see WolframAlpha: \url{http://bit.ly/limX621}. 
+Display
+\eqref{series} can be rewritten as 
+\begin{equation}
+\frac{1}{n/ \log n} \sum_{m=1}^n c_m |E Y_m| \to 0 
+\quad\text{ as }
+n \to \infty
+\label{series2}
+\end{equation}
+for $n \geq 3$.
+Notice that all the terms in \eqref{series2} are positive.
+Fix $1 > \epsilon > 0$. Then since \eqref{series2} converges to $0$, there exists $N_1 = \max(3, N_0)$ such that for all $n>N_1$,
+\[
+\left\lvert
+\frac{1}{n/ \log n} \sum_{m=1}^n c_m |E Y_m|
+\right\rvert 
+=
+\frac{1}{n/ \log n} \sum_{m=1}^n c_m |E Y_m| 
+<
+\frac{(1-\epsilon)\epsilon}{2}
+\]
+Since \eqref{cn} converges to 1, there exists $N_2$ such that for all $n > N_2$,
+\[
+|c_n - 1| < \epsilon
+\quad
+\text{or equivalently}
+\quad
+1-\epsilon < c_n < 1+\epsilon
+\]
+Thus for all $n > N_3 = \max(N_1, N_2)$,
+\begin{align*}
+\frac{(1-\epsilon)\epsilon}{2}
+&>
+\frac{1}{n/ \log n} \sum_{m=N_3 + 1}^n c_m |E Y_m|
+\\
+&>
+\frac{1}{n/ \log n} \sum_{m=N_3 + 1}^n (1-\epsilon) |E Y_m|
+\\
+&=
+\frac{(1-\epsilon)}{n/ \log n} \sum_{m=N_3 + 1}^n |E Y_m|
+\end{align*}
+Thus for $n > N_3$
+\[
+\frac{1}{n/ \log n} \sum_{m=N_3 + 1}^n |E Y_m| < \frac{\epsilon}{2}
+\]
+By \eqref{eyfin} it is clear that $|EY_n| < f(n)$. Thus
+define $M$ to be the sum of $f(m)$ for $1 \leq m \leq N_3$ so that 
+\[
+M = \sum_{m=1}^{N_3} f(m) > \sum_{m=1}^{N_3} |EY_m|
+\]
+Clearly, $M$ is finite. Since $n / \log n$ diverges to infinity, there exists $N_4$ such that for all $n > N_4$,
+\[
+\frac{M}{n /\log n} 
+=
+\left\lvert
+\frac{M}{n /\log n}
+\right\rvert
+< \frac{\epsilon}{2}
+\]
+Therefore, for $n > N_5 = \max(N_4, N_3)$
+\begin{align*}
+\left \lvert
+\frac{1}{n / \log n}
+\sum_{m = 1}^n EY_m
+\right \rvert
+&\leq
+\frac{1}{n / \log n}
+\sum_{m = 1}^n |EY_m|
+\quad\text{ by triangle inequality}
+\\
+&=
+\frac{1}{n \log n}
+\left(
+\sum_{m=1}^{N_3}
+|EY_m|
++
+\sum_{m=N_3+1}^{n}
+|EY_m|
+\right)
+\\
+&=
+\frac{1}{n \log n}
+\sum_{m=1}^{N_3}
+|EY_m|
++
+\frac{1}{n \log n}
+\sum_{m=N_3+1}^{n}
+|EY_m|
+\\
+&<
+\frac{1}{n \log n}
+M
++
+\frac{1}{n \log n}
+\sum_{m=N_3+1}^{n}
+|EY_m|
+\\
+&<
+\frac{\epsilon}{2}
++
+\frac{\epsilon}{2}
+=
+\epsilon
+\end{align*}
+Since $\epsilon$ is arbitrary, \eqref{second} holds. 
+Combining \eqref{both} with \eqref{second} and using $\textbf{Lemma 3}$, it is clear that 
+\[
+\lim_{n\to\infty} \frac{1}{f(n)}\sum_{i=1}^nX_i 
+=
+\lim_{n\to\infty} \frac{1}{n/\log n}\sum_{i=1}^nX_i 
+=
+0
+\]
+almost surely. Or in other words,
+\[
+\frac{S_n}{n/\log n}
+\to
+0
+\quad \text{wp}1
+\]
+Thus \eqref{two} and \eqref{twoprime} imply \eqref{one}, quod erat demonstrandum.
+%It follows that there exists a positive integer $N$ such that for all $n > N$, one has $Y_n = X_n$ almost surely. By \textbf{Lemma 2}, as $n$ increases to infinity, 
+%\[
+%\frac{1}{f(n)} \sum_{i=N+1}^n X_i - EX_i = \frac{1}{f(n)} \sum_{i=N+1}^n Y_i - EY_i \to 0
+%\]
+%almost surely. Since $E[f^{-1}(|X|)] < \infty$ by \eqref{two},  $E|X| < \infty$ by the reasoning in \eqref{finite}. Hence 
+%\[
+%\sum_{i=1}^N X_i - EX_i 
+%\]
+%is finite almost surely. Since $f(n)$ diverges to infinity,
+%\[
+%\lim_{n\to\infty}
+%\frac{1}{f(n)}
+%\sum_{i=1}^N X_i - EX_i 
+%= 0
+%\]
+%almost surely.
+%Thus
+%\[
+%\lim_{n\to\infty}
+%\frac{1}{f(n)}
+%\sum_{i=1}^N X_i - EX_i 
+%+
+%\frac{1}{f(n)}
+%\sum_{i=N+1}^n X_i - EX_i 
+%=
+%\lim_{n\to\infty}
+%\frac{1}{f(n)}
+%\sum_{i=1}^n X_i - EX
+%=0
+%\]
+%almost surely. By \eqref{twoprime} and since for sufficiently large $n$, it is the case that $f(n) = n/\log n$.
+%\[
+%0 = 
+%\lim_{n\to\infty}
+%\frac{1}{f(n)}
+%\sum_{i=1}^n X_i - EX 
+%=
+%\lim_{n\to\infty}
+%\frac{1}{n / \log n}
+%\sum_{i=1}^n X_i
+%= 
+%\lim_{n\to\infty}
+%\frac{S_n}{n / \log n}
+%\]
+%almost surely. Thus \eqref{two} and \eqref{twoprime} imply \eqref{one}.
+\end{proof}
+
+\section*{Conclusion}
+It is possible to find equivalent conditions to \eqref{two}. First a lemma.
+
+\begin{lem}
+Suppose for $k \in \{1,2 \}$, the functions $\{f_k\}$ are asymptotically equivalent and real-valued on $[0, \infty)$. Suppose there exists $x_0$ such that each $|f_k|$ is bounded on $[0, x_0]$ and that each $f_k$ is positive, unbounded, and monotone increasing on $(x_0, \infty)$. Then for all random variables $X$
+\[
+E[f_1(|X|)] < \infty \quad \text{if and only if} \quad
+E[f_2(|X|)] < \infty
+\]
+\end{lem}
+\begin{proof}
+By hypothesis, there exists finite, positive $M_k$ such that
+$|f_k| < M_k$ on $[0, x_0]$ for $k\in \{1,2\}$. Thus 
+\[
+-M_k < E[f_k(|X|)I_{\{|X| \leq x_0\}}] < M_k
+\]
+Since, 
+\[
+E[f_k(|X|)] = E[f_k(|X|)I_{\{|X| \leq x_0\}}] + E[f_k(|X|)I_{\{|X| > x_0\}}],
+\]
+it follows that 
+\begin{equation}
+E[f_k(|X|)] \text{ is finite if and only if } E[f_k(|X|)I_{\{|X| > x_0\}}] \text{ is finite}
+\label{finfin}
+\end{equation}
+
+
+Fix $\epsilon > 0$. 
+By hypothesis of asymptotic equivalence, there exists positive $x_1$ such that for all $x > x_1$, 
+\[
+\left \lvert
+\frac{f_1(x)}{f_2(x)} -1
+\right \rvert
+\leq 
+\epsilon
+\]
+or equivalently
+\begin{equation}
+(1-\epsilon)f_2(x) \leq 
+f_1(x)
+\leq 
+(1+\epsilon)f_2(x)
+\label{equiv}
+\end{equation}
+Let $x_2 = \max(x_1, x_0)$. Then
+\begin{align*}
+E[f_k(|X|)I_{\{|X| > x_0\}}]
+&=
+E[f_k(|X|)I_{\{x_2 \geq |X| > x_0\}}]
++
+E[f_k(|X|)I_{\{|X| > x_2\}}]
+\\
+&\leq
+E[f_k(x_2)]
++
+E[f_k(|X|)I_{\{|X| > x_2\}}] \text{ by monotonicity}
+\\
+&=
+f_k(x_2)
++
+E[f_k(|X|)I_{\{|X| > x_2\}}]
+%\\
+%&\leq
+%f_k(x_2) + E[f_k(|X|)I_{\{|X| > x_0\}}]
+%\text{ since $f_k$ is positive for $x>x_0$}
+\end{align*}
+
+Suppose $E[f_1(|X|)] < \infty$. Then $E[f_1(|X|)I_{\{|X| > x_0\}}] < \infty$ by \eqref{finfin} and 
+\begin{align*}
+E[f_2(|X|)I_{\{|X| > x_0\}}]
+&\leq
+f_2(x_2) + E[f_2(|X|)I_{\{|X| > x_2\}}]
+\\
+&\leq
+f_2(x_2) + E\left[\frac{f_1(|X|)}{1-\epsilon}I_{\{|X| > x_2\}}\right]
+\text{ by \eqref{equiv}}
+\\
+&\leq
+f_2(x_2) + 
+\frac{1}{1-\epsilon}
+E\left[f_1(|X|)I_{\{|X| > x_0\}}\right]
+\text{ since $f_1$ is positive for $x>x_0$}
+\\
+&< \infty
+\end{align*}
+Therefore $E[f_2(|X|)] < \infty$ by \eqref{finfin}.
+
+Similarly, suppose $E[f_2(|X|)] < \infty$. Then $E[f_2(|X|)I_{\{|X| > x_0\}}] < \infty$ by \eqref{finfin} and 
+\begin{align*}
+E[f_1(|X|)I_{\{|X| > x_0\}}]
+&\leq
+f_1(x_2) + E[f_1(|X|)I_{\{|X| > x_2\}}]
+\\
+&\leq
+f_1(x_2) + E\left[f_2(|X|)(1+\epsilon)I_{\{|X| > x_2\}}\right]
+\text{ by \eqref{equiv}}
+\\
+&\leq
+f_1(x_2) + 
+(1+\epsilon)
+E\left[f_2(|X|)I_{\{|X| > x_0\}}\right]
+\text{ since $f_2$ is positive for $x>x_0$}
+\\
+&< \infty
+\end{align*}
+Therefore, $E[f_1(|X|)] < \infty$ by \eqref{finfin}. This concludes the proof of the lemma.
+\end{proof}
+
+The result of $\textbf{Lemma 4}$ leads to the conclusion if $g$ is asymptotically equivalent to $f^{-1}$---with $g$ and $f^{-1}$ positive, unbounded, and monotone increasing on $(x_0, \infty)$ and bounded on $[0, x_0]$ for some postive $x_0$---then \eqref{two} is equivalent to $E[g(|X|)] < \infty$.
+
+Let
+\[
+y = f(x) = \frac{x}{\log x}
+\]
+Then 
+\[
+\log y = \log x - \log (\log x)
+\]
+It is a fact (that can be shown with L'Hospital's rule) that
+\[
+\lim_{x\to\infty} \frac{\log (\log x)}{\log x} = 0
+\]
+Therefore
+\[
+\lim_{x\to\infty}\frac{\log y}{\log x} = 
+\lim_{x\to\infty}\frac{\log x - \log(\log x)}{\log x} 
+=
+1
+\]
+Hence 
+\begin{align*}
+\log y 
+&\sim \log x
+\\
+y \log y
+&\sim y \log x
+\\
+y \log y
+&\sim x \quad \text{ by definition of $y$}
+\\
+y \log y
+&\sim f^{-1}(y) \quad \text{ by definition of $f$}
+\end{align*}
+Let $g(x) = x \log x$. It follows from the above that $f^{-1}(x) \sim g(x)$, therefore by \textbf{Lemma 4} (let $x_0 = e$ and all the conditions are met), \eqref{two} can be replaced by $E[g(|X|)] = E[|X|\log |X|] < \infty$.
+
+Thus necessary and sufficient conditions on the distribution of $X$ in order that
+\[
+\frac{S_n}{n / \log n} \to 0 \quad\text{wp1}
+\]
+are 
+\[
+E[|X| \log |X|] < \infty
+\]
+and 
+\[
+EX = 0
+\]
+\end{document}
