@@ -1,0 +1,497 @@
+% /**
+%  * A template for homework files in math classes. The 
+%  * packages and newcommands are a good starting point.
+%  *
+%  * Author: James K. Pringle
+%  * E-mail: jameskpringle@gmail.com
+%  * Last Changed: 26 February 2013
+%  *
+%  * "LaTeX countains the increasing union of MS Word"
+%  */
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                         %
+%                        PAGE SETUP                       %
+%                                                         %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[letterpaper, 12pt]{article}
+
+% 1in margins all the way around
+\usepackage[margin=1in]{geometry}
+
+% Sets \parindent to 0 and \parskip to stretchable.
+\usepackage{parskip}
+% Use for bigger spaces between paragraphs.
+%\parskip=1.5\baselineskip
+
+% Set headers and footers
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+% Header
+\renewcommand{\headrulewidth}{0.4pt}
+\lhead{\textsc{\mathclass}}
+\chead{\textsc{\today}}
+\rhead{\textsc{\mynamehdr}}
+% Footer
+\renewcommand{\footrulewidth}{0.4pt}
+\lfoot{}
+\cfoot{\thepage}
+\rfoot{}
+
+% Make the space between lines slightly more generous 
+% than normal single spacing, but compensate so that the 
+% spacing between rows of matrices still looks normal.  
+% Note that 1.1=1/.9090909...
+\renewcommand{\baselinestretch}{1.1}
+\renewcommand{\arraystretch}{.91}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                         %
+%                      USEFUL PACKAGES                    %
+%                                                         %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% The classic three
+\usepackage{amsmath,amsthm,amssymb}
+
+% Define \newtheorem for use
+% No numbers, labeled 'Theorem'
+\newtheorem*{nthm}{Theorem}
+
+% Not sure what this is for
+\usepackage{amsfonts}
+
+% Fancy script font
+\usepackage{mathrsfs}
+
+% Makes enumerate environment much easier to customize
+% by specifying the counter
+\usepackage{enumerate}
+
+% Color
+\usepackage{color}
+\usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
+
+% URL links
+\usepackage{hyperref}
+
+% For inserting graphics and images
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage[footnotesize]{caption}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                         %
+%                   USER-DEFINED COMMANDS                 %
+%                                                         %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Make a hyperlink with colored text
+\newcommand{\hrefcolor}[3]{\href{#1}{\textcolor{#3}{#2}}}
+
+% Make a hyperlink with gray text
+\newcommand{\hrefgray}[2]{\hrefcolor{#1}{#2}{Gray}}
+
+% Make the header for the first page
+\newcommand{\firstpageinfo}{
+\textsf{
+\begin{flushleft}
+\sc \myname \\
+\normalfont \mathclass \\
+\professorname \\
+\assignmentnumber \\
+\thedate
+\end{flushleft}
+} \bigskip
+}
+
+% Make problem list for "title" of page
+\newcommand{\problemlist}{ 
+\begin{center}
+\textbf{\Large \textsf{\assignmentnumber}}\\
+\textit{\textsf{\problemset}}
+\end{center}
+\bigskip
+}
+
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~%
+%                                                         %
+%               LETTERS, FUNCTIONS, AND TEXT              %
+%                                                         %
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~%
+
+% A
+\newcommand{\cA}{\mathcal{A}}
+\newcommand{\sA}{\mathscr{A}}
+\renewcommand{\aa}{\;\text{a.a.}}
+\renewcommand{\ae}{\;\text{a.e.}}
+% B
+\newcommand{\sB}{\mathscr{B}}
+\newcommand{\cB}{\mathcal{B}}
+% C
+\newcommand{\cC}{\mathcal{C}}
+% E
+\newcommand{\E}{\mathbb{E}}
+% F
+\newcommand{\sF}{\mathscr{F}}
+\newcommand{\cF}{\mathcal{F}}
+\newcommand{\Ft}{F^\sim}
+% G
+\newcommand{\cG}{\mathcal{G}}
+\newcommand{\sG}{\mathscr{G}}
+% I
+\newcommand{\io}{\;\text{i.o.}}
+% N
+\newcommand{\N}{\mathbb{N}}
+% P
+\newcommand{\cP}{\mathcal{P}}
+\newcommand{\sP}{\mathscr{P}}
+% Q
+\newcommand{\Q}{\mathbb{Q}}
+% R
+\newcommand{\R}{\mathbf{R}}
+\newcommand{\cR}{\mathcal{R}}
+\newcommand{\sR}{\mathscr{R}}
+% S
+\newcommand{\cS}{\mathcal{S}}
+% U
+\newcommand{\cU}{\mathcal{U}}
+% V
+\newcommand{\var}{\text{var}}
+% Z
+\newcommand{\Z}{\mathbb{Z}}
+% Punctuation
+\newcommand{\sbs}{\;|\;} % space bar space
+% Math
+\newcommand{\sion}{\sum_{i=1}^n}
+\newcommand{\sioi}{\sum_{i=1}^\infty}
+
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~%
+%                                                         %
+%            CHANGE THESE BASED ON THE PAPER              %
+%                                                         %
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~%
+
+% Constants for fancy header and first page info
+\newcommand{\mynamehdr}{\hrefgray{http://biostat.jhsph.edu/~jpringle/}{\myname}}
+\newcommand{\mathclass}{550.621 Probability}
+\newcommand{\myname}{James K. Pringle}
+\newcommand{\professorname}{Dr. Jim Fill}
+\newcommand{\assignmentnumber}{Assignment 5}
+\newcommand{\thedate}{\today}
+\newcommand{\problemset}{Radon-Nikodym Theorem and fields}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                         %
+%                      BEGIN DOCUMENT                     %
+%                                                         %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+% Take header off of first page
+\thispagestyle{empty}
+
+% Put in first page info (top of page)
+\firstpageinfo
+
+% Put in title for the paper
+\problemlist
+
+\section*{Part 1}
+Let $P$ and $Q$ be probabilities on a measurable space $(\Omega, \cA)$.
+Show that condition $2$,
+\[
+\lim_{\eta \to 0} \sup\{ P(A): A  \in \cA \text{ and } Q(A) < \eta \} = 0
+\]
+is equivalent to $2'$,
+\[
+\lim_{\eta \to 0} \sup\{ P(A): A  \in \cA_0 \text{ and } Q(A) < \eta \} = 0
+\]
+where $\cA_0$ is a field generating $\cA$.
+
+\begin{proof}
+For fixed $\eta$, since $\cA_0 \subset \cA$,
+\[
+\{A\in \cA_0 : Q(A) < \eta \} \subset \{A \in \cA : Q(A) < \eta\}
+\]
+Hence 
+\[
+\{ P(A): A  \in \cA_0 \text{ and } Q(A) < \eta \}
+\subset
+\{ P(A): A  \in \cA \text{ and } Q(A) < \eta \}
+\]
+Therefore
+\[
+0
+\leq
+\sup
+\{ P(A): A  \in \cA_0 \text{ and } Q(A) < \eta \}
+\leq
+\sup
+\{ P(A): A  \in \cA \text{ and } Q(A) < \eta \}
+\]
+Since this is true for all $\eta$,
+taking the limit as $\eta \to 0$,
+\[
+0
+\leq
+\lim_{\eta \to 0}
+\sup
+\{ P(A): A  \in \cA_0 \text{ and } Q(A) < \eta \}
+\leq
+\lim_{\eta \to 0}
+\sup
+\{ P(A): A  \in \cA \text{ and } Q(A) < \eta \}
+\]
+By the assumption of condition 2, it follows by squeezing that
+\[
+\lim_{\eta \to 0}
+\sup
+\{ P(A): A  \in \cA_0 \text{ and } Q(A) < \eta \}
+= 0
+\]
+and condition $2'$ holds. Thus condition 2 implies condition $2'$.
+
+Next suppose that condition $2'$ holds. Note $\emptyset \in \cA_0$ since $\Omega \in \cA_0$ and $\cA_0$ is closed under complementation. Also, $\cA_0$ is closed under binary intersection. Finally since $\cA_0$ is closed under complementation, $A \subset B$ with $A, B \in \cA_0$ implies $B \setminus A = B \cap A^c \in \cA_0$. Therefore, $\cA_0$ is a semiring.
+See Billingsley Section 11 for a definition of ``semiring.''
+
+Fix $\eta > 0$. Let $A \in \cA$ such that $Q(A) < \eta$. Thus $0 < \eta - Q(A)$. Note $\sigma(\cA_0) = \cA$ and $Q$ is a p.m. (hence $\sigma$-finite) on $\cA$. By Billingsley Theorem 11.4(i), there exists an infinite\footnote{
+The original theorem says ``there exists a finite or infinite disjoint sequence...'' However, since the empty set is an element of any semiring, then in the finite case with $m$ sets, define $A_n = \emptyset$ for $n > m$.
+} disjoint sequence $A_1, A_2, \cdots$ of $\cA_0$ sets such that 
+\[
+A \subset \cup_k A_k
+\] 
+and 
+\[
+Q((\cup_k A_k) \setminus A) < \eta - Q(A).
+\]
+Thus
+\begin{align*}
+Q((\cup_k A_k) \setminus A) &< \eta - Q(A) 
+\\
+Q(\cup_k A_k) - Q( A) &< \eta - Q(A)  
+\text{ by additivity}
+\\
+Q(\cup_k A_k)  &< \eta 
+\end{align*}
+Let $E_n = \cup_{k=1}^n A_k$, and $E = \cup_k A_k$. From the above, $Q(E) < \eta$. Since $E_n \uparrow E$, for all $n$ 
+\[
+Q(E_n) \leq Q(E) < \eta
+\]
+By the closure properties of a field, for all $n$, 
+\[
+E_n \in \{A \in \cA_0 : Q(A) < \eta\}.
+\]
+Thus for all $n$
+\[
+P(E_n) \leq \sup\{P(A) : A \in \cA_0 \text{ and } Q(A) < \eta\}
+\]
+The right-hand side does not depend on $n$, so passing to the limit
+\[
+\lim_{n \to \infty} P(E_n) \leq \sup\{P(A) : A \in \cA_0 \text{ and } Q(A) < \eta\}
+\]
+By Monotone Sequential Continuity from Below,
+\[
+\lim_{n \to \infty} P(E_n) = P(E) = P(\cup_k A_k)
+\]
+and since $A \subset \cup_k A_k$
+\[
+P(A) \leq P(\cup_k A_k) \leq \sup\{P(A) : A \in \cA_0 \text{ and } Q(A) < \eta\}
+\]
+Since $A$ is arbitrary in $\cA$ as long as $Q(A) < \eta$, then for all $A \in \cA$ with $Q(A) < \eta$
+\[
+0 \leq
+P(A) \leq \sup\{P(A) : A \in \cA_0 \text{ and } Q(A) < \eta\}
+\]
+Thus
+\[
+0 \leq 
+\sup \{P(A) : A \in \cA \text{ and } Q(A) < \eta\}
+\leq
+\sup \{P(A) : A \in \cA_0 \text{ and } Q(A) < \eta\}
+\]
+Since $\eta$ is arbitrary, take the limit as $\eta \to 0$,
+\[
+0 \leq 
+\lim_{\eta \to 0} \sup \{P(A) : A \in \cA \text{ and } Q(A) < \eta\}
+\leq 
+\lim_{\eta \to 0}
+\sup \{P(A) : A \in \cA_0 \text{ and } Q(A) < \eta\}
+\]
+By the assumption of condition $2'$, the right-hand limit is 0. Thus by squeezing,
+\[
+\lim_{\eta \to 0} \sup \{P(A) : A \in \cA \text{ and } Q(A) < \eta\}
+=
+0
+\]
+and condition 2 holds. Hence condition $2'$ implies condition $2$. Since implications in both directions have been proved, conditions $2$ and $2'$ are equivalent.
+\end{proof}
+
+\section*{Part 2}
+Specialize to $(\Omega, \cA, Q) = ([0, 1], \text{Borels}, \text{Lebesgue})$ to deduce that a nondecreasing, right-continuous function $F$ on $[0,1]$ with $F(0) = 0$ which is \textit{absolutely continuous} in the classical sense that 
+\begin{quote}
+for each $\epsilon > 0$, there exists an $\eta_\epsilon > 0$ such that for every choice of $n \geq 1$ and $a_i < b_i$, $1 \leq i \leq n$, for which $\sion (b_i - a_i) < \eta_\epsilon$, one has $\sion (F(b_i) - F(a_i)) < \epsilon$
+\end{quote}
+necessarily is of the form $F(t) = \int_0^t X(s) ds$, $0 \leq t \leq 1$, for some $X \geq 0$.
+
+\begin{proof}
+First a few definitions. Define $\sB_0$ to be the Borel sets on $(0,1]$. Define $\sB$ to be the Borel sets on $[0,1]$.  Define $\sB^1$ to be the Borel sets on $\sR^1$, the real line.
+
+The proof is broken into two cases.
+
+\textit{Case 1:} $F(1) = 0$. Then since $F$ is nondecreasing, $F(t) = 0$ for $0 \leq t \leq 1$. Hence a suitable function $X(s)$ is the constant function $0$. For $0 \leq t \leq 1$,
+\[
+0 = F(t) = \int_0^t X(s) ds = \int_0^t 0 ds = 0
+\]
+
+\textit{Case 2:} $F(1) \neq 0$. Since $F$ is nondecreasing, $F(1) > 0$. Note by the absolute continuity of $F$, it follows that $F$ is uniformly continuous (take $n = 1$ in $\sion (b_i - a_i) < \eta_\epsilon$ and $\sion (F(b_i) - F(a_i)) < \epsilon$). Since $[0, 1]$ is an interval, and $F$ is uniformly continuous on that interval, by a result from real analysis, $F$ is bounded on that interval. Hence $F(1)$ is finite. Define
+\[
+G(t) =
+\begin{cases}
+0
+&
+\text{for $t < 0$}
+\\
+F(t)/F(1)
+&
+\text{for $t \in [0,1]$}
+\\
+1
+&
+\text{for $t > 1$}
+\end{cases}
+\]
+Shortly, it is shown that $G$ is a d.f.
+Note $\lim_{n \to -\infty} G(t) = 0$ and $\lim_{n \to \infty} G(t) = 1$. 
+Also, $G$ is right-continuous on $[0,1)$ because it is a constant ($1/F(1)$) times $F$. 
+Clearly $G$ is right-continuous on $(-\infty, 0)$. 
+And since $G(1) = F(1)/F(1) = 1$, it follows that $G$ is right-continuous on $[1, \infty)$. 
+Finally, since $F(1)$ is a positive constant, $F(t)/F(1)$ is nondecreasing because $F$ is nondecreasing. Therefore $G$ is nondecreasing. Thus, $G$ is a d.f.
+
+By \textbf{Chung Theorem 2.2.4} let $\mu$ be the p.m. induced by $G$ on $(\sR^1,\sB^1)$.
+Note $0 \leq G(0 -) \leq G(0) = 0$. Thus $ 0 = G(0-) = \mu((-\infty, 0))$. 
+Moreover, $\mu((1, \infty)) = 1-\mu((-\infty, 1]) = 1 - G(1) = 0$. Hence $\mu([0,1]) = 1$.
+
+Define a set function $P$ to be the restriction of $\mu$ on $\sB$.
+This is valid since $\sB \subset \sB^1$.
+Shortly, it is shown that $P$ is a p.m.
+As shown above $P([0,1]) = 1$. 
+For any $A \in \sB$, it is the case that $A \subset [0,1]$. Thus $0 \leq P(A) \leq 1$. Finally, let $A_1, A_2, \cdots$ be disjoint sets in $\sB$. Then since $\cup_{i=1}^\infty A_i \in \sB \subset \sB^1$,
+\[
+P(\cup_{i=1}^\infty A_i) =\mu(\cup_{i=1}^\infty A_i) = \sioi \mu(A_i) = \sioi P(A_i)
+\]
+Therefore, $P$ is a p.m. on $([0,1], \sB)$.
+
+Let $\cA_0'$ be the class of finite unions of disjoint intervals $(a,b]$ contained in $[0,1]$. By \textbf{Chung Example 2.2.2}, $\cA_0'$ is a field on $(0,1]$ and generates $\sB_0$. However, $\cA_0'$ is not a field on $[0,1]$ (because $[0,1]$ is not an element of $\cA_0'$). The next task is to describe a field on $[0,1]$ that generates the Borel sets on $[0,1]$. 
+
+Let $\cA_0$ be the class of sets of $\cA_0'$ possibly unioned with $\{0\}$. Hence $A \in \cA_0$ can be written as
+\[
+A = A'
+\quad
+\text{or}
+\quad
+A = \{0\} \cup A'
+\] 
+where $A' \in \cA'_0$ and
+\[
+A' = \cup_{i=1}^n (a_i, b_i]
+\]
+with
+$0 \leq a_1 < b_1 < a_2 < b_2 < \cdots < a_n < b_n \leq 1$ and $n \geq 0$.
+
+Notice that (using the two possible $A$ definitions above)
+\[
+A^c = \{0\} \cup (0, a_1] \cup (\cup_{i=1}^{n-1} (b_i, a_{i+1}]) \cup (b_n, 1]
+\quad
+\text{or}
+\quad
+A^c = (0, a_1] \cup (\cup_{i=1}^{n-1} (b_i, a_{i+1}]) \cup (b_n, 1],
+\]
+respectively. Hence $A^c \in \cA_0$. Next, suppose $B_1, B_2 \in \cA_0$. 
+\textit{Case 1:} $\{0\}$ is not a subset of both $B_1$ and $B_2$. Then $B_1 \cap B_2 \in \cA_0'$ and hence $B_1 \cap B_2 \in \cA_0$. 
+\textit{Case 2:} $\{0\}$ is a subset of both $B_1$ and $B_2$.
+Then $B_1 \cap (B_2 \setminus \{0\}) \in \cA_0'$ by case 1, and 
+\[
+(B_1 \cap (B_2 \setminus \{0\})) \cup \{0\} =
+B_1 \cap B_2 
+\in \cA_0
+\]
+by definition of $\cA_0$. Hence $\cA_0$ is a field on $[0,1]$. 
+
+From \textbf{Chung Example 2.2.2}, the Borel sets on $[0,1]$ are generated by the Borel sets on $(0,1]$ and the singleton $\{0\}$. In math, 
+\[
+\sB = \sigma(\sB_0, \{0\})
+\]
+Let $A \in \cA_0$. Then $A = A'$ or $A = A' \cup \{0\}$ where $A' \in \cA_0'$. 
+Note $A' \in \sigma(\cA_0') = \sB_0$. Therefore, $A' \in \sB$. Moreover, $\{0\} \in \sB$.
+Hence by closure of $\sigma$-fields, $A$ is an element of $\sB$. Since $A$ was arbitrary, $\cA_0 \subset \sB$. Therefore $\sigma(\cA_0) \subset \sB$.
+
+Next, let $\sB^*$ be the trace of $\sigma(\cA_0)$ onto $(0,1]$. In math
+\[
+\sB^* = \{ A \cap (0,1] : A \in \sigma(\cA_0)   \}
+\]
+From class notes, 550.620, slide 38, $\sB^*$ is a $\sigma$-field on $(0,1]$. Since $(0,1] \in \sigma(\cA_0)$, it follows that $\sB^* \subset \sigma(\cA_0)$ by closure of $\sigma$-fields. For $A' \in \cA_0'$, it is the case that $A' \subset (0,1]$ and $A' \in \cA_0 \subset \sigma(\cA_0)$. Thus $A' \in \sB^*$. 
+Since $A'$ is arbitrary, $\cA_0' \subset \sB^*$. Hence $\sB_0 = \sigma(\cA_0') \subset \sB^* \subset \sigma(\cA_0)$. Finally, since $\{0\} \in \cA_0$, it follows that  $\{0\} \in \sigma(\cA_0)$. The previous two facts show that $\sB = \sigma(\sB_0, \{0\}) \subset \sigma(\cA_0)$. Since containment has been shown in both directions, $\sB = \sigma(\cA_0)$. In words, the field $\cA_0$ on $[0,1]$ generates the $\sigma$-field of the Borel sets on $[0,1]$.
+
+Note $Q(\{0\}) = 0$. 
+Hence for $A \in \cA_0$, where $A = A'$ or $A=A' \cup \{0\}$ for some $A' \in \cA_0'$, it follows that $Q(A) = Q(A')$ or $Q(A') + Q(\{0\}) = Q(A')$.
+Then by definition of $\cA_0$,
+\[
+\{A \in \cA_0 : Q(A) < \eta\} = \{A \in \cA_0' : Q(A) < \eta\}
+\]
+Note $P(\{0\}) = \mu(\{0\}) = \mu((-\infty, 0]) - \mu((-\infty, 0)) = G(0) - G(0-)  = 0$. Hence for $A \in \cA_0$, where $A = A'$ or $A=A' \cup \{0\}$ for some $A' \in \cA_0'$, it follows that $P(A) = P(A')$ or $P(A') + P(\{0\}) = P(A')$. Therefore, by the two facts above about $P$ and $Q$, it is the case that
+\begin{align*}
+&\quad\;\lim_{\eta \to 0} \sup\{ P(A): A  \in \cA_0 \text{ and } Q(A) < \eta \} 
+\\
+&=
+\lim_{\eta \to 0} \sup\{ P(A): A  \in \cA_0' \text{ and } Q(A) < \eta \}
+\\
+&=
+\lim_{\eta \to 0} \sup\{ P(\cup_{i=1}^n (a_i, b_i]): 0 \leq a_1 < b_1 < \cdots < a_n < b_n \leq 1, n \geq 0, Q(\cup_{i=1}^n (a_i, b_i]) < \eta \}
+\\
+&=
+\lim_{\eta \to 0} \sup\{ \sion \mu((a_i, b_i]): 0 \leq a_1 < b_1 < \cdots < a_n < b_n \leq 1, n \geq 0, \sion Q((a_i, b_i]) < \eta \}
+\\
+&=
+\lim_{\eta \to 0} \sup\{ \sion G(b_i) - G(a_i): 0 \leq a_1 < b_1 < \cdots < a_n < b_n \leq 1, n \geq 0, \sion b_i - a_i < \eta \}
+\\
+&=
+\lim_{\eta \to 0} \sup\{ \frac{1}{F(1)}\sion F(b_i) - F(a_i): 0 \leq a_1 < b_1 < \cdots < a_n < b_n \leq 1, n \geq 0, \sion b_i - a_i < \eta \}
+\end{align*}
+Let $\epsilon > 0$. Then by the absolute continuity of $F$, since $\epsilon F(1) > 0$, there exists a $\delta > 0$, such that if $\sion b_i - a_i < \delta$, then $\sion F(b_i) - F(a_i) < \epsilon F(1)$. Or in other words, 
+\[
+\frac{1}{F(1)}\sion F(b_i) - F(a_i) < \epsilon.
+\]
+Notice $\epsilon$ is a bound that does not depend on the choice of the $a_i$'s and the $b_i$'s.
+Therefore, as $\delta \to 0$, i.e. as the bound on $\sion b_i - a_i$ tends to $0$, it is the case that 
+\[
+\frac{1}{F(1)}\sion F(b_i) - F(a_i) \to 0
+\] 
+uniformly in the choice of 
+$0 \leq a_1 < b_1 < \cdots < a_n < b_n \leq 1$ and $n \geq 0$. Hence
+\begin{align*}
+&\quad\;\lim_{\eta \to 0} \sup\{ P(A): A  \in \cA_0 \text{ and } Q(A) < \eta \} 
+\\
+&=
+\lim_{\eta \to 0} \sup\{ \frac{1}{F(1)}\sion F(b_i) - F(a_i): 0 \leq a_1 < b_1 < \cdots < a_n < b_n \leq 1 \text{ and } \sion b_i - a_i < \eta \}
+\\
+&=
+0
+\end{align*}
+and condition $2'$ holds. 
+By the first part of this homework, condition $2$ holds. Thus by the Little Radon-Nykodym theorem, there exists $X \geq 0$ such that $P(A) = \int_A X dQ$ for all $A \in \sB$. In particular, take $A = [0, t]$, then 
+\[
+F(t)/F(1) = G(t) = \mu((-\infty, t]) = \mu([0,t]) = P([0,t]) = P(A) = \int_A X dQ = \int_0^t X(s) ds
+\] 
+Hence there exists a function, $F(1)X$, such that
+\[
+F(t) = \int_0^t F(1) X(s) ds
+\]
+for $0 \leq t \leq 1$
+Furthermore, since $F(1) >0$, $F(1) X \geq 0$.
+%Since $\cA_0'$ generates the Borel sets on $(0,1]$
+%Since $\cA_0' \subset \cA_0$, it follows that $\sigma(\cA_0') \subset \sigma(\cA_0)$, where both $\sigma$-fields are with respect to $\Omega = [0,1]$. Since $(0,1] \in \cA_0'$, it follows that $\{0\} \in \sigma(\cA_0')$ by closure. 
+\end{proof}
+\end{document}
